@@ -1,6 +1,7 @@
 const theme = {
-  active: '#FDEDC4',
-  hover: '#FDE29C',
+  main: '#D0BFFF',
+  active: '#E5DBFF',
+  hover: '#B197FC',
   blue: '#B4B2FF',
   red: '#FAB5B5',
   black: '#000000',
