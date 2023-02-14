@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import LoginForm from '../../components/LoginForm';
+import SignUpForm from '../../components/SignUpForm';
 import {
   LoginWrapper,
   LoginContainer,
@@ -33,7 +34,9 @@ function Login() {
           <div className={toggle === 1 ? 'activeContent' : 'content'}>
             <LoginForm></LoginForm>
           </div>
-          <div className={toggle === 2 ? 'activeContent' : 'content'}></div>
+          <div className={toggle === 2 ? 'activeContent' : 'content'}>
+            <SignUpForm></SignUpForm>
+          </div>
         </section>
       </LoginContainer>
     </LoginWrapper>
