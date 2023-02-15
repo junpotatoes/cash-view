@@ -33,7 +33,7 @@ const SignUpFormContent = styled.form`
 
   .error_box {
     display: flex;
-    align-item: center;
+    align-items: center;
     width: 52%;
   }
 
@@ -45,14 +45,20 @@ const SignUpFormContent = styled.form`
 `;
 
 const SignUpInput = styled.input`
+  width: 100%;
   margin: 0.5rem 0;
   padding: 0.5rem;
   border-radius: 5px;
-  border: 1px solid ${(props) => props.theme.black};
-  width: 100%;
+  border: 1px solid ${(props) => props.theme.border};
+  transition: border 0.5s;
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme.active};
+  }
 `;
 
 const SignUpButton = styled.button`
+  width: 100%;
   margin: 1rem 0;
   padding: 0.5rem 1rem;
   border-radius: 5px;
