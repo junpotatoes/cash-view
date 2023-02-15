@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --mode=development --open --hot --progress",
     "build": "webpack --mode=production  --progress",
-    "start": "webpack --mode=development  --progress"
+    "start": "webpack --mode=development  --progress",
+    "server": "json-server-auth --watch db.json --port 4000"
   },
   "keywords": [],
   "author": "",
