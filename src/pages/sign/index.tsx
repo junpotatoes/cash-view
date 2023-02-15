@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import LoginForm from '../../components/LoginForm';
-import SignUpForm from '../../components/SignUpForm';
+import LoginForm from '../../components/sign/LoginForm';
+import SignUpForm from '../../components/sign/SignUpForm';
 import {
   LoginWrapper,
   LoginContainer,
   LoginTitle,
   Underline
-} from '../../styles/login';
+} from '../../styles/sign/login';
 
 function Login() {
   const [toggle, setToggle] = useState(1);

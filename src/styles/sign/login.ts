@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 
 const LoginWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin: 0 auto;
   background-color: ${(props) => props.theme.white};
+
   .tabsActive {
     border-bottom: 1px solid transparent;
-    color: ${(props) => props.theme.main};
-    background: ${(props) => props.theme.white};
+    color: ${(props) => props.theme.active};
   }
 
   .tabsActive::before {
@@ -29,6 +34,13 @@ const LoginWrapper = styled.div`
     box-sizing: content-box;
     cursor: pointer;
     outline: none;
+    transition: color 0.3s;
+
+    @media ${(props) => props.theme.desktop} {
+      &:hover {
+        color: ${(props) => props.theme.hover};
+      }
+    }
   }
 
   .content {
@@ -73,10 +85,15 @@ const FormContent = styled.form`
 
 const LoginInput = styled.input`
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid ${(props) => props.theme.border};
   border-radius: 5px;
   margin: 0.5rem 0;
   padding: 0.5rem;
+  transition: border 0.5s;
+
+  &:focus {
+    border: 1px solid ${(props) => props.theme.active};
+  }
 `;
 
 const LoginButton = styled.button`
@@ -89,6 +106,8 @@ const LoginButton = styled.button`
   background-color: ${(props) => props.theme.main};
   color: ${(props) => props.theme.white};
   cursor: pointer;
+  transition: background-color 0.5s;
+
   @media ${(props) => props.theme.desktop} {
     &:hover {
       background-color: ${(props) => props.theme.hover};

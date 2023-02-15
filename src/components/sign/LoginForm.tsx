@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormContent, LoginInput, LoginButton } from '.././styles/login';
+import { FormContent, LoginInput, LoginButton } from '../../styles/sign/login';
 
 interface LoginFormValues {
   email: string;
