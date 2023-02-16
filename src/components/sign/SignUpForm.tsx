@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import {
   SignUpWrapper,
@@ -29,7 +30,15 @@ function SignUpForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formValues);
+
+    axios
+      .post('http://localhost:4000/register', formValues)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,10 +59,13 @@ function SignUpForm() {
             placeholder={'이름을 입력해주세요'}
           />
         </div>
+
         <div className="error_box">
-          {formValues.name.length < 6 && 0 < formValues.name.length ? (
+          {formValues.name &&
+          formValues.name.length > 0 &&
+          !nameCheck.test(formValues.name) ? (
             <div className="error_text">
-              6자 이상 16자 이하의 글자 수를 입력해주세요{' '}
+              올바르지 않은 이름입니다. (공백,특수문자,숫자는 사용불가합니다.)
             </div>
           ) : null}
         </div>
