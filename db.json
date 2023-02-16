@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "users": [
+    {
+      "email": "test@naver.com",
+      "password": "$2a$10$LAewDN5T1n7PkTjp3C.LLu73NvIW1hGC3o7jXMoTWzKrBTI17q82W",
+      "id": 1
+    }
+  ]
+}
