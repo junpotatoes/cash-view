@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { FormContent, LoginInput, LoginButton } from '../../styles/sign/login';
 
 interface LoginFormValues {
@@ -15,6 +17,15 @@ function LoginForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    axios
+      .post('http://localhost:4000/login', formValues)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
