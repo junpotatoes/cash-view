@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { FormContent, LoginInput, LoginButton } from '../../styles/sign/login';
 
 interface LoginFormValues {
@@ -12,9 +14,22 @@ function LoginForm() {
     password: ''
   });
   const [toggle, setToggle] = useState(1);
+  const [cookies, setCookie, removeCookie] = useCookies();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    axios
+      .post('http://localhost:4000/login', formValues)
+      .then((res) => {
+        const { data } = res;
+        console.log(res);
+        setCookie('accessToken', data['accessToken'], { path: '/' });
+        localStorage.setItem('accessToken', data['accessToken']); // set localStorage
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
