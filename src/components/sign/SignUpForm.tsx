@@ -1,11 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
-import {
-  SignUpWrapper,
-  SignUpFormContent,
-  SignUpInput,
-  SignUpButton
-} from '../../styles/sign/signup';
+import * as S from '../../styles/sign/signup.style';
+import { SignInput } from '../../styles/sign/login.style';
 
 interface SignUpFormValues {
   name: string;
@@ -47,11 +43,11 @@ function SignUpForm() {
   };
 
   return (
-    <SignUpWrapper>
-      <SignUpFormContent onSubmit={handleSubmit}>
+    <S.SignUpWrapper>
+      <S.SignUpFormContent onSubmit={handleSubmit}>
         <div className="input_box">
           <label>이름</label>
-          <SignUpInput
+          <SignInput
             type="text"
             name="name"
             value={formValues.name}
@@ -70,7 +66,7 @@ function SignUpForm() {
 
         <div className="input_box">
           <label>이메일</label>
-          <SignUpInput
+          <SignInput
             type="email"
             name="email"
             value={formValues.email}
@@ -88,7 +84,7 @@ function SignUpForm() {
 
         <div className="input_box">
           <label>비밀번호</label>
-          <SignUpInput
+          <SignInput
             type="password"
             name="password"
             value={formValues.password}
@@ -107,7 +103,7 @@ function SignUpForm() {
 
         <div className="input_box">
           <label>비밀번호 확인</label>
-          <SignUpInput
+          <SignInput
             type="password"
             name="confirmPassword"
             value={formValues.confirmPassword}
@@ -122,9 +118,9 @@ function SignUpForm() {
           ) : null}
         </div>
 
-        <SignUpButton type="submit">회원가입</SignUpButton>
-      </SignUpFormContent>
-    </SignUpWrapper>
+        <S.SignUpButton type="submit">회원가입</S.SignUpButton>
+      </S.SignUpFormContent>
+    </S.SignUpWrapper>
   );
 }
 
