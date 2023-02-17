@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { FormContent, LoginInput, LoginButton } from '../../styles/sign/login';
+import * as S from '../../styles/sign/login.style';
 
 interface LoginFormValues {
   email: string;
@@ -40,8 +40,8 @@ function LoginForm() {
   return (
     <section className="contentTabs">
       <div className={toggle === 1 ? 'activeContent' : 'content'}>
-        <FormContent onSubmit={handleSubmit}>
-          <LoginInput
+        <S.FormContent onSubmit={handleSubmit}>
+          <S.SignInput
             type="email"
             name="email"
             value={formValues.email}
@@ -49,15 +49,15 @@ function LoginForm() {
             onChange={handleInputChange}
           />
 
-          <LoginInput
+          <S.SignInput
             type="password"
             name="password"
             value={formValues.password}
             placeholder={'비밀번호를 입력해주세요'}
             onChange={handleInputChange}
           />
-          <LoginButton type="submit">로그인</LoginButton>
-        </FormContent>
+          <S.LoginButton type="submit">로그인</S.LoginButton>
+        </S.FormContent>
       </div>
     </section>
   );

@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-const SignUpWrapper = styled.div`
+export const SignUpWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const SignUpHeading = styled.h2`
+export const SignUpHeading = styled.h2`
   margin-bottom: 1rem;
 `;
 
-const SignUpFormContent = styled.form`
+export const SignUpFormContent = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,20 +44,20 @@ const SignUpFormContent = styled.form`
   }
 `;
 
-const SignUpInput = styled.input`
-  width: 100%;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid ${(props) => props.theme.border};
-  transition: border 0.5s;
+// export const SignUpInput = styled.input`
+//   width: 100%;
+//   margin: 0.5rem 0;
+//   padding: 0.5rem;
+//   border-radius: 5px;
+//   border: 1px solid ${(props) => props.theme.border};
+//   transition: border 0.5s;
 
-  &:focus {
-    border: 1px solid ${(props) => props.theme.active};
-  }
-`;
+//   &:focus {
+//     border: 1px solid ${(props) => props.theme.active};
+//   }
+// `;
 
-const SignUpButton = styled.button`
+export const SignUpButton = styled.button`
   width: 100%;
   margin: 1rem 0;
   padding: 0.5rem 1rem;
@@ -76,11 +76,3 @@ const SignUpButton = styled.button`
     }
   }
 `;
-
-export {
-  SignUpWrapper,
-  SignUpHeading,
-  SignUpFormContent,
-  SignUpInput,
-  SignUpButton
-};
