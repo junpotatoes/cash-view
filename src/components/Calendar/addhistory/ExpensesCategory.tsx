@@ -1,6 +1,17 @@
-function ExpensesCategory() {
+interface ExpensesCategory {
+  setCategory: (option: string) => void;
+}
+
+function ExpensesCategory({ setCategory }: ExpensesCategory) {
+  const categoryValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setCategory(e.target.value);
+  };
   return (
-    <select className="category" name="inquirt_category">
+    <select
+      className="category"
+      name="inquirt_category"
+      onChange={categoryValue}
+    >
       <option value="카테고리">항목을 선택해주세요</option>
       <option value="식비">식비</option>
       <option value="교통/차량">교통/차량</option>
