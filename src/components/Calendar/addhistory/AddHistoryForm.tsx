@@ -83,6 +83,11 @@ function AddHistoryForm(): JSX.Element {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (!classOption || !category || !amount || !content) {
+      window.alert('모든 항목을 작성해주세요.');
+      return;
+    }
+
     const reqbody = {
       value: classOption,
       category: category,
