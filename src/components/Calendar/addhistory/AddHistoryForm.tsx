@@ -5,26 +5,40 @@ import ExpensesCategory from './ExpensesCategory';
 import axios from 'axios';
 import * as S from '../../../styles/historymodal/history.style';
 
+interface FormState {
+  classOption: string;
+  category: string;
+  amount: number | undefined;
+  content: string;
+}
+
 function AddHistoryForm(): JSX.Element {
-  const [classOption, setClassOption] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
-  const [amount, setAmount] = useState<number | undefined>(undefined);
-  const [content, setContent] = useState<string>('');
+  const [formState, setFormState] = useState<FormState>({
+    classOption: '',
+    category: '',
+    amount: undefined,
+    content: ''
+  });
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!classOption || !category || !amount || !content) {
-      window.alert('모든 항목을 작성해주세요.');
+    const reqbody = {
+      value: formState.classOption,
+      category: formState.category,
+      amount: formState.amount,
+      content: formState.content
+    };
+
+    if (
+      !reqbody.value ||
+      !reqbody.category ||
+      !reqbody.amount ||
+      !reqbody.content
+    ) {
+      alert('모든 항목을 입력해주세요!');
       return;
     }
-
-    const reqbody = {
-      value: classOption,
-      category: category,
-      amount: amount,
-      content: content
-    };
 
     axios
       .post('http://localhost:4000/history', reqbody, {})
@@ -35,6 +49,10 @@ function AddHistoryForm(): JSX.Element {
         console.log(res);
       });
   };
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormState((prevValues) => ({ ...prevValues, [name]: value }));
+  };
 
   return (
     <S.ItemWrapper>
@@ -42,16 +60,28 @@ function AddHistoryForm(): JSX.Element {
         <S.ItemBox>
           <span className="class">분류</span>
           <span className="select_class">
-            <SelectClass setClassOption={setClassOption} />
+            <SelectClass
+              setClassOption={(value) =>
+                setFormState({ ...formState, classOption: value })
+              }
+            />
           </span>
         </S.ItemBox>
         <S.ItemBox>
           <span>카테고리</span>
           <span>
-            {classOption === '수입' ? (
-              <IncomeCategory setCategory={setCategory} />
+            {formState.classOption === '수입' ? (
+              <IncomeCategory
+                setCategory={(category) =>
+                  setFormState({ ...formState, category: category })
+                }
+              />
             ) : (
-              <ExpensesCategory setCategory={setCategory} />
+              <ExpensesCategory
+                setCategory={(category) =>
+                  setFormState({ ...formState, category: category })
+                }
+              />
             )}
           </span>
         </S.ItemBox>
@@ -60,8 +90,9 @@ function AddHistoryForm(): JSX.Element {
           <input
             type={'number'}
             className="underline"
-            value={amount || ''}
-            onChange={(event) => setAmount(Number(event.target.value))}
+            name="amount"
+            value={formState.amount || ''}
+            onChange={handleInputChange}
           />
           <span>원</span>
         </S.ItemBox>
@@ -70,8 +101,9 @@ function AddHistoryForm(): JSX.Element {
           <input
             type={'text'}
             className="underline"
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
+            name="content"
+            value={formState.content}
+            onChange={handleInputChange}
           />
         </S.ItemBox>
         <S.ButtonBox>
