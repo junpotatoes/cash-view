@@ -1,11 +1,4 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
   "users": [
     {
       "email": "test12@naver.com",
@@ -13,6 +6,32 @@
       "name": "테스트계정입니다.",
       "confirmPassword": "gpffhdn12!",
       "id": 1
+    }
+  ],
+  "history": [
+    {
+      "id": 1
+    },
+    {
+      "value": "수입",
+      "category": "월급",
+      "amount": 30000000,
+      "content": "월급",
+      "id": 2
+    },
+    {
+      "value": "수입",
+      "category": "월급",
+      "amount": 30000000,
+      "content": "월급이닷",
+      "id": 3
+    },
+    {
+      "value": "지출",
+      "category": "식비",
+      "amount": 20000,
+      "content": "저녁식사",
+      "id": 4
     }
   ]
 }
