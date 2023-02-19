@@ -1,5 +1,7 @@
+import axios from 'axios';
 import { useState } from 'react';
-import { FormContent, LoginInput, LoginButton } from '../../styles/sign/login';
+import { useCookies } from 'react-cookie';
+import * as S from '../../styles/sign/login.style';
 
 interface LoginFormValues {
   email: string;
@@ -12,9 +14,22 @@ function LoginForm() {
     password: ''
   });
   const [toggle, setToggle] = useState(1);
+  const [cookies, setCookie, removeCookie] = useCookies();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    axios
+      .post('http://localhost:4000/login', formValues)
+      .then((res) => {
+        const { data } = res;
+        console.log(res);
+        setCookie('accessToken', data['accessToken'], { path: '/' });
+        localStorage.setItem('accessToken', data['accessToken']); // set localStorage
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,8 +40,8 @@ function LoginForm() {
   return (
     <section className="contentTabs">
       <div className={toggle === 1 ? 'activeContent' : 'content'}>
-        <FormContent onSubmit={handleSubmit}>
-          <LoginInput
+        <S.FormContent onSubmit={handleSubmit}>
+          <S.SignInput
             type="email"
             name="email"
             value={formValues.email}
@@ -34,15 +49,15 @@ function LoginForm() {
             onChange={handleInputChange}
           />
 
-          <LoginInput
+          <S.SignInput
             type="password"
             name="password"
             value={formValues.password}
             placeholder={'비밀번호를 입력해주세요'}
             onChange={handleInputChange}
           />
-          <LoginButton type="submit">로그인</LoginButton>
-        </FormContent>
+          <S.LoginButton type="submit">로그인</S.LoginButton>
+        </S.FormContent>
       </div>
     </section>
   );

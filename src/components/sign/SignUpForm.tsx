@@ -1,10 +1,7 @@
+import axios from 'axios';
 import { useState } from 'react';
-import {
-  SignUpWrapper,
-  SignUpFormContent,
-  SignUpInput,
-  SignUpButton
-} from '../../styles/sign/signup';
+import * as S from '../../styles/sign/signup.style';
+import { SignInput } from '../../styles/sign/login.style';
 
 interface SignUpFormValues {
   name: string;
@@ -29,7 +26,15 @@ function SignUpForm() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formValues);
+
+    axios
+      .post('http://localhost:4000/register', formValues)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,11 +43,11 @@ function SignUpForm() {
   };
 
   return (
-    <SignUpWrapper>
-      <SignUpFormContent onSubmit={handleSubmit}>
+    <S.SignUpWrapper>
+      <S.SignUpFormContent onSubmit={handleSubmit}>
         <div className="input_box">
           <label>이름</label>
-          <SignUpInput
+          <SignInput
             type="text"
             name="name"
             value={formValues.name}
@@ -50,17 +55,18 @@ function SignUpForm() {
             placeholder={'이름을 입력해주세요'}
           />
         </div>
+
         <div className="error_box">
-          {formValues.name.length < 6 && 0 < formValues.name.length ? (
+          {formValues.name.length > 0 && !nameCheck.test(formValues.name) ? (
             <div className="error_text">
-              6자 이상 16자 이하의 글자 수를 입력해주세요{' '}
+              올바르지 않은 이름입니다. (공백,특수문자,숫자는 사용불가합니다.)
             </div>
           ) : null}
         </div>
 
         <div className="input_box">
           <label>이메일</label>
-          <SignUpInput
+          <SignInput
             type="email"
             name="email"
             value={formValues.email}
@@ -69,9 +75,7 @@ function SignUpForm() {
           />
         </div>
         <div className="error_box">
-          {formValues.email &&
-          formValues.email.length > 0 &&
-          !emailCheck.test(formValues.email) ? (
+          {formValues.email.length > 0 && !emailCheck.test(formValues.email) ? (
             <div className="error_text">
               공백, 특수문자(!@#$%^&*-_)는 사용불가합니다.
             </div>
@@ -80,7 +84,7 @@ function SignUpForm() {
 
         <div className="input_box">
           <label>비밀번호</label>
-          <SignUpInput
+          <SignInput
             type="password"
             name="password"
             value={formValues.password}
@@ -99,7 +103,7 @@ function SignUpForm() {
 
         <div className="input_box">
           <label>비밀번호 확인</label>
-          <SignUpInput
+          <SignInput
             type="password"
             name="confirmPassword"
             value={formValues.confirmPassword}
@@ -114,9 +118,9 @@ function SignUpForm() {
           ) : null}
         </div>
 
-        <SignUpButton type="submit">회원가입</SignUpButton>
-      </SignUpFormContent>
-    </SignUpWrapper>
+        <S.SignUpButton type="submit">회원가입</S.SignUpButton>
+      </S.SignUpFormContent>
+    </S.SignUpWrapper>
   );
 }
 

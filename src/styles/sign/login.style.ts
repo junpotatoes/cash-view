@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LoginWrapper = styled.div`
+export const LoginWrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -55,17 +55,18 @@ const LoginWrapper = styled.div`
     display: block;
   }
 `;
-const LoginContainer = styled.div`
+
+export const LoginContainer = styled.div`
   width: 400px;
 `;
 
-const LoginTitle = styled.h2`
+export const LoginTitle = styled.h2`
   justify-content: center;
   font-size: 24px;
   margin-bottom: 3rem;
 `;
 
-const Underline = styled.div`
+export const Underline = styled.div`
   width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.main};
   button {
@@ -74,7 +75,7 @@ const Underline = styled.div`
   }
 `;
 
-const FormContent = styled.form`
+export const FormContent = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,7 +84,7 @@ const FormContent = styled.form`
   padding: 1rem;
 `;
 
-const LoginInput = styled.input`
+export const SignInput = styled.input`
   width: 100%;
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 5px;
@@ -96,7 +97,7 @@ const LoginInput = styled.input`
   }
 `;
 
-const LoginButton = styled.button`
+export const LoginButton = styled.button`
   width: 100%;
   border: none;
   border-radius: 5px;
@@ -114,13 +115,3 @@ const LoginButton = styled.button`
     }
   }
 `;
-
-export {
-  LoginWrapper,
-  LoginContainer,
-  LoginTitle,
-  Underline,
-  FormContent,
-  LoginInput,
-  LoginButton
-};
