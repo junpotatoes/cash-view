@@ -2,18 +2,20 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const { SourceMapDevToolPlugin } = require('webpack');
 
 module.exports = (env, argv) => {
   const prod = argv.mode === 'production';
 
   return {
     mode: prod ? 'production' : 'development',
-    devtool: prod ? 'hidden-source-map' : 'eval',
     entry: './src/index.tsx',
     output: {
-      path: path.join(__dirname, '/dist'),
-      filename: '[name].js'
+      path: path.resolve(__dirname, 'dist'),
+      filename: 'bundle.js'
     },
+    devtool: 'eval-source-map',
+    watch: true,
     devServer: {
       port: 3000,
       hot: true
@@ -34,6 +36,11 @@ module.exports = (env, argv) => {
         {
           test: /\.(woff|woff2|ttf|eot|png|jpg|svg|gif)$/i,
           use: ['file-loader']
+        },
+        {
+          test: [/\.js$/, /\.ts?$/, /\.jsx?$/, /\.tsx?$/],
+          enforce: 'pre',
+          use: ['source-map-loader']
         }
       ]
     },
@@ -51,7 +58,10 @@ module.exports = (env, argv) => {
               }
             : false
       }),
-      new CleanWebpackPlugin()
+      new CleanWebpackPlugin(),
+      new SourceMapDevToolPlugin({
+        filename: '[file].map'
+      })
     ]
   };
 };
