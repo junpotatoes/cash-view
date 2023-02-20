@@ -14,9 +14,8 @@ export const SignUpFormContent = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 450px;
+  width: 100%;
   border-radius: 5px;
-  padding: 1rem;
 
   .input_box {
     display: flex;
@@ -44,22 +43,9 @@ export const SignUpFormContent = styled.form`
   }
 `;
 
-// export const SignUpInput = styled.input`
-//   width: 100%;
-//   margin: 0.5rem 0;
-//   padding: 0.5rem;
-//   border-radius: 5px;
-//   border: 1px solid ${(props) => props.theme.border};
-//   transition: border 0.5s;
-
-//   &:focus {
-//     border: 1px solid ${(props) => props.theme.active};
-//   }
-// `;
-
 export const SignUpButton = styled.button`
   width: 100%;
-  margin: 1rem 0;
+  margin-top: 9px;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: none;
