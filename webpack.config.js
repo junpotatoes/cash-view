@@ -17,8 +17,10 @@ module.exports = (env, argv) => {
     devtool: 'eval-source-map',
     watch: true,
     devServer: {
+      host: 'localhost',
       port: 3000,
-      hot: true
+      hot: true,
+      historyApiFallback: true
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx']
