@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import LoginForm from '../../components/sign/LoginForm';
-import SignUpForm from '../../components/sign/SignUpForm';
+import LoginForm from '../../components/Sign/LoginForm';
+import SignUpForm from '../../components/Sign/SignUpForm';
 import {
   LoginWrapper,
   LoginContainer,
@@ -9,7 +9,7 @@ import {
   Underline
 } from '../../styles/sign/login.style';
 
-function Login() {
+function Sign() {
   const [toggle, setToggle] = useState(1);
 
   return (
@@ -43,4 +43,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Sign;
