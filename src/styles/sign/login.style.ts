@@ -69,6 +69,8 @@ export const LoginTitle = styled.h2`
 export const Underline = styled.div`
   width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.main};
+  margin-bottom: 10px;
+
   button {
     font-size: 20px;
     margin-right: 10px;
@@ -79,9 +81,7 @@ export const FormContent = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 400px;
   border-radius: 5px;
-  padding: 1rem;
 `;
 
 export const SignInput = styled.input`

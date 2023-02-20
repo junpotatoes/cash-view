@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as S from '../../styles/Layout/Header.style';
+import * as S from '../../styles/layout/Header.style';
 import { ReactComponent as MenuIcon } from '../../assets/Icon/menuIcon.svg';
 
-const Header = () => {
+function Header() {
   const path = useLocation().pathname;
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
@@ -86,6 +86,6 @@ const Header = () => {
       </S.MenuModalContainer>
     </>
   );
-};
+}
 
 export default Header;
