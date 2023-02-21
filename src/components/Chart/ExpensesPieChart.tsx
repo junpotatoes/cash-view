@@ -41,12 +41,12 @@ const labels = [
 ];
 
 const colors = [
-  '#B4B2FF',
-  '#DEDDFF',
-  '#6D6AFA',
-  '#A2EDFD',
-  '#C270DF',
-  '#2E9BFF'
+  '#FAB5B5',
+  '#FF7D7D',
+  '#FABD92',
+  '#FDDE8F',
+  '#DD79B5',
+  '#D4AEE1'
 ];
 
 const data = {
