@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as S from '../../styles/layout/Header.style';
+import * as S from '../../styles/Layout/Header.style';
 import { ReactComponent as MenuIcon } from '../../assets/Icon/menuIcon.svg';
 
 function Header() {
