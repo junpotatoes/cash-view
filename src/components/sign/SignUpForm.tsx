@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
-import * as S from '../../styles/sign/signup.style';
-import { SignInput } from '../../styles/sign/login.style';
+import * as S from '../../styles/Sign/Signup.style';
+import { SignInput } from '../../styles/Sign/Login.style';
 
 interface SignUpFormValues {
   name: string;

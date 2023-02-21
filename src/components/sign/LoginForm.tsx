@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
-import * as S from '../../styles/sign/login.style';
+import * as S from '../../styles/Sign/Login.style';
 
 interface LoginFormValues {
   email: string;

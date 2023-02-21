@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Calendar from '../../pages/Calendar';
-import Sign from '../../pages/sign';
+import Sign from '../../pages/Sign';
 
 function Router() {
   return (
