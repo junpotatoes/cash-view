@@ -3,7 +3,7 @@ import * as S from '../../../styles/Calendar/Header/CalendarHeader.style';
 import { Props } from '../../../pages/Calendar';
 import { Dispatch, SetStateAction, useState } from 'react';
 import CalendarModalButton from '../Modal/CalendarModalButton';
-import CalendarDateModal from '../Modal/CalendarDateModal';
+import CalendarDateModal from '../Modal/Date/CalendarDateModal';
 
 export interface CalendarModal {
   isOpenCalender: boolean;

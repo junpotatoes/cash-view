@@ -1,32 +1,46 @@
-import { useState } from 'react';
-import CalendarHeader from '../components/Calendar/Header';
+import { Dispatch, SetStateAction, useState } from 'react';
+import CalendarHeader from '../components/Calendar/Header/CalendarHeader';
+import CalendarMain from '../components/Calendar/Main/CalendarMain';
 
-interface Date {
+interface Calendar {
   year: number;
   month: number;
   date: number;
-  day: number;
+  prevDate: number;
+  nextDate: number;
+}
+
+export interface Props {
+  calendar: Calendar;
+  setCalendar: Dispatch<SetStateAction<Calendar>>;
+  isOpenMobileCalendar: boolean;
+  setIsOpenMobileCalendar: Dispatch<SetStateAction<boolean>>;
 }
 
 function Calendar(): JSX.Element {
-  const date: Date = {
+  const [calendar, setCalendar] = useState({
     year: new Date().getFullYear(),
     month: new Date().getMonth() + 1,
     date: new Date().getDate(),
-    day: new Date().getDay()
-  };
-  const [currentYear, setCurrentYear] = useState(date.year);
-  const [currentMonth, setCurrentMonth] = useState(date.month);
-  const dateCount: number = new Date(currentYear, currentMonth, 0).getDate();
-  const week: string[] = ['일', '월', '화', '수', '목', '금', '토'];
+    prevDate: 0,
+    nextDate: 0
+  });
+  const [isOpenMobileCalendar, setIsOpenMobileCalendar] = useState(false);
 
   return (
     <>
       <CalendarHeader
-        currentYear={currentYear}
-        currentMonth={currentMonth}
-        setCurrentYear={setCurrentYear}
-        setCurrentMonth={setCurrentMonth}
+        calendar={calendar}
+        setCalendar={setCalendar}
+        isOpenMobileCalendar={isOpenMobileCalendar}
+        setIsOpenMobileCalendar={setIsOpenMobileCalendar}
+      />
+
+      <CalendarMain
+        calendar={calendar}
+        setCalendar={setCalendar}
+        isOpenMobileCalendar={isOpenMobileCalendar}
+        setIsOpenMobileCalendar={setIsOpenMobileCalendar}
       />
     </>
   );
