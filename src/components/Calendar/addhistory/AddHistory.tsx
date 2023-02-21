@@ -1,6 +1,6 @@
 import BasicDatePicker from '../../Datepicker';
 import AddHistoryForm from './AddHistoryForm';
-import * as S from '../../../styles/historymodal/history.style';
+import * as S from '../../../styles/Calendar/Addhistory/AddHistory.style';
 
 function AddHistory() {
   return (

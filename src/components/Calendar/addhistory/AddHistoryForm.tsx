@@ -3,7 +3,7 @@ import SelectClass from './SelectClass';
 import IncomeCategory from './IncomeCategory';
 import ExpensesCategory from './ExpensesCategory';
 import axios from 'axios';
-import * as S from '../../../styles/historymodal/history.style';
+import * as S from '../../../styles/Calendar/Addhistory/AddHistory.style';
 
 interface FormState {
   classOption: string;
