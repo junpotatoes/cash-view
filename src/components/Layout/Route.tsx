@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Calendar from '../../pages/Calendar';
+import Chart from '../../pages/Chart';
 import Sign from '../../pages/Sign';
 
 function Router() {
@@ -7,6 +8,7 @@ function Router() {
     <Routes>
       <Route path="/" element={<Sign />} />
       <Route path="/calendar" element={<Calendar />} />
+      <Route path="/statistics" element={<Chart />} />
     </Routes>
   );
 }
