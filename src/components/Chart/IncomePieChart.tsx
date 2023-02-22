@@ -20,8 +20,7 @@ ChartJS.register(
 );
 const options = {
   responsive: true,
-  width: 820,
-  height: 270,
+
   plugins: {
     legend: {
       position: 'top' as const
@@ -53,8 +52,8 @@ const data = {
   ]
 };
 
-function PieChart() {
+function IncomePieChart() {
   return <Pie options={options} data={data} />;
 }
 
-export default PieChart;
+export default IncomePieChart;
