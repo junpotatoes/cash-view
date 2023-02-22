@@ -1,12 +1,11 @@
 import { CalendarModal } from '../../Header/CalendarHeader';
-import * as S from '../../../../styles/Calendar/Modal/CalendarDateModal.style';
+import * as S from '../../../../styles/Calendar/Modal/Date/DateModal.style';
 import CalendarDay from '../../Main/CalendarDay';
 import { useState } from 'react';
+import ModalDate from './ModalDate';
+import DateModalHeader from './DateModalHeader';
 
-function CalendarDateModal({
-  isOpenCalender,
-  setIsOpenCalendar
-}: CalendarModal) {
+function DateModal({ isOpenCalender, setIsOpenCalendar }: CalendarModal) {
   const [calendar, setCalendar] = useState({
     year: new Date().getFullYear(),
     month: new Date().getMonth() + 1,
@@ -17,9 +16,13 @@ function CalendarDateModal({
 
   return (
     <S.CalendarDateModalContainer isOpenCalendar={isOpenCalender}>
+      <DateModalHeader />
+
       <CalendarDay />
+
+      <ModalDate />
     </S.CalendarDateModalContainer>
   );
 }
 
-export default CalendarDateModal;
+export default DateModal;
