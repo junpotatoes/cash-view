@@ -1,5 +1,5 @@
 import { CalendarModal } from '../Header/CalendarHeader';
-import * as S from '../../../styles/Calendar/Modal/CalendarModalButton.style';
+import * as S from '../../../styles/Calendar/Modal/ModalButton.style';
 import { ReactComponent as CalendarIcon } from '../../../assets/Icon/calendarIcon.svg';
 
 function CalendarModalButton({
