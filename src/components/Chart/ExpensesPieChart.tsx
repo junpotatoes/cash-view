@@ -20,8 +20,6 @@ ChartJS.register(
 );
 const options = {
   responsive: true,
-  width: 820,
-  height: 270,
   plugins: {
     legend: {
       position: 'top' as const
@@ -30,15 +28,7 @@ const options = {
   type: 'pie'
 };
 
-const labels = [
-  '식비',
-  '교통비',
-  '문화생활',
-  '패션/미용',
-  '생활용품',
-  '주거/통신',
-  '기타'
-];
+const labels = ['식비', '교통비', '문화생활', '패션/미용', '주거/통신', '기타'];
 
 const colors = [
   '#FAB5B5',
