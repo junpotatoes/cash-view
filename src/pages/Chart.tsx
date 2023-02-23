@@ -7,6 +7,7 @@ import { margin } from '@mui/system';
 const ChartWrapper = styled.div`
   display: flex;
   justify-content: center;
+  width: 100%;
 `;
 
 const ChartContainer = styled.div`
@@ -15,11 +16,11 @@ const ChartContainer = styled.div`
 
 const PieChartBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 
   .pieBox {
     width: 100%;
-    max-width: 300px;
+    max-width: 330px;
   }
 `;
 
