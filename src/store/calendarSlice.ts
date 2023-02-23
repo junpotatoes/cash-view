@@ -63,6 +63,11 @@ const calendarSlice = createSlice({
       state.year = action.payload.year;
       state.month = action.payload.month;
       state.date = action.payload.date;
+    },
+    changeMonth: (state, action) => {
+      state.month = action.payload.month;
+      state.date = 1;
+      state.mobileCalendar = false;
     }
   }
 });
@@ -72,6 +77,7 @@ export const {
   nextMonth,
   clickCalendar,
   toggleMobileCalendar,
-  changeCalendar
+  changeCalendar,
+  changeMonth
 } = calendarSlice.actions;
 export default calendarSlice;
