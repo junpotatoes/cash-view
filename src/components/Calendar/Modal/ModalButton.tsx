@@ -3,12 +3,12 @@ import * as S from '../../../styles/Calendar/Modal/ModalButton.style';
 import { ReactComponent as CalendarIcon } from '../../../assets/Icon/calendarIcon.svg';
 
 function CalendarModalButton({
-  isOpenCalender,
+  isOpenCalendar,
   setIsOpenCalendar
 }: CalendarModal) {
   return (
     <S.CalendarModalButtonContainer
-      onClick={() => setIsOpenCalendar(!isOpenCalender)}
+      onClick={() => setIsOpenCalendar(!isOpenCalendar)}
     >
       <CalendarIcon />
     </S.CalendarModalButtonContainer>

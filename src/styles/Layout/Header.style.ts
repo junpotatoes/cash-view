@@ -8,6 +8,7 @@ export const HeaderWrapper = styled.header`
   justify-content: center;
   width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.border};
+  background-color: ${(props) => props.theme.white};
   z-index: 90;
 `;
 
