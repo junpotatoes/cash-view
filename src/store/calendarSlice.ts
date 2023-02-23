@@ -59,6 +59,11 @@ const calendarSlice = createSlice({
     toggleMobileCalendar: (state, action) => {
       state.mobileCalendar = action.payload.mobileCalendar;
     },
+    changeCalendar: (state, action) => {
+      state.year = action.payload.year;
+      state.month = action.payload.month;
+      state.date = action.payload.date;
+    },
     changeMonth: (state, action) => {
       state.month = action.payload.month;
       state.date = 1;
@@ -72,6 +77,7 @@ export const {
   nextMonth,
   clickCalendar,
   toggleMobileCalendar,
+  changeCalendar,
   changeMonth
 } = calendarSlice.actions;
 export default calendarSlice;
