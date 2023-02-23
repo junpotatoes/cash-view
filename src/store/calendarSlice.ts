@@ -22,16 +22,6 @@ const calendarSlice = createSlice({
   name: 'calendar',
   initialState,
   reducers: {
-    saveYear: (state, action) => {
-      state.year = action.payload;
-    },
-    saveMonth: (state, action) => {
-      state.month = action.payload;
-    },
-    saveDate: (state, action) => {
-      state.date = action.payload;
-    },
-
     prevMonth: (state) => {
       if (state.month === 1) {
         state.year -= 1;
@@ -68,6 +58,11 @@ const calendarSlice = createSlice({
     },
     toggleMobileCalendar: (state, action) => {
       state.mobileCalendar = action.payload.mobileCalendar;
+    },
+    changeCalendar: (state, action) => {
+      state.year = action.payload.year;
+      state.month = action.payload.month;
+      state.date = action.payload.date;
     }
   }
 });
@@ -77,6 +72,6 @@ export const {
   nextMonth,
   clickCalendar,
   toggleMobileCalendar,
-  saveYear
+  changeCalendar
 } = calendarSlice.actions;
 export default calendarSlice;

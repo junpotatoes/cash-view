@@ -4,6 +4,7 @@ import IncomeCategory from './IncomeCategory';
 import ExpensesCategory from './ExpensesCategory';
 import axios from 'axios';
 import * as S from '../../../styles/Calendar/Addhistory/AddHistory.style';
+import { useAppSelector } from '../../../hooks/store';
 
 interface FormState {
   classOption: string;
@@ -19,11 +20,15 @@ function AddHistoryForm(): JSX.Element {
     amount: undefined,
     content: ''
   });
+  const calendar = useAppSelector((state) => state.calendar);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const reqbody = {
+      year: calendar.year,
+      month: calendar.month,
+      Date: calendar.date,
       value: formState.classOption,
       category: formState.category,
       amount: formState.amount,

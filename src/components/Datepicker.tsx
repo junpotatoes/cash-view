@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useAppDispatch, useAppSelector } from '../hooks/store';
-import { saveYear } from '../store/calendarSlice';
+import { changeCalendar } from '../store/calendarSlice';
 
 export default function BasicDatePicker() {
   const [value, setValue] = React.useState<Dayjs | null>();
@@ -19,7 +19,13 @@ export default function BasicDatePicker() {
         value={value}
         onChange={(newValue: any) => {
           setValue(newValue);
-          dispatch(saveYear(`${newValue.$y} `));
+          dispatch(
+            changeCalendar({
+              year: newValue.$y,
+              month: newValue.$M + 1,
+              date: newValue.$D
+            })
+          );
         }}
         renderInput={(params) => (
           <TextField
