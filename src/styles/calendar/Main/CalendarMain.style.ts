@@ -7,7 +7,7 @@ export const CalendarMainWrapper = styled.div`
 `;
 
 export const CalendarMainContainer = styled.div`
-  width: 80%;
+  width: 100%;
   border-top: 1px solid ${(props) => props.theme.border};
   border-left: 1px solid ${(props) => props.theme.border};
 
