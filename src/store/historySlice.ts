@@ -10,6 +10,8 @@ type History = {
     value: string;
     category: string;
     amount: number;
+    expenditure: number;
+    income: number;
     content: string;
   }[];
 };
