@@ -40,14 +40,15 @@ const colors = [
   '#2E9BFF'
 ];
 
+const dataValues = [10, 20, 13, 29, 21, 10];
+const dataSum = dataValues.reduce((a, b) => a + b, 0);
 const data = {
-  labels,
-
+  labels: labels,
   datasets: [
     {
-      data: [12, 19, 3, 5, 2, 3],
+      data: dataValues.map((value) => ((value / dataSum) * 100).toFixed(2)),
       backgroundColor: colors,
-      label: 'My dataset'
+      label: '수입 항목'
     }
   ]
 };
