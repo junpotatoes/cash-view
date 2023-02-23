@@ -36,14 +36,14 @@ function Chart() {
       <ChartContainer>
         <PieChartBox>
           <div className="pieBox">
-            <IncomePieChart></IncomePieChart>
+            <IncomePieChart />
           </div>
           <div className="pieBox">
-            <ExpensesPieChart></ExpensesPieChart>
+            <ExpensesPieChart />
           </div>
         </PieChartBox>
         <BarChartBox>
-          <BarChart></BarChart>
+          <BarChart />
         </BarChartBox>
       </ChartContainer>
     </ChartWrapper>
