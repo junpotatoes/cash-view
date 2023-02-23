@@ -118,7 +118,7 @@ function CalendarDate() {
       <button
         type="button"
         className="openButton"
-        onClick={() => dispatch(toggleMobileCalendar(true))}
+        onClick={() => dispatch(toggleMobileCalendar({ mobileCalendar: true }))}
       >
         <strong className="date">{calendar.date}</strong>
         <span className="day">
