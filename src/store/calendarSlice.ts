@@ -22,6 +22,16 @@ const calendarSlice = createSlice({
   name: 'calendar',
   initialState,
   reducers: {
+    saveYear: (state, action) => {
+      state.year = action.payload;
+    },
+    saveMonth: (state, action) => {
+      state.month = action.payload;
+    },
+    saveDate: (state, action) => {
+      state.date = action.payload;
+    },
+
     prevMonth: (state) => {
       if (state.month === 1) {
         state.year -= 1;
@@ -62,6 +72,11 @@ const calendarSlice = createSlice({
   }
 });
 
-export const { prevMonth, nextMonth, clickCalendar, toggleMobileCalendar } =
-  calendarSlice.actions;
+export const {
+  prevMonth,
+  nextMonth,
+  clickCalendar,
+  toggleMobileCalendar,
+  saveYear
+} = calendarSlice.actions;
 export default calendarSlice;
