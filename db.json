@@ -1,12 +1,4 @@
 {
-  "users": [
-    {
-      "email": "test12@naver.com",
-      "password": "$2a$10$CZHI3y6IJJyWUJJ/xIlZ9uCktB6hRTa8MwrsLXHCnA7oI0mF/.kXK",
-      "name": "테스트계정입니다.",
-      "confirmPassword": "gpffhdn12!",
-      "id": 1
-    }
-  ],
+  "users": [],
   "history": []
 }
