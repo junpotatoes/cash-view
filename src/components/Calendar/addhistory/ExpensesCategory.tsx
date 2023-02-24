@@ -1,10 +1,8 @@
-interface ExpensesCategory {
-  setCategory: (option: string) => void;
-}
+import { FormStateProps } from './EditHistory';
 
-function ExpensesCategory({ setCategory }: ExpensesCategory) {
+function ExpensesCategory({ formState, setFormState }: FormStateProps) {
   const categoryValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value);
+    setFormState({ ...formState, category: e.target.value });
   };
   return (
     <select
