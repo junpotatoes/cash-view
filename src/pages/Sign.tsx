@@ -31,10 +31,10 @@ function Sign() {
         </Underline>
         <section className="contentTabs">
           <div className={toggle === 1 ? 'activeContent' : 'content'}>
-            <LoginForm></LoginForm>
+            <LoginForm />
           </div>
           <div className={toggle === 2 ? 'activeContent' : 'content'}>
-            <SignUpForm></SignUpForm>
+            <SignUpForm toggle={toggle} setToggle={setToggle} />
           </div>
         </section>
       </LoginContainer>
