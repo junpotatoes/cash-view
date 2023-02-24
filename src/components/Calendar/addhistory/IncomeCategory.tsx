@@ -1,10 +1,8 @@
-interface IncomeCategoryProps {
-  setCategory: (option: string) => void;
-}
+import { FormStateProps } from './EditHistory';
 
-function IncomeCategory({ setCategory }: IncomeCategoryProps) {
+function IncomeCategory({ formState, setFormState }: FormStateProps) {
   const categoryValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value);
+    setFormState({ ...formState, category: e.target.value });
   };
   return (
     <select

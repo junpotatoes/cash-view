@@ -1,63 +1,64 @@
-import { useState } from 'react';
-import SelectClass from './SelectClass';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import IncomeCategory from './IncomeCategory';
 import ExpensesCategory from './ExpensesCategory';
-import axios from 'axios';
+import SelectClass from './SelectClass';
 import * as S from '../../../styles/Calendar/Addhistory/AddHistory.style';
-import { useAppSelector } from '../../../hooks/store';
-import { FormState } from './EditHistory';
 
-function AddHistoryForm(): JSX.Element {
-  const [formState, setFormState] = useState<FormState>({
-    value: '',
-    category: '',
-    amount: 0,
-    content: ''
-  });
+export interface FormState {
+  id?: number;
+  value?: string;
+  classOption?: string;
+  category?: string;
+  amount?: number;
+  content?: string;
+}
 
-  console.log(
-    formState.value,
-    formState.category,
-    formState.amount,
-    formState.content
-  );
-  const calendar = useAppSelector((state) => state.calendar);
+export interface FormStateProps {
+  formState: FormState;
+  setFormState: React.Dispatch<React.SetStateAction<FormState>>;
+}
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+function EditHistory(): JSX.Element {
+  const [formState, setFormState] = useState<FormState>({});
 
-    const reqbody = {
-      year: calendar.year,
-      month: calendar.month,
-      Date: calendar.date,
-      value: formState.value,
-      category: formState.category,
-      amount: formState.amount,
-      content: formState.content
-    };
-
-    if (
-      !reqbody.value ||
-      !reqbody.category ||
-      !reqbody.amount ||
-      !reqbody.content
-    ) {
-      alert('모든 항목을 입력해주세요!');
-      return;
-    }
-
-    axios.post('http://localhost:4000/history', reqbody, {}).catch((res) => {
-      console.log(res);
-    });
-  };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormState((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
+  useEffect(() => {
+    axios
+      .get('http://localhost:4000/history/1')
+      .then((res) => {
+        setFormState(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleEditClick = () => {
+    const reqbody = {
+      value: formState.value,
+      category: formState.category,
+      amount: formState.amount,
+      content: formState.content
+    };
+    axios.put(`http://localhost:4000/history/1`, reqbody).catch((err) => {
+      console.log(err);
+    });
+  };
+
+  const handleDeleteClick = () => {
+    axios.delete(`http://localhost:4000/history/1`).catch((err) => {
+      console.log(err);
+    });
+  };
+
   return (
     <S.ItemWrapper>
-      <S.ItemContainer onSubmit={onSubmit}>
+      <S.ItemContainer onSubmit={handleEditClick}>
         <S.ItemBox>
           <span className="class">분류</span>
           <span className="select_class">
@@ -67,7 +68,7 @@ function AddHistoryForm(): JSX.Element {
         <S.ItemBox>
           <span>카테고리</span>
           <span>
-            {formState.value === '수입' ? (
+            {formState.classOption === '수입' ? (
               <IncomeCategory
                 formState={formState}
                 setFormState={setFormState}
@@ -116,4 +117,4 @@ function AddHistoryForm(): JSX.Element {
   );
 }
 
-export default AddHistoryForm;
+export default EditHistory;

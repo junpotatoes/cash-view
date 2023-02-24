@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 import * as S from '../../styles/Sign/Login.style';
 
 interface LoginFormValues {
@@ -9,12 +9,12 @@ interface LoginFormValues {
 }
 
 function LoginForm() {
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState<LoginFormValues>({
     email: '',
     password: ''
   });
   const [toggle, setToggle] = useState(1);
-  const [cookies, setCookie, removeCookie] = useCookies();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,9 +23,13 @@ function LoginForm() {
       .post('http://localhost:4000/login', formValues)
       .then((res) => {
         const { data } = res;
-        console.log(res);
-        setCookie('accessToken', data['accessToken'], { path: '/' });
-        localStorage.setItem('accessToken', data['accessToken']); // set localStorage
+
+        localStorage.user = JSON.stringify({
+          userId: data.user.id,
+          userName: data.user.name
+        });
+
+        navigate('/calendar');
       })
       .catch((err) => {
         console.log(err);

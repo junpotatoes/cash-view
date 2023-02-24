@@ -3,6 +3,11 @@ import { useState } from 'react';
 import * as S from '../../styles/Sign/Signup.style';
 import { SignInput } from '../../styles/Sign/Login.style';
 
+interface Props {
+  toggle: number;
+  setToggle: React.Dispatch<React.SetStateAction<number>>;
+}
+
 interface SignUpFormValues {
   name: string;
   email: string;
@@ -10,7 +15,7 @@ interface SignUpFormValues {
   confirmPassword: string;
 }
 
-function SignUpForm() {
+function SignUpForm({ toggle, setToggle }: Props) {
   const emailCheck =
     /^^[A-Za-z0-9]+@[A-Za-z]+\.?[A-Za-z]{2,3}\.[A-Za-z]{2,3}$$/;
   const nameCheck = /^[ㄱ-ㅎ|가-힣|A-Za-z]+\s*[ㄱ-ㅎ|가-힣|A-Za-z]+$/g;
@@ -28,9 +33,14 @@ function SignUpForm() {
     event.preventDefault();
 
     axios
-      .post('http://localhost:4000/register', formValues)
+      .post('http://localhost:4000/register', {
+        email: formValues.email,
+        password: formValues.password,
+        name: formValues.name
+      })
       .then((res) => {
-        console.log(res);
+        window.alert('회원가입 완료!');
+        setToggle(1);
       })
       .catch((err) => {
         console.log(err);
