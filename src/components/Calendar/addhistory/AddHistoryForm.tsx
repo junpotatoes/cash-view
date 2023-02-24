@@ -46,14 +46,9 @@ function AddHistoryForm(): JSX.Element {
       return;
     }
 
-    axios
-      .post('http://localhost:4000/history', reqbody, {})
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
+    axios.post('http://localhost:4000/history', reqbody, {}).catch((res) => {
+      console.log(res);
+    });
   };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
