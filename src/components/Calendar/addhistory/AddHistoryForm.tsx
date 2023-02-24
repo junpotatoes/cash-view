@@ -5,21 +5,22 @@ import ExpensesCategory from './ExpensesCategory';
 import axios from 'axios';
 import * as S from '../../../styles/Calendar/Addhistory/AddHistory.style';
 import { useAppSelector } from '../../../hooks/store';
-
-interface FormState {
-  classOption: string;
-  category: string;
-  amount: number | undefined;
-  content: string;
-}
+import { FormState } from './EditHistory';
 
 function AddHistoryForm(): JSX.Element {
   const [formState, setFormState] = useState<FormState>({
-    classOption: '',
+    value: '',
     category: '',
-    amount: undefined,
+    amount: 0,
     content: ''
   });
+
+  console.log(
+    formState.value,
+    formState.category,
+    formState.amount,
+    formState.content
+  );
   const calendar = useAppSelector((state) => state.calendar);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -29,7 +30,7 @@ function AddHistoryForm(): JSX.Element {
       year: calendar.year,
       month: calendar.month,
       Date: calendar.date,
-      value: formState.classOption,
+      value: formState.value,
       category: formState.category,
       amount: formState.amount,
       content: formState.content
@@ -65,27 +66,21 @@ function AddHistoryForm(): JSX.Element {
         <S.ItemBox>
           <span className="class">분류</span>
           <span className="select_class">
-            <SelectClass
-              setClassOption={(value) =>
-                setFormState({ ...formState, classOption: value })
-              }
-            />
+            <SelectClass formState={formState} setFormState={setFormState} />
           </span>
         </S.ItemBox>
         <S.ItemBox>
           <span>카테고리</span>
           <span>
-            {formState.classOption === '수입' ? (
+            {formState.value === '수입' ? (
               <IncomeCategory
-                setCategory={(category) =>
-                  setFormState({ ...formState, category: category })
-                }
+                formState={formState}
+                setFormState={setFormState}
               />
             ) : (
               <ExpensesCategory
-                setCategory={(category) =>
-                  setFormState({ ...formState, category: category })
-                }
+                formState={formState}
+                setFormState={setFormState}
               />
             )}
           </span>
