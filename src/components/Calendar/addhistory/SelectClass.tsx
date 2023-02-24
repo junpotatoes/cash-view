@@ -1,17 +1,15 @@
-interface SelectClassProps {
-  setClassOption: (option: string) => void;
-}
+import { FormStateProps } from './EditHistory';
 
-function SelectClass({ setClassOption }: SelectClassProps) {
+function SelectClass({ formState, setFormState }: FormStateProps) {
   const classValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setClassOption(e.target.value);
+    setFormState({ ...formState, value: e.target.value });
   };
 
   return (
     <select
       className="category"
       name="inquirt_category"
-      defaultValue="카테고리"
+      // defaultValue="카테고리"
       onChange={classValue}
     >
       <option disabled value="카테고리">
