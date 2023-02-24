@@ -29,7 +29,6 @@ const options = {
 };
 
 const labels = ['식비', '교통비', '문화생활', '패션/미용', '주거/통신', '기타'];
-
 const colors = [
   '#FAB5B5',
   '#FF7D7D',
@@ -38,15 +37,19 @@ const colors = [
   '#DD79B5',
   '#D4AEE1'
 ];
+const dataValues = [10, 20, 13, 29, 21, 10];
+const dataSum = dataValues.reduce((a, b) => a + b, 0);
 
 const data = {
-  labels,
-
+  labels: labels.map(
+    (label, index) =>
+      `${label} (${Math.ceil((dataValues[index] / dataSum) * 100)}%)`
+  ),
   datasets: [
     {
-      data: [12, 19, 3, 5, 2, 3, 5],
+      data: dataValues,
       backgroundColor: colors,
-      label: 'My dataset'
+      label: '지출 항목'
     }
   ]
 };

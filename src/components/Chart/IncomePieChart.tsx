@@ -18,9 +18,9 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+
 const options = {
   responsive: true,
-
   plugins: {
     legend: {
       position: 'top' as const
@@ -30,7 +30,6 @@ const options = {
 };
 
 const labels = ['월급', '부수입', '용돈', '상여금', '금융소득', '기타'];
-
 const colors = [
   '#B4B2FF',
   '#DEDDFF',
@@ -39,15 +38,19 @@ const colors = [
   '#C270DF',
   '#2E9BFF'
 ];
+const dataValues = [10, 20, 13, 29, 21, 10];
+const dataSum = dataValues.reduce((a, b) => a + b, 0);
 
 const data = {
-  labels,
-
+  labels: labels.map(
+    (label, index) =>
+      `${label} (${Math.ceil((dataValues[index] / dataSum) * 100)}%)`
+  ),
   datasets: [
     {
-      data: [12, 19, 3, 5, 2, 3],
+      data: dataValues,
       backgroundColor: colors,
-      label: 'My dataset'
+      label: '수입 항목'
     }
   ]
 };
