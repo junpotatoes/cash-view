@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export const CalendarDateModalContainer = styled.div<{
-  isOpenCalendar: boolean;
-}>`
+export const MonthModalContainer = styled.div<{ isOpenCalendar: boolean }>`
   position: absolute;
-  top: 100%;
+  top: 120%;
   left: 50%;
   display: ${(props) => (props.isOpenCalendar ? 'block' : 'none')};
-  width: 100%;
-  max-width: 480px;
+  padding: 0 12px 12px 12px;
   border: 1px solid ${(props) => props.theme.border};
+  border-radius: 4px;
   background-color: ${(props) => props.theme.white};
+  transform: translateX(-50%);
+  z-index: 80;
 `;

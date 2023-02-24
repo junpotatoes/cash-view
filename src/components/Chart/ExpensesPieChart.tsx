@@ -18,7 +18,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 const options = {
   responsive: true,
   plugins: {

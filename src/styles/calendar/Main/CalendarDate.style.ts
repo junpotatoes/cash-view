@@ -10,7 +10,9 @@ export const CalendarDateWrapper = styled.div<{
 
     @media ${(props) => props.theme.mobile} {
       position: relative;
-      display: ${(props) => (props.isOpenMobileCalendar ? 'none' : 'flex')};
+      visibility: ${(props) =>
+        props.isOpenMobileCalendar ? 'hidden' : 'visible'};
+      display: flex;
       justify-content: flex-start;
       align-items: center;
       width: 100%;
@@ -108,6 +110,10 @@ export const CalendarDateContainer = styled.ol<{
   }
 
   @media ${(props) => props.theme.mobile} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: ${(props) => (props.isOpenMobileCalendar ? 'flex' : 'none')};
     flex-direction: column;
     height: ${(props) => (props.isOpenMobileCalendar ? '260px' : '65px')};

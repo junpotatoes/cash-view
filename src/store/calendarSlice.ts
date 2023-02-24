@@ -49,6 +49,27 @@ const calendarSlice = createSlice({
         (state.mobileCalendar = false);
     },
     clickCalendar: (state, action) => {
+      if (action.payload.name === 'date') {
+        state.date = action.payload.date;
+      } else if (action.payload.name === 'prevMonthDate') {
+        if (state.month === 1) {
+          state.year -= 1;
+          state.month = 12;
+          state.date = action.payload.date;
+        } else {
+          state.month -= 1;
+          state.date = action.payload.date;
+        }
+      } else {
+        if (state.month === 12) {
+          state.year += 1;
+          state.month = 1;
+          state.date = action.payload.date;
+        } else {
+          state.month += 1;
+          state.date = action.payload.date;
+        }
+      }
       (state.date = action.payload.name === 'date' ? action.payload.date : 0),
         (state.prevMonthDate =
           action.payload.name === 'prevMonthDate' ? action.payload.date : 0),
@@ -58,10 +79,26 @@ const calendarSlice = createSlice({
     },
     toggleMobileCalendar: (state, action) => {
       state.mobileCalendar = action.payload.mobileCalendar;
+    },
+    changeCalendar: (state, action) => {
+      state.year = action.payload.year;
+      state.month = action.payload.month;
+      state.date = action.payload.date;
+    },
+    changeMonth: (state, action) => {
+      state.month = action.payload.month;
+      state.date = 1;
+      state.mobileCalendar = false;
     }
   }
 });
 
-export const { prevMonth, nextMonth, clickCalendar, toggleMobileCalendar } =
-  calendarSlice.actions;
+export const {
+  prevMonth,
+  nextMonth,
+  clickCalendar,
+  toggleMobileCalendar,
+  changeCalendar,
+  changeMonth
+} = calendarSlice.actions;
 export default calendarSlice;
