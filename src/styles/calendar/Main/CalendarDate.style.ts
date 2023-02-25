@@ -95,6 +95,32 @@ export const CalendarDateContainer = styled.ol<{
       }
     }
 
+    .calendarAmountBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      row-gap: 4px;
+      height: 100%;
+      padding-left: 4px;
+      font-size: 13px;
+
+      .blue {
+        color: ${(props) => props.theme.blue};
+      }
+
+      .red {
+        position: relative;
+        left: 2px;
+        color: ${(props) => props.theme.red};
+      }
+
+      @media ${(props) => props.theme.mobile} {
+        flex-direction: row;
+        column-gap: 12px;
+        width: 100%;
+      }
+    }
+
     @media ${(props) => props.theme.desktop} {
       cursor: pointer;
 
@@ -117,8 +143,10 @@ export const CalendarDateContainer = styled.ol<{
     display: ${(props) => (props.isOpenMobileCalendar ? 'flex' : 'none')};
     flex-direction: column;
     height: ${(props) => (props.isOpenMobileCalendar ? '260px' : '65px')};
+    border-bottom: 1px solid ${(props) => props.theme.border};
     overflow-y: ${(props) =>
       props.isOpenMobileCalendar ? 'scroll' : 'hidden'};
+    z-index: 80;
 
     .date {
       padding: 24px 0 24px 12px;

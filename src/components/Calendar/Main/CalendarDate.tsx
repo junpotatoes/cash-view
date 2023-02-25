@@ -5,8 +5,9 @@ import {
   clickCalendar,
   toggleMobileCalendar
 } from '../../../store/calendarSlice';
+import { HistoryProps } from '../../../pages/Calendar';
 
-function CalendarDate() {
+function CalendarDate({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
   const dispatch = useAppDispatch();
 
@@ -22,6 +23,24 @@ function CalendarDate() {
     0
   ).getDate();
   const day: string[] = ['일', '월', '화', '수', '목', '금', '토'];
+
+  const checkTotal = (
+    value: string,
+    year: number,
+    month: number,
+    date: number
+  ): number => {
+    return history
+      .filter(
+        (el) =>
+          el.value === value &&
+          el.year === year &&
+          el.month === month &&
+          el.date === date
+      )
+      .map((el) => el.amount)
+      .reduce((acc, cur) => acc + cur, 0);
+  };
 
   return (
     <S.CalendarDateWrapper isOpenMobileCalendar={calendar.mobileCalendar}>
@@ -47,6 +66,44 @@ function CalendarDate() {
                 }
               >
                 {prevEndDate - startDay + idx + 1}
+
+                <div className="calendarAmountBox">
+                  <p className="blue">
+                    {checkTotal(
+                      '수입',
+                      calendar.month === 1 ? calendar.year - 1 : calendar.year,
+                      calendar.month === 1 ? 12 : calendar.month - 1,
+                      prevEndDate - startDay + idx + 1
+                    )
+                      ? `+ ${checkTotal(
+                          '수입',
+                          calendar.month === 1
+                            ? calendar.year - 1
+                            : calendar.year,
+                          calendar.month === 1 ? 12 : calendar.month - 1,
+                          prevEndDate - startDay + idx + 1
+                        ).toLocaleString('ko-KR')}`
+                      : ' '}
+                  </p>
+
+                  <p className="red">
+                    {checkTotal(
+                      '지출',
+                      calendar.month === 1 ? calendar.year - 1 : calendar.year,
+                      calendar.month === 1 ? 12 : calendar.month - 1,
+                      prevEndDate - startDay + idx + 1
+                    )
+                      ? `- ${checkTotal(
+                          '지출',
+                          calendar.month === 1
+                            ? calendar.year - 1
+                            : calendar.year,
+                          calendar.month === 1 ? 12 : calendar.month - 1,
+                          prevEndDate - startDay + idx + 1
+                        ).toLocaleString('ko-KR')}`
+                      : ' '}
+                  </p>
+                </div>
               </li>
             ) : idx <= endDate + startDay - 1 ? (
               <li
@@ -91,6 +148,39 @@ function CalendarDate() {
                   }
                   )
                 </span>
+                <div className="calendarAmountBox">
+                  <p className="blue">
+                    {checkTotal(
+                      '수입',
+                      calendar.year,
+                      calendar.month,
+                      idx - startDay + 1
+                    )
+                      ? `+ ${checkTotal(
+                          '수입',
+                          calendar.year,
+                          calendar.month,
+                          idx - startDay + 1
+                        ).toLocaleString('ko-KR')}`
+                      : ' '}
+                  </p>
+
+                  <p className="red">
+                    {checkTotal(
+                      '지출',
+                      calendar.year,
+                      calendar.month,
+                      idx - startDay + 1
+                    )
+                      ? `- ${checkTotal(
+                          '지출',
+                          calendar.year,
+                          calendar.month,
+                          idx - startDay + 1
+                        ).toLocaleString('ko-KR')}`
+                      : ' '}
+                  </p>
+                </div>
               </li>
             ) : (
               <li
@@ -110,6 +200,44 @@ function CalendarDate() {
                 }
               >
                 {idx - endDate - startDay + 1}
+
+                <div className="calendarAmountBox">
+                  <p className="blue">
+                    {checkTotal(
+                      '수입',
+                      calendar.month === 12 ? calendar.year + 1 : calendar.year,
+                      calendar.month === 12 ? 1 : calendar.month + 1,
+                      prevEndDate - startDay + idx + 1
+                    )
+                      ? `+ ${checkTotal(
+                          '수입',
+                          calendar.month === 12
+                            ? calendar.year + 1
+                            : calendar.year,
+                          calendar.month === 12 ? 1 : calendar.month + 1,
+                          prevEndDate - startDay + idx + 1
+                        ).toLocaleString('ko-KR')}`
+                      : ' '}
+                  </p>
+
+                  <p className="red">
+                    {checkTotal(
+                      '지출',
+                      calendar.month === 12 ? calendar.year + 1 : calendar.year,
+                      calendar.month === 12 ? 1 : calendar.month + 1,
+                      prevEndDate - startDay + idx + 1
+                    )
+                      ? `- ${checkTotal(
+                          '지출',
+                          calendar.month === 12
+                            ? calendar.year + 1
+                            : calendar.year,
+                          calendar.month === 12 ? 1 : calendar.month + 1,
+                          prevEndDate - startDay + idx + 1
+                        ).toLocaleString('ko-KR')}`
+                      : ' '}
+                  </p>
+                </div>
               </li>
             )
           )}

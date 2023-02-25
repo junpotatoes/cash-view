@@ -12,7 +12,7 @@ function Header() {
       <S.HeaderWrapper>
         <S.HeaderContainer>
           <h1 className="HeaderTitle">
-            <strong>사용자의</strong>
+            <strong>{JSON.parse(localStorage.user).userName} 님의</strong>
             <span>가계부</span>
           </h1>
 
