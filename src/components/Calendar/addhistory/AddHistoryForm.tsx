@@ -22,6 +22,8 @@ function AddHistoryForm(): JSX.Element {
     formState.content
   );
   const calendar = useAppSelector((state) => state.calendar);
+  const user = localStorage.getItem('user');
+  const userId = user ? JSON.parse(user).userId : null;
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,7 +35,8 @@ function AddHistoryForm(): JSX.Element {
       value: formState.value,
       category: formState.category,
       amount: formState.amount,
-      content: formState.content
+      content: formState.content,
+      userId: userId
     };
 
     if (
@@ -46,7 +49,7 @@ function AddHistoryForm(): JSX.Element {
       return;
     }
 
-    axios.post('http://localhost:4000/history', reqbody, {}).catch((res) => {
+    axios.post('http://localhost:4000/historys', reqbody, {}).catch((res) => {
       console.log(res);
     });
   };
