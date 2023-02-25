@@ -7,7 +7,11 @@ function HistoryDate() {
   return (
     <S.HistoryDateContainer>
       <h3 className="date">
-        {calendar.month}월 {calendar.date}일
+        {calendar.prevMonthDate
+          ? `${calendar.month - 1}월 ${calendar.prevMonthDate}일`
+          : calendar.nextMonthDate
+          ? `${calendar.month + 1}월 ${calendar.nextMonthDate}일`
+          : `${calendar.month}월 ${calendar.date}일`}
       </h3>
     </S.HistoryDateContainer>
   );

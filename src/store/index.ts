@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import calendarSlice from './calendarSlice';
-import historySlice from './historySlice';
 
 const store = configureStore({
   reducer: {
-    calendar: calendarSlice.reducer,
-    history: historySlice.reducer
+    calendar: calendarSlice.reducer
   }
 });
 
