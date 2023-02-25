@@ -29,7 +29,7 @@ function EditHistory(): JSX.Element {
 
   useEffect(() => {
     axios
-      .get('http://localhost:4000/history/1')
+      .get('http://localhost:4000/historys/1')
       .then((res) => {
         setFormState(res.data);
       })
@@ -45,13 +45,13 @@ function EditHistory(): JSX.Element {
       amount: formState.amount,
       content: formState.content
     };
-    axios.put(`http://localhost:4000/history/1`, reqbody).catch((err) => {
+    axios.put(`http://localhost:4000/historys/1`, reqbody).catch((err) => {
       console.log(err);
     });
   };
 
   const handleDeleteClick = () => {
-    axios.delete(`http://localhost:4000/history/1`).catch((err) => {
+    axios.delete(`http://localhost:4000/historys/1`).catch((err) => {
       console.log(err);
     });
   };
