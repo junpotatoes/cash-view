@@ -1,4 +1,6 @@
 import React from 'react';
+import { ChartHistoryProps } from '../../pages/Chart';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -19,43 +21,61 @@ ChartJS.register(
   Legend
 );
 
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const
-    }
-  },
-  type: 'pie'
-};
+function IncomePieChart({ history }: ChartHistoryProps) {
+  const checkTotal = (
+    value: string,
+    year: number,
+    month: number,
+    date: number
+  ): number => {
+    return history
+      .filter(
+        (el) =>
+          el.value === value &&
+          el.year === year &&
+          el.month === month &&
+          el.date === date
+      )
+      .map((el) => el.amount)
+      .reduce((acc, cur) => acc + cur, 0);
+  };
 
-const labels = ['월급', '부수입', '용돈', '상여금', '금융소득', '기타'];
-const colors = [
-  '#B4B2FF',
-  '#DEDDFF',
-  '#6D6AFA',
-  '#A2EDFD',
-  '#C270DF',
-  '#2E9BFF'
-];
-const dataValues = [10, 20, 13, 29, 21, 10];
-const dataSum = dataValues.reduce((a, b) => a + b, 0);
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top' as const
+      }
+    },
+    type: 'pie'
+  };
 
-const data = {
-  labels: labels.map(
-    (label, index) =>
-      `${label} (${Math.ceil((dataValues[index] / dataSum) * 100)}%)`
-  ),
-  datasets: [
-    {
-      data: dataValues,
-      backgroundColor: colors,
-      label: '수입 항목'
-    }
-  ]
-};
+  const labels = history.map((el) => el.category);
+  const colors = [
+    '#B4B2FF',
+    '#DEDDFF',
+    '#6D6AFA',
+    '#A2EDFD',
+    '#C270DF',
+    '#2E9BFF'
+  ];
+  const dataValues = history.map((el) => el.amount);
+  const dataSum = dataValues.reduce((a, b) => a + b, 0);
 
-function IncomePieChart() {
+  const data = {
+    labels: labels.map(
+      (label, index) =>
+        `${label} (${Math.ceil((dataValues[index] / dataSum) * 100)}%)`
+    ),
+    datasets: [
+      {
+        data: dataValues,
+        backgroundColor: colors,
+        label: '수입 항목'
+      }
+    ]
+  };
+
   return <Pie options={options} data={data} />;
 }
 
