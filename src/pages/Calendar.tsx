@@ -27,10 +27,12 @@ function Calendar() {
 
   const getHistory = async () => {
     try {
-      const res = await axios.get('http://localhost:4000/history');
+      const res = await axios.get('http://localhost:4000/historys');
       setHistory(
         res.data.filter(
-          (el: any) => el.userId === JSON.parse(localStorage.user).userId
+          (el: any) =>
+            el.userId ===
+            (localStorage.user ? JSON.parse(localStorage.user).userId : 0)
         )
       );
     } catch (err) {

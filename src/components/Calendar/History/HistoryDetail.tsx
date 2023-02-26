@@ -2,9 +2,21 @@ import { useAppSelector } from '../../../hooks/store';
 import { HistoryProps } from '../../../pages/Calendar';
 import * as S from '../../../styles/Calendar/History/HistoryDetail.style';
 import HistoryDate from './HistoryDate';
+import { ReactComponent as UpdateIcon } from '../../../assets/Icon/updateIcon.svg';
+import { ReactComponent as DeleteIcon } from '../../../assets/Icon/deleteIcon.svg';
+import EditHistory from './Modal/EditHistory';
+import { useState } from 'react';
+import axios from 'axios';
+
+export interface updateModalProps {
+  updateModal: boolean;
+  setUpdateModal: React.Dispatch<React.SetStateAction<boolean>>;
+  id: number;
+}
 
 function HistoryDetail({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
+  const [updateModal, setUpdateModal] = useState(false);
 
   const checkTotal = (
     value: string,
@@ -24,6 +36,17 @@ function HistoryDetail({ history }: HistoryProps) {
       .reduce((acc, cur) => acc + cur, 0);
   };
 
+  const clickDelete = (id: number): void => {
+    const isDelete = window.confirm('삭제하시겠습니끼?');
+
+    try {
+      isDelete && axios.delete(`http://localhost:4000/historys/${id}`);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const checkDetail = (year: number, month: number, date: number) => {
     return history.map(
       (el, idx) =>
@@ -39,6 +62,20 @@ function HistoryDetail({ history }: HistoryProps) {
               >
                 {el.amount.toLocaleString('ko-KR')}
               </strong>
+            </div>
+            <div className="updateBox">
+              <button type="button" onClick={() => setUpdateModal(true)}>
+                <UpdateIcon />
+              </button>
+              <button type="button" onClick={() => clickDelete(el.id)}>
+                <DeleteIcon />
+              </button>
+
+              <EditHistory
+                updateModal={updateModal}
+                setUpdateModal={setUpdateModal}
+                id={el.id}
+              />
             </div>
           </li>
         )

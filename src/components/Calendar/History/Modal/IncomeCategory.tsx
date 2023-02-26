@@ -1,14 +1,12 @@
-import { FormStateProps } from './EditHistory';
+import { FormStateProps } from './AddHistoryForm';
 
 function IncomeCategory({ formState, setFormState }: FormStateProps) {
-  const categoryValue = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFormState({ ...formState, category: e.target.value });
-  };
   return (
     <select
       className="category"
       name="inquirt_category"
-      onChange={categoryValue}
+      defaultValue={formState.category || '카테고리'}
+      onChange={(e) => setFormState({ ...formState, category: e.target.value })}
     >
       <option value="카테고리">항목을 선택해주세요</option>
       <option value="월급">월급</option>
