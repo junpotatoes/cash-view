@@ -79,7 +79,7 @@ function Chart() {
             <IncomePieChart history={history} />
           </div>
           <div className="pieBox">
-            <ExpensesPieChart />
+            <ExpensesPieChart history={history} />
           </div>
         </PieChartBox>
         <BarChartBox>
