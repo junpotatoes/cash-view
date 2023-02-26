@@ -39,17 +39,18 @@ export const HistoryDetailContainer = styled.div`
     font-size: 15px;
 
     .mainTitle {
-      margin: 8px 0 16px 0;
+      margin: 8px 0 24px 0;
     }
 
     .historyList {
       display: flex;
       flex-direction: column;
-      row-gap: 12px;
+      row-gap: 24px;
       height: 240px;
       overflow-y: auto;
 
       .historyItem {
+        position: relative;
         display: flex;
         flex-direction: column;
         row-gap: 4px;
@@ -79,6 +80,31 @@ export const HistoryDetailContainer = styled.div`
 
             &.red {
               color: ${(props) => props.theme.red};
+            }
+          }
+        }
+
+        .updateBox {
+          position: absolute;
+          top: 0;
+          right: 0;
+          display: flex;
+          align-items: center;
+          column-gap: 8px;
+
+          button {
+            svg {
+              width: 13px;
+              height: 13px;
+              fill: ${(props) => props.theme.gray};
+
+              @media ${(props) => props.theme.desktop} {
+                transition: fill 0.5s;
+
+                &:hover {
+                  fill: ${(props) => props.theme.hover};
+                }
+              }
             }
           }
         }

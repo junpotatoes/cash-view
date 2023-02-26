@@ -4,14 +4,14 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useAppDispatch, useAppSelector } from '../hooks/store';
-import { changeCalendar } from '../store/calendarSlice';
+import { useAppDispatch, useAppSelector } from '../../../hooks/store';
+import { changeCalendar } from '../../../store/calendarSlice';
 
 export default function BasicDatePicker() {
   const [value, setValue] = React.useState<Dayjs | null>();
   const calendar = useAppSelector((state) => state.calendar);
   const dispatch = useAppDispatch();
-  console.log(calendar.year, calendar.month, calendar.date);
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker

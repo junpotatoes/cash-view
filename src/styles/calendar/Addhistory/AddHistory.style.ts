@@ -1,28 +1,35 @@
 import styled from 'styled-components';
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled.div<{ modal: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
+  display: ${(props) => (props.modal ? 'block' : 'none')};
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 80;
 `;
 
-export const ModalContainer = styled.div`
+export const ModalContainer = styled.div<{ modal: boolean }>`
   position: fixed;
   top: 50%;
   left: 50%;
+  display: ${(props) => (props.modal ? 'block' : 'none')};
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   height: 400px;
   padding: 24px;
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 4px;
   background-color: ${(props) => props.theme.white};
   transform: translate(-50%, -50%);
+  transition: display 0.5s;
   z-index: 90;
+
+  @media ${(props) => props.theme.mobile} {
+    width: 80%;
+  }
 `;
 
 export const ItemWrapper = styled.div`
@@ -64,32 +71,23 @@ export const ItemBox = styled.div`
 
 export const ButtonBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 
   .option {
     display: flex;
-    justify-content: space-around;
+    column-gap: 12px;
     width: 45%;
     height: 40px;
     font-size: 30px;
     margin-top: 30px;
 
-    .save__Modal {
-      width: 65px;
-      height: 45px;
+    button {
+      padding: 12px;
       background-color: ${(props) => props.theme.gray};
       border: 1px solid ${(props) => props.theme.black};
-      border-radius: 5px;
-    }
-
-    .close__Modal {
-      width: 65px;
-      height: 45px;
-      background-color: ${(props) => props.theme.gray};
-      border: 1px solid ${(props) => props.theme.black};
-      border-radius: 5px;
+      border-radius: 4px;
     }
   }
 `;

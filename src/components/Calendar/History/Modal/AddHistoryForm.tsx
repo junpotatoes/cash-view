@@ -3,27 +3,27 @@ import SelectClass from './SelectClass';
 import IncomeCategory from './IncomeCategory';
 import ExpensesCategory from './ExpensesCategory';
 import axios from 'axios';
-import * as S from '../../../styles/Calendar/Addhistory/AddHistory.style';
-import { useAppSelector } from '../../../hooks/store';
-import { FormState } from './EditHistory';
+import * as S from '../../../../styles/Calendar/Addhistory/AddHistory.style';
+import { useAppSelector } from '../../../../hooks/store';
+import { AddModalProps } from '../CalendarHistory';
 
-function AddHistoryForm(): JSX.Element {
-  const [formState, setFormState] = useState<FormState>({
-    value: '',
-    category: '',
-    amount: 0,
-    content: ''
-  });
+export interface FormState {
+  id?: number;
+  value?: string;
+  category?: string;
+  content?: string;
+  amount?: number;
+}
 
-  console.log(
-    formState.value,
-    formState.category,
-    formState.amount,
-    formState.content
-  );
+export interface FormStateProps {
+  formState: FormState;
+  setFormState: React.Dispatch<React.SetStateAction<FormState>>;
+}
+
+function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
+  const [formState, setFormState] = useState<FormState>({});
+
   const calendar = useAppSelector((state) => state.calendar);
-  const user = localStorage.getItem('user');
-  const userId = user ? JSON.parse(user).userId : null;
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,12 +31,12 @@ function AddHistoryForm(): JSX.Element {
     const reqbody = {
       year: calendar.year,
       month: calendar.month,
-      Date: calendar.date,
+      date: calendar.date,
       value: formState.value,
       category: formState.category,
-      amount: formState.amount,
       content: formState.content,
-      userId: userId
+      amount: formState.amount,
+      userId: JSON.parse(localStorage.user).userId
     };
 
     if (
@@ -49,13 +49,13 @@ function AddHistoryForm(): JSX.Element {
       return;
     }
 
-    axios.post('http://localhost:4000/historys', reqbody, {}).catch((res) => {
-      console.log(res);
-    });
-  };
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormState((prevValues) => ({ ...prevValues, [name]: value }));
+    try {
+      axios.post('http://localhost:4000/historys', reqbody);
+      setAddModal(false);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -88,9 +88,13 @@ function AddHistoryForm(): JSX.Element {
           <input
             type={'number'}
             className="underline"
-            name="amount"
             value={formState.amount || ''}
-            onChange={handleInputChange}
+            onChange={(e) =>
+              setFormState({
+                ...formState,
+                amount: e.target.valueAsNumber
+              })
+            }
           />
           <span>원</span>
         </S.ItemBox>
@@ -99,17 +103,16 @@ function AddHistoryForm(): JSX.Element {
           <input
             type={'text'}
             className="underline"
-            name="content"
-            value={formState.content}
-            onChange={handleInputChange}
+            value={formState.content || ''}
+            onChange={(e) =>
+              setFormState({ ...formState, content: e.target.value })
+            }
           />
         </S.ItemBox>
         <S.ButtonBox>
           <div className="option">
-            <button type="submit" className="save__Modal">
-              저장
-            </button>
-            <button type="reset" className="close__Modal">
+            <button type="submit">저장</button>
+            <button type="reset" onClick={() => setAddModal(false)}>
               취소
             </button>
           </div>
