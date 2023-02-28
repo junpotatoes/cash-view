@@ -7,7 +7,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { useAppDispatch, useAppSelector } from '../../../hooks/store';
 import { changeCalendar } from '../../../store/calendarSlice';
 
-export default function BasicDatePicker() {
+function DateModal() {
   const [value, setValue] = React.useState<Dayjs | null>();
   const calendar = useAppSelector((state) => state.calendar);
   const dispatch = useAppDispatch();
@@ -15,7 +15,6 @@ export default function BasicDatePicker() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DatePicker
-        label="날짜를 선택해주세요"
         value={value}
         onChange={(newValue: any) => {
           setValue(newValue);
@@ -38,3 +37,5 @@ export default function BasicDatePicker() {
     </LocalizationProvider>
   );
 }
+
+export default DateModal;

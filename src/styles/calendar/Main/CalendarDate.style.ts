@@ -99,10 +99,14 @@ export const CalendarDateContainer = styled.ol<{
       display: flex;
       flex-direction: column;
       justify-content: center;
-      row-gap: 4px;
       height: 100%;
       padding-left: 4px;
       font-size: 13px;
+
+      .blue,
+      .red {
+        word-break: break-word;
+      }
 
       .blue {
         color: ${(props) => props.theme.blue};
