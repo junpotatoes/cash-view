@@ -29,6 +29,12 @@ function LoginForm() {
           userName: data.user.name
         });
 
+        localStorage.calendar = JSON.stringify({
+          year: new Date().getFullYear(),
+          month: new Date().getMonth() + 1,
+          date: new Date().getDate()
+        });
+
         navigate('/calendar');
       })
       .catch((err) => {

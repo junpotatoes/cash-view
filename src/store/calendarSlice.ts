@@ -9,10 +9,24 @@ type Calendar = {
   mobileCalendar: boolean;
 };
 
+const localCalendar = localStorage.calendar;
+
+const updateLocalCalendar = (state: Calendar) => {
+  localStorage.calendar = JSON.stringify({
+    year: state.year,
+    month: state.month,
+    date: state.date
+  });
+};
+
 const initialState: Calendar = {
-  year: new Date().getFullYear(),
-  month: new Date().getMonth() + 1,
-  date: new Date().getDate(),
+  year: localCalendar
+    ? JSON.parse(localCalendar).year
+    : new Date().getFullYear(),
+  month: localCalendar
+    ? JSON.parse(localCalendar).month
+    : new Date().getMonth() + 1,
+  date: localCalendar ? JSON.parse(localCalendar).date : new Date().getDate(),
   prevMonthDate: 0,
   nextMonthDate: 0,
   mobileCalendar: false
@@ -34,6 +48,8 @@ const calendarSlice = createSlice({
         (state.prevMonthDate = 0),
         (state.nextMonthDate = 0),
         (state.mobileCalendar = false);
+
+      updateLocalCalendar(state);
     },
     nextMonth: (state) => {
       if (state.month === 12) {
@@ -47,6 +63,8 @@ const calendarSlice = createSlice({
         (state.prevMonthDate = 0),
         (state.nextMonthDate = 0),
         (state.mobileCalendar = false);
+
+      updateLocalCalendar(state);
     },
     clickCalendar: (state, action) => {
       (state.date = action.payload.name === 'date' ? action.payload.date : 0),
@@ -55,6 +73,8 @@ const calendarSlice = createSlice({
         (state.nextMonthDate =
           action.payload.name === 'nextMonthDate' ? action.payload.date : 0),
         (state.mobileCalendar = false);
+
+      updateLocalCalendar(state);
     },
     toggleMobileCalendar: (state, action) => {
       state.mobileCalendar = action.payload.mobileCalendar;
@@ -63,11 +83,15 @@ const calendarSlice = createSlice({
       state.year = action.payload.year;
       state.month = action.payload.month;
       state.date = action.payload.date;
+
+      updateLocalCalendar(state);
     },
     changeMonth: (state, action) => {
       state.month = action.payload.month;
       state.date = 1;
       state.mobileCalendar = false;
+
+      updateLocalCalendar(state);
     }
   }
 });
