@@ -11,6 +11,7 @@ import {
   Legend
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import { useAppSelector } from '../../hooks/store';
 
 ChartJS.register(
   CategoryScale,
@@ -22,69 +23,7 @@ ChartJS.register(
 );
 
 function ExpensesPieChart({ history }: ChartHistoryProps) {
-  //   const options = {
-  //     responsive: true,
-  //     plugins: {
-  //       legend: {
-  //         position: 'top' as const
-  //       }
-  //     },
-  //     type: 'pie'
-  //   };
-
-  //   const labels = [
-  //     '식비',
-  //     '교통비',
-  //     '문화생활',
-  //     '패션/미용',
-  //     '주거/통신',
-  //     '기타'
-  //   ];
-  //   const colors = [
-  //     '#FAB5B5',
-  //     '#FF7D7D',
-  //     '#FABD92',
-  //     '#FDDE8F',
-  //     '#DD79B5',
-  //     '#D4AEE1'
-  //   ];
-  //   const dataValues = [10, 20, 13, 29, 21, 10];
-  //   const dataSum = dataValues.reduce((a, b) => a + b, 0);
-
-  //   const data = {
-  //     labels: labels.map(
-  //       (label, index) =>
-  //         `${label} (${Math.ceil((dataValues[index] / dataSum) * 100)}%)`
-  //     ),
-  //     datasets: [
-  //       {
-  //         data: dataValues,
-  //         backgroundColor: colors,
-  //         label: '지출 항목'
-  //       }
-  //     ]
-  //   };
-
-  //   return <Pie options={options} data={data} />;
-  // }
-
-  const checkTotal = (
-    value: string,
-    year: number,
-    month: number,
-    date: number
-  ): number => {
-    return history
-      .filter(
-        (el) =>
-          el.value === value &&
-          el.year === year &&
-          el.month === month &&
-          el.date === date
-      )
-      .map((el) => el.amount)
-      .reduce((acc, cur) => acc + cur, 0);
-  };
+  const calendar = useAppSelector((state) => state.calendar);
 
   const options = {
     responsive: true,
@@ -96,8 +35,8 @@ function ExpensesPieChart({ history }: ChartHistoryProps) {
     type: 'pie'
   };
 
-  const currentMonth = new Date().getMonth() + 1;
-  const currentYear = new Date().getFullYear();
+  const currentMonth = calendar.month;
+  const currentYear = calendar.year;
 
   const labels = history
     .filter(
