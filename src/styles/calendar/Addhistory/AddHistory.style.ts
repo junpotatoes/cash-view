@@ -97,7 +97,7 @@ export const ButtonBox = styled.div`
     column-gap: 12px;
 
     button {
-      padding: 12px;
+      padding: 8px;
       color: ${(props) => props.theme.white};
       border: 1px solid ${(props) => props.theme.border};
       border-radius: 4px;
