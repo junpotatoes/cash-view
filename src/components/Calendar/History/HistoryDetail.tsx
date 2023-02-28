@@ -7,8 +7,9 @@ import { ReactComponent as DeleteIcon } from '../../../assets/Icon/deleteIcon.sv
 import EditHistory from './Modal/EditHistory';
 import { useState } from 'react';
 import axios from 'axios';
+import { FormState } from './Modal/AddHistoryForm';
 
-export interface updateModalProps {
+export interface UpdateModalProps {
   updateModal: boolean;
   setUpdateModal: React.Dispatch<React.SetStateAction<boolean>>;
   id: number;

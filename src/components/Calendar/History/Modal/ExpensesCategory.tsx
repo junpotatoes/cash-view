@@ -5,10 +5,13 @@ function ExpensesCategory({ formState, setFormState }: FormStateProps) {
     <select
       className="category"
       name="inquirt_category"
+      key={formState.category}
       defaultValue={formState.category || '카테고리'}
       onChange={(e) => setFormState({ ...formState, category: e.target.value })}
     >
-      <option value="카테고리">항목을 선택해주세요</option>
+      <option disabled value="카테고리">
+        항목을 선택해주세요
+      </option>
       <option value="식비">식비</option>
       <option value="교통/차량">교통/차량</option>
       <option value="문화생활">문화생활</option>
