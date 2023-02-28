@@ -207,7 +207,7 @@ function CalendarDate({ history }: HistoryProps) {
                       '수입',
                       calendar.month === 12 ? calendar.year + 1 : calendar.year,
                       calendar.month === 12 ? 1 : calendar.month + 1,
-                      prevEndDate - startDay + idx + 1
+                      idx - endDate - startDay + 1
                     )
                       ? `+ ${checkTotal(
                           '수입',
@@ -215,7 +215,7 @@ function CalendarDate({ history }: HistoryProps) {
                             ? calendar.year + 1
                             : calendar.year,
                           calendar.month === 12 ? 1 : calendar.month + 1,
-                          prevEndDate - startDay + idx + 1
+                          idx - endDate - startDay + 1
                         ).toLocaleString('ko-KR')}`
                       : ' '}
                   </p>
@@ -225,7 +225,7 @@ function CalendarDate({ history }: HistoryProps) {
                       '지출',
                       calendar.month === 12 ? calendar.year + 1 : calendar.year,
                       calendar.month === 12 ? 1 : calendar.month + 1,
-                      prevEndDate - startDay + idx + 1
+                      idx - endDate - startDay + 1
                     )
                       ? `- ${checkTotal(
                           '지출',
@@ -233,7 +233,7 @@ function CalendarDate({ history }: HistoryProps) {
                             ? calendar.year + 1
                             : calendar.year,
                           calendar.month === 12 ? 1 : calendar.month + 1,
-                          prevEndDate - startDay + idx + 1
+                          idx - endDate - startDay + 1
                         ).toLocaleString('ko-KR')}`
                       : ' '}
                   </p>
