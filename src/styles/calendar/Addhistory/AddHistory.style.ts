@@ -16,6 +16,8 @@ export const ModalContainer = styled.div<{ modal: boolean }>`
   top: 50%;
   left: 50%;
   display: ${(props) => (props.modal ? 'block' : 'none')};
+  width: 100%;
+  max-width: 400px;
   padding: 24px 48px;
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 4px;
