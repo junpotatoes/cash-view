@@ -3,6 +3,9 @@ import ExpensesPieChart from '../components/Chart/ExpensesPieChart';
 import IncomePieChart from '../components/Chart/IncomePieChart';
 import styled from 'styled-components';
 import { margin } from '@mui/system';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Header from '../components/Calendar/Header/CalendarHeader';
 
 const ChartWrapper = styled.div`
   display: flex;
@@ -30,20 +33,59 @@ const BarChartBox = styled.div`
   width: 100%;
 `;
 
+type History = {
+  id: number;
+  userId: number;
+  year: number;
+  month: number;
+  date: number;
+  value: string;
+  category: string;
+  amount: number;
+  content: string;
+}[];
+
+export interface ChartHistoryProps {
+  history: History;
+  setHistory?: React.Dispatch<React.SetStateAction<History>>;
+}
+
 function Chart() {
+  const [history, setHistory] = useState<History>([]);
+
+  const getHistory = async () => {
+    try {
+      const res = await axios.get('http://localhost:4000/historys');
+      setHistory(
+        res.data.filter(
+          (el: any) =>
+            el.userId ===
+            (localStorage.user ? JSON.parse(localStorage.user).userId : 0)
+        )
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getHistory();
+  }, []);
+
   return (
     <ChartWrapper>
       <ChartContainer>
+        <Header />
         <PieChartBox>
           <div className="pieBox">
-            <IncomePieChart />
+            <IncomePieChart history={history} />
           </div>
           <div className="pieBox">
-            <ExpensesPieChart />
+            <ExpensesPieChart history={history} />
           </div>
         </PieChartBox>
         <BarChartBox>
-          <BarChart />
+          <BarChart history={history} />
         </BarChartBox>
       </ChartContainer>
     </ChartWrapper>
