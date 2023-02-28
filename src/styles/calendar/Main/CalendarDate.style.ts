@@ -99,6 +99,7 @@ export const CalendarDateContainer = styled.ol<{
       display: flex;
       flex-direction: column;
       justify-content: center;
+      row-gap: 4px;
       height: 100%;
       padding-left: 4px;
       font-size: 13px;
