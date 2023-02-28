@@ -11,6 +11,7 @@ import {
   Legend
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import { useAppSelector } from '../../hooks/store';
 
 ChartJS.register(
   CategoryScale,
@@ -22,23 +23,7 @@ ChartJS.register(
 );
 
 function IncomePieChart({ history }: ChartHistoryProps) {
-  const checkTotal = (
-    value: string,
-    year: number,
-    month: number,
-    date: number
-  ): number => {
-    return history
-      .filter(
-        (el) =>
-          el.value === value &&
-          el.year === year &&
-          el.month === month &&
-          el.date === date
-      )
-      .map((el) => el.amount)
-      .reduce((acc, cur) => acc + cur, 0);
-  };
+  const calendar = useAppSelector((state) => state.calendar);
 
   const options = {
     responsive: true,
@@ -50,8 +35,8 @@ function IncomePieChart({ history }: ChartHistoryProps) {
     type: 'pie'
   };
 
-  const currentMonth = new Date().getMonth() + 1;
-  const currentYear = new Date().getFullYear();
+  const currentMonth = calendar.month;
+  const currentYear = calendar.year;
 
   const labels = history
     .filter(
