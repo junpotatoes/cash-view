@@ -18,8 +18,7 @@ export const ModalContainer = styled.div<{ modal: boolean }>`
   display: ${(props) => (props.modal ? 'block' : 'none')};
   width: 100%;
   max-width: 400px;
-  height: 400px;
-  padding: 24px;
+  padding: 24px 48px;
   border: 1px solid ${(props) => props.theme.border};
   border-radius: 4px;
   background-color: ${(props) => props.theme.white};
@@ -27,45 +26,65 @@ export const ModalContainer = styled.div<{ modal: boolean }>`
   transition: display 0.5s;
   z-index: 90;
 
+  .editHistoryHeader {
+    margin-bottom: 24px;
+
+    .editCalendar {
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+
   @media ${(props) => props.theme.mobile} {
     width: 80%;
   }
 `;
 
-export const ItemWrapper = styled.div`
-  height: 180px;
-`;
-
 export const ItemContainer = styled.form`
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
-  line-height: 60px;
-  padding-left: 10px;
-  font-size: 17px;
+  row-gap: 24px;
+  margin-top: 32px;
 `;
 
 export const ItemBox = styled.div`
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
   width: 100%;
-  height: 35px;
+  font-size: 13px;
 
-  span {
-    margin-right: 10px;
+  .itemTitle {
+    width: 30%;
   }
 
-  .select_class {
-    margin-left: 29px;
+  .itemContent {
+    width: 70%;
+
+    &.underline {
+      padding: 4px;
+      border: 1px solid ${(props) => props.theme.white};
+      border-bottom: 1px solid ${(props) => props.theme.border};
+      border-radius: 4px;
+      transition: border 0.5s;
+
+      &:focus {
+        border: 1px solid ${(props) => props.theme.active};
+      }
+    }
   }
 
-  .underline {
-    width: 60%;
-    height: 20px;
-    margin-left: 29px;
-    border: none;
-    border-bottom: 1px solid ${(props) => props.theme.black};
-  }
   .category {
-    width: 60%;
+    width: 100%;
+    padding: 4px;
+    outline: none;
+    border: 1px solid ${(props) => props.theme.border};
+    border-radius: 4px;
+    font-size: 12px;
+
+    &:focus {
+      border: 1px solid ${(props) => props.theme.active};
+    }
   }
 `;
 
@@ -78,16 +97,20 @@ export const ButtonBox = styled.div`
   .option {
     display: flex;
     column-gap: 12px;
-    width: 45%;
-    height: 40px;
-    font-size: 30px;
-    margin-top: 30px;
 
     button {
-      padding: 12px;
-      background-color: ${(props) => props.theme.gray};
-      border: 1px solid ${(props) => props.theme.black};
+      padding: 8px;
+      color: ${(props) => props.theme.white};
+      border: 1px solid ${(props) => props.theme.border};
       border-radius: 4px;
+    }
+
+    .blue {
+      background-color: ${(props) => props.theme.blue};
+    }
+
+    .red {
+      background-color: ${(props) => props.theme.red};
     }
   }
 `;

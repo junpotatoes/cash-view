@@ -15,6 +15,7 @@ export const CalendarHeaderContainer = styled.header<{ px: number }>`
     column-gap: 8px;
 
     strong {
+      flex-shrink: 0;
       font-size: ${(props) => props.px}px;
       font-weight: 700;
     }

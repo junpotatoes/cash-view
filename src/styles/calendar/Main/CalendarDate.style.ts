@@ -104,6 +104,11 @@ export const CalendarDateContainer = styled.ol<{
       padding-left: 4px;
       font-size: 13px;
 
+      .blue,
+      .red {
+        word-break: break-word;
+      }
+
       .blue {
         color: ${(props) => props.theme.blue};
       }

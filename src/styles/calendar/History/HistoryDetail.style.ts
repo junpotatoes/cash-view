@@ -55,7 +55,7 @@ export const HistoryDetailContainer = styled.div`
         flex-direction: column;
         row-gap: 4px;
 
-        .category {
+        &.category {
           font-size: 14px;
         }
 
