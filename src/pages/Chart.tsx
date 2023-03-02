@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { margin } from '@mui/system';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Header from '../components/Calendar/Header/CalendarHeader';
 
 const ChartWrapper = styled.div`
   display: flex;
@@ -74,6 +75,7 @@ function Chart() {
   return (
     <ChartWrapper>
       <ChartContainer>
+        <Header />
         <PieChartBox>
           <div className="pieBox">
             <IncomePieChart history={history} />
@@ -83,7 +85,7 @@ function Chart() {
           </div>
         </PieChartBox>
         <BarChartBox>
-          <BarChart />
+          <BarChart history={history} />
         </BarChartBox>
       </ChartContainer>
     </ChartWrapper>
