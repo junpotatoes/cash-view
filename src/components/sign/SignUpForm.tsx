@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { useState } from 'react';
 import * as S from '../../styles/Sign/Signup.style';
 import { SignInput } from '../../styles/Sign/Login.style';
+import { baseAPI } from '../../api/customAxios';
 
 interface Props {
   toggle: number;
@@ -29,11 +29,11 @@ function SignUpForm({ toggle, setToggle }: Props) {
     confirmPassword: ''
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    axios
-      .post('http://localhost:4000/register', {
+    baseAPI
+      .post('/register', {
         email: formValues.email,
         password: formValues.password,
         name: formValues.name,

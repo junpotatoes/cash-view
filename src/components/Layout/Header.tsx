@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as S from '../../styles/Layout/Header.style';
 import { ReactComponent as MenuIcon } from '../../assets/Icon/menuIcon.svg';
-import axios from 'axios';
+import { baseAPI } from '../../api/customAxios';
 
 function Header() {
   const path = useLocation().pathname;
@@ -12,7 +12,7 @@ function Header() {
 
   const getUserImg = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/users/${userId}`);
+      const res = await baseAPI.get(`/users/${userId}`);
       setUserImg(res.data.img);
     } catch (err) {
       console.log(err);
