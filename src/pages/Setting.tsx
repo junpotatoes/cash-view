@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SettingWrapper = styled.div`
@@ -110,7 +111,7 @@ function Setting() {
   const [file, setFile] = useState('');
   const [isSaved, setIsSaved] = useState(false);
   const [userInfo, setUserInfo] = useState<any>('');
-
+  const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
 
   const saveImgFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -166,7 +167,7 @@ function Setting() {
     const confirmed = window.confirm('로그아웃하시겠습니까?');
     if (confirmed) {
       window.localStorage.clear();
-      window.location.reload();
+      navigate('/');
     }
   };
 
