@@ -155,6 +155,7 @@ function Setting() {
       .then((res) => {
         console.log(res);
         setIsSaved(false);
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
