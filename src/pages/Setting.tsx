@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { baseAPI } from '../api/customAxios';
 
 const SettingWrapper = styled.div`
   width: 80%;
@@ -116,12 +117,11 @@ function Setting() {
 
   const userJson = localStorage.getItem('user');
   const user: User | null = userJson ? JSON.parse(userJson) : null;
-  const userName = user?.userName;
   const userId = user?.userId;
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4000/users/${userId}`)
+    baseAPI
+      .get(`/users/${userId}`)
       .then((res) => {
         setImgFile(res.data.img);
         console.log(res);
@@ -139,8 +139,8 @@ function Setting() {
       img: imgFile
     };
 
-    axios
-      .patch(`http://localhost:4000/users/${userId}`, body, {})
+    baseAPI
+      .patch(`/users/${userId}`, body, {})
       .then((res) => {
         console.log(res);
         setIsSaved(false);

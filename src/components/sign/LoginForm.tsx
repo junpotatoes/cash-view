@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { baseAPI } from '../../api/customAxios';
 import * as S from '../../styles/Sign/Login.style';
 
 interface LoginFormValues {
@@ -16,11 +16,11 @@ function LoginForm() {
   });
   const [toggle, setToggle] = useState(1);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    axios
-      .post('http://localhost:4000/login', formValues)
+    baseAPI
+      .post('/login', formValues)
       .then((res) => {
         const { data } = res;
 
