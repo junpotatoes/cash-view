@@ -36,7 +36,8 @@ function SignUpForm({ toggle, setToggle }: Props) {
       .post('http://localhost:4000/register', {
         email: formValues.email,
         password: formValues.password,
-        name: formValues.name
+        name: formValues.name,
+        img: 'https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png'
       })
       .then((res) => {
         window.alert('회원가입 완료!');
