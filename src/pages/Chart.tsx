@@ -1,36 +1,10 @@
 import BarChart from '../components/Chart/BarChart';
 import ExpensesPieChart from '../components/Chart/ExpensesPieChart';
 import IncomePieChart from '../components/Chart/IncomePieChart';
-import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import Header from '../components/Calendar/Header/CalendarHeader';
 import { baseAPI } from '../api/customAxios';
-
-const ChartWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-const ChartContainer = styled.div`
-  width: 80%;
-`;
-
-const PieChartBox = styled.div`
-  display: flex;
-  justify-content: space-around;
-
-  .pieBox {
-    width: 100%;
-    max-width: 330px;
-  }
-`;
-
-const BarChartBox = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
+import * as S from '../styles/Chart/Chart.style';
 
 type History = {
   id: number;
@@ -72,22 +46,24 @@ function Chart() {
   }, []);
 
   return (
-    <ChartWrapper>
-      <ChartContainer>
+    <S.ChartWrapper>
+      <S.ChartContainer>
         <Header />
-        <PieChartBox>
+        <S.PieChartBox>
           <div className="pieBox">
             <IncomePieChart history={history} />
           </div>
           <div className="pieBox">
             <ExpensesPieChart history={history} />
           </div>
-        </PieChartBox>
-        <BarChartBox>
-          <BarChart history={history} />
-        </BarChartBox>
-      </ChartContainer>
-    </ChartWrapper>
+        </S.PieChartBox>
+        <S.BarChartConatainer>
+          <S.BarChartBox>
+            <BarChart history={history} />
+          </S.BarChartBox>
+        </S.BarChartConatainer>
+      </S.ChartContainer>
+    </S.ChartWrapper>
   );
 }
 
