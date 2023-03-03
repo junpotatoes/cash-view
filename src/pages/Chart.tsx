@@ -1,10 +1,10 @@
-import BarChart from '../components/Chart/BarChart';
-import ExpensesPieChart from '../components/Chart/ExpensesPieChart';
-import IncomePieChart from '../components/Chart/IncomePieChart';
+import BarChart from '@/components/Chart/BarChart';
+import ExpensesPieChart from '@/components/Chart/ExpensesPieChart';
+import IncomePieChart from '@/components/Chart/IncomePieChart';
 import { useEffect, useState } from 'react';
-import Header from '../components/Calendar/Header/CalendarHeader';
-import { baseAPI } from '../api/customAxios';
-import * as S from '../styles/Chart/Chart.style';
+import Header from '@/components/Calendar/Header/CalendarHeader';
+import { baseAPI } from '@/api/customAxios';
+import * as S from '@/styles/Chart/Chart.style';
 
 type History = {
   id: number;

@@ -1,5 +1,5 @@
-import * as S from '../../styles/Layout/Main.style';
-import Router from './Route';
+import * as S from '@/styles/Layout/Main.style';
+import Router from '@/components/Layout/Route';
 
 function Main() {
   return (

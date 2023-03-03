@@ -1,4 +1,4 @@
-import { FormStateProps } from './AddHistoryForm';
+import { FormStateProps } from '@/components/Calendar/History/Modal/AddHistoryForm';
 
 function IncomeCategory({ formState, setFormState }: FormStateProps) {
   return (

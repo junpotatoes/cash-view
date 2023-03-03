@@ -1,7 +1,7 @@
-import AddHistoryForm from './AddHistoryForm';
-import * as S from '../../../../styles/Calendar/Addhistory/AddHistory.style';
-import { AddModalProps } from '../CalendarHistory';
-import DateModal from '../../Modal/DateModal';
+import AddHistoryForm from '@/components/Calendar/History/Modal/AddHistoryForm';
+import * as S from '@/styles/Calendar/Addhistory/AddHistory.style';
+import { AddModalProps } from '@/components/Calendar/History/CalendarHistory';
+import DateModal from '@/components/Calendar/Modal/DateModal';
 
 function AddHistory({ addModal, setAddModal }: AddModalProps) {
   return (

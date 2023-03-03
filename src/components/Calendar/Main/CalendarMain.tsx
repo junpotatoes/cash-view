@@ -1,7 +1,7 @@
-import * as S from '../../../styles/Calendar/Main/CalendarMain.style';
-import CalendarDay from './CalendarDay';
-import CalendarDate from './CalendarDate';
-import { HistoryProps } from '../../../pages/Calendar';
+import * as S from '@/styles/Calendar/Main/CalendarMain.style';
+import CalendarDay from '@/components/Calendar/Main/CalendarDay';
+import CalendarDate from '@/components/Calendar/Main/CalendarDate';
+import { HistoryProps } from '@/pages/Calendar';
 
 function Main({ history }: HistoryProps) {
   return (

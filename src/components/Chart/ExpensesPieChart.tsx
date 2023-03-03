@@ -1,4 +1,5 @@
-import { ChartHistoryProps } from '../../pages/Chart';
+import { ChartHistoryProps } from '@/pages/Chart';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,7 +10,7 @@ import {
   Legend
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import { useAppSelector } from '../../hooks/store';
+import { useAppSelector } from '@/hooks/store';
 
 ChartJS.register(
   CategoryScale,

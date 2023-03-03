@@ -1,8 +1,8 @@
 import { ThemeProvider } from 'styled-components';
-import theme from './styles/theme.style';
-import { GlobalStyle } from './styles/global.style';
-import Header from './components/Layout/Header';
-import Main from './components/Layout/Main';
+import theme from '@/styles/theme.style';
+import { GlobalStyle } from '@/styles/global.style';
+import Header from '@/components/Layout/Header';
+import Main from '@/components/Layout/Main';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 

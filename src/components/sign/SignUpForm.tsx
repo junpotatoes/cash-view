@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import * as S from '../../styles/Sign/Signup.style';
-import { SignInput } from '../../styles/Sign/Login.style';
-import { baseAPI } from '../../api/customAxios';
+import * as S from '@/styles/Sign/Signup.style';
+import { SignInput } from '@/styles/Sign/Login.style';
+import { baseAPI } from '@/api/customAxios';
 
 interface Props {
   toggle: number;

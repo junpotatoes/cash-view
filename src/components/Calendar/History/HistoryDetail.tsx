@@ -1,7 +1,7 @@
-import { HistoryProps } from '../../../pages/Calendar';
-import * as S from '../../../styles/Calendar/History/HistoryDetail.style';
-import HistoryHeader from '../Header/HistoryHeader';
-import HistoryMain from '../Main/HistoryMain';
+import { HistoryProps } from '@/pages/Calendar';
+import * as S from '@/styles/Calendar/History/HistoryDetail.style';
+import HistoryHeader from '@/components/Calendar/Header/HistoryHeader';
+import HistoryMain from '@/components/Calendar/Main/HistoryMain';
 
 export interface UpdateModalProps {
   updateModal: boolean;

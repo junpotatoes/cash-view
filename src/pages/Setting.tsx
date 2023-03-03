@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from '../styles/Setting/Setting.style';
-import { baseAPI } from '../api/customAxios';
+import * as S from '@/styles/Setting/Setting.style';
+import { baseAPI } from '@/api/customAxios';
 
 interface User {
   userId: number;

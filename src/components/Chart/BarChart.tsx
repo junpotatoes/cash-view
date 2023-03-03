@@ -1,4 +1,5 @@
-import { ChartHistoryProps } from '../../pages/Chart';
+import { ChartHistoryProps } from '@/pages/Chart';
+
 import {
   Chart as ChartJS,
   CategoryScale,

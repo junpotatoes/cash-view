@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import Calendar from '../../pages/Calendar';
-import Chart from '../../pages/Chart';
-import Sign from '../../pages/Sign';
-import Setting from '../../pages/Setting';
+import Calendar from '@/pages/Calendar';
+import Chart from '@/pages/Chart';
+import Sign from '@/pages/Sign';
+import Setting from '@/pages/Setting';
 
 function Router() {
   return (

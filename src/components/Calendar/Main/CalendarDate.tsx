@@ -1,10 +1,10 @@
-import * as S from '../../../styles/Calendar/Main/CalendarDate.style';
-import { useAppSelector } from '../../../hooks/store';
-import { HistoryProps } from '../../../pages/Calendar';
-import PrevMonthDate from './Date/PrevMonthDate';
-import CurrentMonthDate from './Date/CurrentMonthDate';
-import NextMonthDate from './Date/NextMonthDate';
-import MobileMonthDate from './Date/MobileMonthDate';
+import * as S from '@/styles/Calendar/Main/CalendarDate.style';
+import { useAppSelector } from '@/hooks/store';
+import { HistoryProps } from '@/pages/Calendar';
+import PrevMonthDate from '@/components/Calendar/Main/Date/PrevMonthDate';
+import CurrentMonthDate from '@/components/Calendar/Main/Date/CurrentMonthDate';
+import NextMonthDate from '@/components/Calendar/Main/Date/NextMonthDate';
+import MobileMonthDate from '@/components/Calendar/Main/Date/MobileMonthDate';
 
 export interface CalendarDateProps {
   key?: number;

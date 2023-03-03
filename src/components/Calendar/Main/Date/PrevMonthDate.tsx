@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../../../../hooks/store';
-import { clickCalendar } from '../../../../store/calendarSlice';
-import { CalendarDateProps } from '../CalendarDate';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { clickCalendar } from '@/store/calendarSlice';
+import { CalendarDateProps } from '@/components/Calendar/Main/CalendarDate';
 
 function PrevMonthDate({ date, checkTotal }: CalendarDateProps) {
   const calendar = useAppSelector((state) => state.calendar);

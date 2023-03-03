@@ -1,9 +1,9 @@
-import IncomeCategory from './IncomeCategory';
-import ExpensesCategory from './ExpensesCategory';
-import SelectClass from './SelectClass';
-import * as S from '../../../../styles/Calendar/Addhistory/AddHistory.style';
-import { UpdateFormProps } from './EditHistory';
-import { baseAPI } from '../../../../api/customAxios';
+import IncomeCategory from '@/components/Calendar/History/Modal/IncomeCategory';
+import ExpensesCategory from '@/components/Calendar/History/Modal/ExpensesCategory';
+import SelectClass from '@/components/Calendar/History/Modal/SelectClass';
+import * as S from '@/styles/Calendar/Addhistory/AddHistory.style';
+import { UpdateFormProps } from '@/components/Calendar/History/Modal/EditHistory';
+import { baseAPI } from '@/api/customAxios';
 
 function EditHistoryForm({
   formState,

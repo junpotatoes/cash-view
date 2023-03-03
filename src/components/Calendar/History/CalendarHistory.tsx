@@ -1,8 +1,8 @@
-import HistoryComparison from './HistoryComparison';
-import HistoryDetail from './HistoryDetail';
-import * as S from '../../../styles/Calendar/History/CalendarHistory.style';
-import { HistoryProps } from '../../../pages/Calendar';
-import AddHistory from './Modal/AddHistory';
+import HistoryComparison from '@/components/Calendar/History/HistoryComparison';
+import HistoryDetail from '@/components/Calendar/History/HistoryDetail';
+import * as S from '@/styles/Calendar/History/CalendarHistory.style';
+import { HistoryProps } from '@/pages/Calendar';
+import AddHistory from '@/components/Calendar/History/Modal/AddHistory';
 import { useState } from 'react';
 
 export interface AddModalProps {

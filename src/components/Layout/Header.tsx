@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as S from '../../styles/Layout/Header.style';
-import { ReactComponent as MenuIcon } from '../../assets/Icon/menuIcon.svg';
-import { baseAPI } from '../../api/customAxios';
+import * as S from '@/styles/Layout/Header.style';
+import { ReactComponent as MenuIcon } from '@/assets/Icon/menuIcon.svg';
+import { baseAPI } from '@/api/customAxios';
 
 function Header() {
   const path = useLocation().pathname;

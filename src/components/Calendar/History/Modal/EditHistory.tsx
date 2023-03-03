@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { baseAPI } from '../../../../api/customAxios';
-import * as S from '../../../../styles/Calendar/Addhistory/AddHistory.style';
-import { UpdateModalProps } from '../HistoryDetail';
-import { FormState } from './AddHistoryForm';
-import EditHistoryForm from './EditHistoryForm';
+import * as S from '@/styles/Calendar/Addhistory/AddHistory.style';
+import { UpdateModalProps } from '@/components/Calendar/History/HistoryDetail';
+import { FormState } from '@/components/Calendar/History/Modal/AddHistoryForm';
+import EditHistoryForm from '@/components/Calendar/History/Modal/EditHistoryForm';
+import { baseAPI } from '@/api/customAxios';
 
 export interface UpdateFormProps extends UpdateModalProps {
   formState: FormState;
