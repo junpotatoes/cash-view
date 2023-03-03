@@ -4,8 +4,6 @@ import styled from 'styled-components';
 
 const SettingWrapper = styled.div`
   width: 80%;
-  /* display: flex;
-  justify-content: center; */
 
   .upload-area {
     position: relative;
@@ -64,16 +62,29 @@ const ImgBox = styled.div``;
 
 const UserInfoContainer = styled.div`
   display: flex;
+  margin-top: 30px;
 `;
 
 const UserInfoBox = styled.div`
-  line-height: 20px;
+  /* line-height: 20px; */
   color: ${(props) => props.theme.black};
   margin-left: 20px;
   padding: 20px;
+  height: 70%;
+
   div {
     font-size: 20px;
-    margin-top: 10px;
+  }
+
+  .userBox {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .logoutBtn {
+    font-size: 16px;
+    margin-left: 20px;
+    color: ${(props) => props.theme.blue};
   }
 `;
 
@@ -150,6 +161,14 @@ function Setting() {
       });
   };
 
+  const handleLogoutBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const confirmed = window.confirm('로그아웃하시겠습니까?');
+    if (confirmed) {
+      window.localStorage.clear();
+      window.location.reload();
+    }
+  };
+
   return (
     <SettingWrapper>
       <UserInfoTitle>
@@ -162,6 +181,7 @@ function Setting() {
             <img src={imgFile} alt="uploaded" />
             <input
               id="file-input"
+              accept="image/jpg,impge/png,image/jpeg"
               type="file"
               name="file"
               ref={imgRef}
@@ -182,8 +202,15 @@ function Setting() {
         </ImgBox>
 
         <UserInfoBox>
-          <div>{userInfo.name}</div>
-          <div>{userInfo.email}</div>
+          <div className="userBox">
+            <div>{userInfo.name}</div>
+            <button className="logoutBtn" onClick={handleLogoutBtn}>
+              로그아웃
+            </button>
+          </div>
+          <div>
+            <div>{userInfo.email}</div>
+          </div>
         </UserInfoBox>
       </UserInfoContainer>
     </SettingWrapper>
