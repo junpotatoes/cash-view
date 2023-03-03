@@ -1,94 +1,7 @@
-import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import * as S from '../styles/Setting/Setting.style';
 import { baseAPI } from '../api/customAxios';
-
-const SettingWrapper = styled.div`
-  width: 80%;
-  /* display: flex;
-  justify-content: center; */
-
-  .upload-area {
-    position: relative;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .upload-area img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  label {
-    font-size: 16px;
-    color: ${(props) => props.theme.blue};
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-  .upload-area p {
-    display: none;
-  }
-
-  .upload-area img + p {
-    display: block;
-  }
-  input {
-    display: flex;
-  }
-`;
-
-const UserInfoTitle = styled.div`
-  width: 115%;
-  margin-top: 40px;
-  font-size: 22px;
-
-  .underline {
-    width: 80%;
-
-    border-bottom: 1px solid black;
-  }
-
-  p {
-    margin-bottom: 5px;
-  }
-`;
-
-const ImgBox = styled.div``;
-
-const UserInfoContainer = styled.div`
-  display: flex;
-`;
-
-const UserInfoBox = styled.div`
-  line-height: 20px;
-  color: ${(props) => props.theme.black};
-  margin-left: 20px;
-  padding: 20px;
-  div {
-    font-size: 20px;
-    margin-top: 10px;
-  }
-`;
-
-const ActiveBox = styled.div`
-  display: flex;
-  margin-top: 10px;
-  justify-content: center;
-
-  button {
-    margin-left: 10px;
-    font-size: 14px;
-    color: ${(props) => props.theme.active};
-  }
-`;
 
 interface User {
   userId: number;
@@ -100,7 +13,7 @@ function Setting() {
   const [file, setFile] = useState('');
   const [isSaved, setIsSaved] = useState(false);
   const [userInfo, setUserInfo] = useState<any>('');
-
+  const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
 
   const saveImgFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -144,24 +57,34 @@ function Setting() {
       .then((res) => {
         console.log(res);
         setIsSaved(false);
+        window.location.reload();
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  const handleLogoutBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const confirmed = window.confirm('로그아웃하시겠습니까?');
+    if (confirmed) {
+      window.localStorage.clear();
+      navigate('/');
+    }
+  };
+
   return (
-    <SettingWrapper>
-      <UserInfoTitle>
+    <S.SettingWrapper>
+      <S.UserInfoTitle>
         <p>계정 정보</p>
         <div className="underline"></div>
-      </UserInfoTitle>
-      <UserInfoContainer>
-        <ImgBox>
+      </S.UserInfoTitle>
+      <S.UserInfoContainer>
+        <div>
           <div className="upload-area">
             <img src={imgFile} alt="uploaded" />
             <input
               id="file-input"
+              accept="image/jpg,impge/png,image/jpeg"
               type="file"
               name="file"
               ref={imgRef}
@@ -171,22 +94,29 @@ function Setting() {
             />
             {imgFile && <p>이미지가 업로드되었습니다.</p>}
           </div>
-          <ActiveBox>
+          <S.ActiveBox>
             <label htmlFor="file-input">프로필 이미지 수정</label>
             {isSaved && (
               <button type="button" onClick={handleSubmitBtn}>
                 저장
               </button>
             )}
-          </ActiveBox>
-        </ImgBox>
+          </S.ActiveBox>
+        </div>
 
-        <UserInfoBox>
-          <div>{userInfo.name}</div>
-          <div>{userInfo.email}</div>
-        </UserInfoBox>
-      </UserInfoContainer>
-    </SettingWrapper>
+        <S.UserInfoBox>
+          <div className="userBox">
+            <div>{userInfo.name}</div>
+            <button className="logoutBtn" onClick={handleLogoutBtn}>
+              로그아웃
+            </button>
+          </div>
+          <div>
+            <div>{userInfo.email}</div>
+          </div>
+        </S.UserInfoBox>
+      </S.UserInfoContainer>
+    </S.SettingWrapper>
   );
 }
 
