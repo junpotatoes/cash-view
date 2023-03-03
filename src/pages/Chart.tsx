@@ -2,7 +2,6 @@ import BarChart from '../components/Chart/BarChart';
 import ExpensesPieChart from '../components/Chart/ExpensesPieChart';
 import IncomePieChart from '../components/Chart/IncomePieChart';
 import styled from 'styled-components';
-import { margin } from '@mui/system';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Calendar/Header/CalendarHeader';
@@ -19,18 +18,22 @@ const ChartContainer = styled.div`
 
 const PieChartBox = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 
   .pieBox {
     width: 100%;
-    max-width: 330px;
+    max-width: 280px;
   }
 `;
 
-const BarChartBox = styled.div`
+const BarChartConatainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+`;
+
+const BarChartBox = styled.div`
+  width: 70%;
 `;
 
 type History = {
@@ -84,9 +87,11 @@ function Chart() {
             <ExpensesPieChart history={history} />
           </div>
         </PieChartBox>
-        <BarChartBox>
-          <BarChart history={history} />
-        </BarChartBox>
+        <BarChartConatainer>
+          <BarChartBox>
+            <BarChart history={history} />
+          </BarChartBox>
+        </BarChartConatainer>
       </ChartContainer>
     </ChartWrapper>
   );
