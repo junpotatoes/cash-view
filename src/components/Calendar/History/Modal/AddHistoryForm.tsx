@@ -2,10 +2,10 @@ import { useState } from 'react';
 import SelectClass from '@/components/Calendar/History/Modal/SelectClass';
 import IncomeCategory from '@/components/Calendar/History/Modal/IncomeCategory';
 import ExpensesCategory from '@//components/Calendar/History/Modal/ExpensesCategory';
-import axios from 'axios';
 import * as S from '@/styles/Calendar/Addhistory/AddHistory.style';
 import { useAppSelector } from '@/hooks/store';
 import { AddModalProps } from '@/components/Calendar/History/CalendarHistory';
+import { baseAPI } from '@/api/customAxios';
 
 export interface FormState {
   id?: number;
@@ -53,7 +53,7 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
     }
 
     try {
-      axios.post('http://localhost:4000/historys', reqbody);
+      baseAPI.post('/historys', reqbody);
       setAddModal(false);
       window.location.reload();
     } catch (err) {

@@ -2,9 +2,9 @@ import { useAppSelector } from '@/hooks/store';
 import { HistoryProps } from '@/pages/Calendar';
 import { ReactComponent as UpdateIcon } from '@/assets/Icon/updateIcon.svg';
 import { ReactComponent as DeleteIcon } from '@/assets/Icon/deleteIcon.svg';
-import axios from 'axios';
 import { useState } from 'react';
 import EditHistory from '@/components/Calendar/History/Modal/EditHistory';
+import { baseAPI } from '@/api/customAxios';
 
 function HistoryMain({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
@@ -49,7 +49,7 @@ function HistoryMain({ history }: HistoryProps) {
     const isDelete = window.confirm('삭제하시겠습니끼?');
 
     try {
-      isDelete && axios.delete(`http://localhost:4000/historys/${id}`);
+      isDelete && baseAPI.delete(`/historys/${id}`);
       window.location.reload();
     } catch (err) {
       console.log(err);

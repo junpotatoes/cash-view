@@ -1,37 +1,10 @@
 import BarChart from '@/components/Chart/BarChart';
 import ExpensesPieChart from '@/components/Chart/ExpensesPieChart';
 import IncomePieChart from '@/components/Chart/IncomePieChart';
-import styled from 'styled-components';
-import { margin } from '@mui/system';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Header from '@/components/Calendar/Header/CalendarHeader';
-
-const ChartWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-const ChartContainer = styled.div`
-  width: 80%;
-`;
-
-const PieChartBox = styled.div`
-  display: flex;
-  justify-content: space-around;
-
-  .pieBox {
-    width: 100%;
-    max-width: 330px;
-  }
-`;
-
-const BarChartBox = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
+import { baseAPI } from '@/api/customAxios';
+import * as S from '@/styles/Chart/Chart.style';
 
 type History = {
   id: number;
@@ -55,7 +28,7 @@ function Chart() {
 
   const getHistory = async () => {
     try {
-      const res = await axios.get('http://localhost:4000/historys');
+      const res = await baseAPI.get('/historys');
       setHistory(
         res.data.filter(
           (el: any) =>
@@ -73,22 +46,24 @@ function Chart() {
   }, []);
 
   return (
-    <ChartWrapper>
-      <ChartContainer>
+    <S.ChartWrapper>
+      <S.ChartContainer>
         <Header />
-        <PieChartBox>
+        <S.PieChartBox>
           <div className="pieBox">
             <IncomePieChart history={history} />
           </div>
           <div className="pieBox">
             <ExpensesPieChart history={history} />
           </div>
-        </PieChartBox>
-        <BarChartBox>
-          <BarChart history={history} />
-        </BarChartBox>
-      </ChartContainer>
-    </ChartWrapper>
+        </S.PieChartBox>
+        <S.BarChartConatainer>
+          <S.BarChartBox>
+            <BarChart history={history} />
+          </S.BarChartBox>
+        </S.BarChartConatainer>
+      </S.ChartContainer>
+    </S.ChartWrapper>
   );
 }
 

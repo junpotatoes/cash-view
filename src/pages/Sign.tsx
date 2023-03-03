@@ -6,7 +6,7 @@ import {
   LoginContainer,
   LoginTitle,
   Underline
-} from '../styles/Sign/Login.style';
+} from '@/styles/Sign/Login.style';
 
 function Sign() {
   const [toggle, setToggle] = useState(1);

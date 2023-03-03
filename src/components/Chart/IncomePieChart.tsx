@@ -1,4 +1,3 @@
-import React from 'react';
 import { ChartHistoryProps } from '@/pages/Chart';
 
 import {
@@ -11,7 +10,7 @@ import {
   Legend
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-import { useAppSelector } from '../../hooks/store';
+import { useAppSelector } from '@/hooks/store';
 
 ChartJS.register(
   CategoryScale,

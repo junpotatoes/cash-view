@@ -1,9 +1,9 @@
-import axios from 'axios';
 import IncomeCategory from '@/components/Calendar/History/Modal/IncomeCategory';
 import ExpensesCategory from '@/components/Calendar/History/Modal/ExpensesCategory';
 import SelectClass from '@/components/Calendar/History/Modal/SelectClass';
 import * as S from '@/styles/Calendar/Addhistory/AddHistory.style';
 import { UpdateFormProps } from '@/components/Calendar/History/Modal/EditHistory';
+import { baseAPI } from '@/api/customAxios';
 
 function EditHistoryForm({
   formState,
@@ -20,7 +20,7 @@ function EditHistoryForm({
     };
 
     try {
-      axios.patch(`http://localhost:4000/historys/${id}`, reqbody);
+      baseAPI.patch(`/historys/${id}`, reqbody);
       setUpdateModal(false);
       window.location.reload();
     } catch (err) {
