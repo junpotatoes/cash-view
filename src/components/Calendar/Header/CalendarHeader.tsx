@@ -1,10 +1,10 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { ReactComponent as ArrowIcon } from '../../../assets/Icon/arrowIcon.svg';
-import * as S from '../../../styles/Calendar/Header/CalendarHeader.style';
-import CalendarModalButton from '../Modal/ModalButton';
-import { useAppDispatch, useAppSelector } from '../../../hooks/store';
-import { prevMonth, nextMonth } from '../../../store/calendarSlice';
-import MonthModal from '../Modal/MonthModal';
+import { ReactComponent as ArrowIcon } from '@/assets/Icon/arrowIcon.svg';
+import * as S from '@/styles/Calendar/Header/CalendarHeader.style';
+import CalendarModalButton from '@/components/Calendar/Modal/ModalButton';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { prevMonth, nextMonth } from '@/store/calendarSlice';
+import MonthModal from '@/components/Calendar/Modal/MonthModal';
 
 export interface CalendarModal {
   isOpenCalendar: boolean;

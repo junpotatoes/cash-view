@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../../../hooks/store';
-import { HistoryProps } from '../../../../pages/Calendar';
+import { useAppSelector } from '@/hooks/store';
+import { HistoryProps } from '@/pages/Calendar';
 
 function ComparisonPrevMonth({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);

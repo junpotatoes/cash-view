@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../../../hooks/store';
-import * as S from '../../../../styles/Calendar/Addhistory/AddHistory.style';
-import { UpdateModalProps } from '../HistoryDetail';
-import { FormState } from './AddHistoryForm';
-import EditHistoryForm from './EditHistoryForm';
+import { useAppSelector } from '@/hooks/store';
+import * as S from '@/styles/Calendar/Addhistory/AddHistory.style';
+import { UpdateModalProps } from '@/components/Calendar/History/HistoryDetail';
+import { FormState } from '@/components/Calendar/History/Modal/AddHistoryForm';
+import EditHistoryForm from '@/components/Calendar/History/Modal/EditHistoryForm';
 
 export interface UpdateFormProps extends UpdateModalProps {
   formState: FormState;

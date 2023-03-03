@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as S from '../../styles/Layout/Header.style';
-import { ReactComponent as MenuIcon } from '../../assets/Icon/menuIcon.svg';
+import * as S from '@/styles/Layout/Header.style';
+import { ReactComponent as MenuIcon } from '@/assets/Icon/menuIcon.svg';
 import axios from 'axios';
 
 function Header() {

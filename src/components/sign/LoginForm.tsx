@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from '../../styles/Sign/Login.style';
+import * as S from '@/styles/Sign/Login.style';
 
 interface LoginFormValues {
   email: string;

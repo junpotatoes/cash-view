@@ -1,7 +1,7 @@
-import CalendarHeader from '../components/Calendar/Header/CalendarHeader';
-import CalendarHistory from '../components/Calendar/History/CalendarHistory';
-import CalendarMain from '../components/Calendar/Main/CalendarMain';
-import * as S from '../styles/Calendar/Calendar.style';
+import CalendarHeader from '@/components/Calendar/Header/CalendarHeader';
+import CalendarHistory from '@/components/Calendar/History/CalendarHistory';
+import CalendarMain from '@/components/Calendar/Main/CalendarMain';
+import * as S from '@/styles/Calendar/Calendar.style';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 

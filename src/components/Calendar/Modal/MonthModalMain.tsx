@@ -1,7 +1,7 @@
-import { useAppDispatch } from '../../../hooks/store';
-import { changeMonth } from '../../../store/calendarSlice';
-import * as S from '.././../../styles/Calendar/Modal/MonthModalMain.style';
-import { CalendarModal } from '../Header/CalendarHeader';
+import { useAppDispatch } from '@/hooks/store';
+import { changeMonth } from '@/store/calendarSlice';
+import * as S from '@/styles/Calendar/Modal/MonthModalMain.style';
+import { CalendarModal } from '@/components/Calendar/Header/CalendarHeader';
 
 function MonthModalMain({ setIsOpenCalendar }: CalendarModal) {
   const dispatch = useAppDispatch();

@@ -1,11 +1,11 @@
-import BarChart from '../components/Chart/BarChart';
-import ExpensesPieChart from '../components/Chart/ExpensesPieChart';
-import IncomePieChart from '../components/Chart/IncomePieChart';
+import BarChart from '@/components/Chart/BarChart';
+import ExpensesPieChart from '@/components/Chart/ExpensesPieChart';
+import IncomePieChart from '@/components/Chart/IncomePieChart';
 import styled from 'styled-components';
 import { margin } from '@mui/system';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Header from '../components/Calendar/Header/CalendarHeader';
+import Header from '@/components/Calendar/Header/CalendarHeader';
 
 const ChartWrapper = styled.div`
   display: flex;

@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import SelectClass from './SelectClass';
-import IncomeCategory from './IncomeCategory';
-import ExpensesCategory from './ExpensesCategory';
+import SelectClass from '@/components/Calendar/History/Modal/SelectClass';
+import IncomeCategory from '@/components/Calendar/History/Modal/IncomeCategory';
+import ExpensesCategory from '@//components/Calendar/History/Modal/ExpensesCategory';
 import axios from 'axios';
-import * as S from '../../../../styles/Calendar/Addhistory/AddHistory.style';
-import { useAppSelector } from '../../../../hooks/store';
-import { AddModalProps } from '../CalendarHistory';
+import * as S from '@/styles/Calendar/Addhistory/AddHistory.style';
+import { useAppSelector } from '@/hooks/store';
+import { AddModalProps } from '@/components/Calendar/History/CalendarHistory';
 
 export interface FormState {
   id?: number;

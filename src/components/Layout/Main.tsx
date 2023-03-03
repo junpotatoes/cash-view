@@ -1,4 +1,4 @@
-import * as S from '../../styles/Layout/Main.style';
+import * as S from '@/styles/Layout/Main.style';
 import Router from './Route';
 
 function Main() {

@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../../../../hooks/store';
-import { toggleMobileCalendar } from '../../../../store/calendarSlice';
-import { ReactComponent as ArrowIcon } from '../../../../assets/Icon/arrowIcon.svg';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { toggleMobileCalendar } from '@/store/calendarSlice';
+import { ReactComponent as ArrowIcon } from '@/assets/Icon/arrowIcon.svg';
 
 function MobileMonthDate() {
   const calendar = useAppSelector((state) => state.calendar);

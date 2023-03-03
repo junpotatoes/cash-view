@@ -1,4 +1,4 @@
-import * as S from '../../../styles/Calendar/Main/CalendarDay.style';
+import * as S from '@/styles/Calendar/Main/CalendarDay.style';
 
 function CalendarDay() {
   const day: string[] = ['일', '월', '화', '수', '목', '금', '토'];
