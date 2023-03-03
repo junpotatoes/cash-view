@@ -2,13 +2,16 @@ import { useState } from 'react';
 import SelectClass from './SelectClass';
 import IncomeCategory from './IncomeCategory';
 import ExpensesCategory from './ExpensesCategory';
-import axios from 'axios';
 import * as S from '../../../../styles/Calendar/Addhistory/AddHistory.style';
 import { useAppSelector } from '../../../../hooks/store';
 import { AddModalProps } from '../CalendarHistory';
+import { baseAPI } from '../../../../api/customAxios';
 
 export interface FormState {
   id?: number;
+  year?: number;
+  month?: number;
+  date?: number;
   value?: string;
   category?: string;
   content?: string;
@@ -50,7 +53,7 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
     }
 
     try {
-      axios.post('http://localhost:4000/historys', reqbody);
+      baseAPI.post('/historys', reqbody);
       setAddModal(false);
       window.location.reload();
     } catch (err) {
@@ -59,66 +62,72 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
   };
 
   return (
-    <S.ItemWrapper>
-      <S.ItemContainer onSubmit={onSubmit}>
-        <S.ItemBox>
-          <span className="class">분류</span>
-          <span className="select_class">
-            <SelectClass formState={formState} setFormState={setFormState} />
-          </span>
-        </S.ItemBox>
-        <S.ItemBox>
-          <span>카테고리</span>
-          <span>
-            {formState.value === '수입' ? (
-              <IncomeCategory
-                formState={formState}
-                setFormState={setFormState}
-              />
-            ) : (
-              <ExpensesCategory
-                formState={formState}
-                setFormState={setFormState}
-              />
-            )}
-          </span>
-        </S.ItemBox>
-        <S.ItemBox>
-          <span>금액</span>
-          <input
-            type={'number'}
-            className="underline"
-            value={formState.amount || ''}
-            onChange={(e) =>
-              setFormState({
-                ...formState,
-                amount: e.target.valueAsNumber
-              })
-            }
-          />
-          <span>원</span>
-        </S.ItemBox>
-        <S.ItemBox>
-          <span>내용</span>
-          <input
-            type={'text'}
-            className="underline"
-            value={formState.content || ''}
-            onChange={(e) =>
-              setFormState({ ...formState, content: e.target.value })
-            }
-          />
-        </S.ItemBox>
-        <S.ButtonBox>
-          <div className="option">
-            <button type="submit">저장</button>
-            <button type="reset" onClick={() => setAddModal(false)}>
-              취소
-            </button>
-          </div>
-        </S.ButtonBox>
-      </S.ItemContainer>
-    </S.ItemWrapper>
+    <S.ItemContainer onSubmit={onSubmit}>
+      <S.ItemBox>
+        <p className="itemTitle">분류</p>
+        <p className="itemContent">
+          <SelectClass formState={formState} setFormState={setFormState} />
+        </p>
+      </S.ItemBox>
+      <S.ItemBox>
+        <p className="itemTitle">카테고리</p>
+        <p className="itemContent">
+          {formState.value === '수입' ? (
+            <IncomeCategory formState={formState} setFormState={setFormState} />
+          ) : (
+            <ExpensesCategory
+              formState={formState}
+              setFormState={setFormState}
+            />
+          )}
+        </p>
+      </S.ItemBox>
+      <S.ItemBox>
+        <label htmlFor="amount" className="itemTitle">
+          금액
+        </label>
+        <input
+          type={'number'}
+          id="amount"
+          className="underline itemContent"
+          value={formState.amount || ''}
+          onChange={(e) =>
+            setFormState({
+              ...formState,
+              amount: e.target.valueAsNumber
+            })
+          }
+        />
+      </S.ItemBox>
+      <S.ItemBox>
+        <label htmlFor="content" className="itemTitle">
+          내용
+        </label>
+        <input
+          type={'text'}
+          id="content"
+          className="underline itemContent"
+          value={formState.content || ''}
+          onChange={(e) =>
+            setFormState({ ...formState, content: e.target.value })
+          }
+        />
+      </S.ItemBox>
+      <S.ButtonBox>
+        <div className="option">
+          <button type="submit" className="blue">
+            저장
+          </button>
+          <button
+            type="reset"
+            className="red"
+            onClick={() => setAddModal(false)}
+          >
+            취소
+          </button>
+        </div>
+      </S.ButtonBox>
+    </S.ItemContainer>
   );
 }
 

@@ -1,6 +1,4 @@
-import React from 'react';
 import { ChartHistoryProps } from '../../pages/Chart';
-
 import {
   Chart as ChartJS,
   CategoryScale,

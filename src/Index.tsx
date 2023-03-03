@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import CreateDOM from 'react-dom/client';
 import App from './App';
 import { Provider } from 'react-redux';

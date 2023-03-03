@@ -3,8 +3,8 @@ import ExpensesPieChart from '../components/Chart/ExpensesPieChart';
 import IncomePieChart from '../components/Chart/IncomePieChart';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Header from '../components/Calendar/Header/CalendarHeader';
+import { baseAPI } from '../api/customAxios';
 
 const ChartWrapper = styled.div`
   display: flex;
@@ -58,7 +58,7 @@ function Chart() {
 
   const getHistory = async () => {
     try {
-      const res = await axios.get('http://localhost:4000/historys');
+      const res = await baseAPI.get('/historys');
       setHistory(
         res.data.filter(
           (el: any) =>

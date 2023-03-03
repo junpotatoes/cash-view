@@ -1,22 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as S from '../../styles/Layout/Header.style';
 import { ReactComponent as MenuIcon } from '../../assets/Icon/menuIcon.svg';
+import { baseAPI } from '../../api/customAxios';
 
 function Header() {
   const path = useLocation().pathname;
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [userImg, setUserImg] = useState('');
+  const userId = JSON.parse(localStorage.user).userId;
+
+  const getUserImg = async () => {
+    try {
+      const res = await baseAPI.get(`/users/${userId}`);
+      setUserImg(res.data.img);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getUserImg();
+  }, []);
 
   return (
     <>
       <S.HeaderWrapper>
         <S.HeaderContainer>
           <h1 className="HeaderTitle">
+            <div className="userImg">
+              <img src={userImg} alt="" />
+            </div>
             <strong>
-              {localStorage.user ? JSON.parse(localStorage.user).userName : ''}{' '}
-              님의
+              {localStorage.user ? JSON.parse(localStorage.user).userName : ''}
             </strong>
-            <span>가계부</span>
           </h1>
 
           <ul className="HeaderMenuList">
