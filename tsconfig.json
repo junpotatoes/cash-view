@@ -9,9 +9,9 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["./src/*"]
     }
   },
 
-  "include": ["src", "custom.d.ts"]
+  "include": ["./src", "custom.d.ts"]
 }
