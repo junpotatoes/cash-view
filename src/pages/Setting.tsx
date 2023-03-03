@@ -1,105 +1,7 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-
-const SettingWrapper = styled.div`
-  width: 80%;
-
-  .upload-area {
-    position: relative;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .upload-area img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  label {
-    font-size: 16px;
-    color: ${(props) => props.theme.blue};
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-  .upload-area p {
-    display: none;
-  }
-
-  .upload-area img + p {
-    display: block;
-  }
-  input {
-    display: flex;
-  }
-`;
-
-const UserInfoTitle = styled.div`
-  width: 115%;
-  margin-top: 40px;
-  font-size: 22px;
-
-  .underline {
-    width: 80%;
-
-    border-bottom: 1px solid black;
-  }
-
-  p {
-    margin-bottom: 5px;
-  }
-`;
-
-const ImgBox = styled.div``;
-
-const UserInfoContainer = styled.div`
-  display: flex;
-  margin-top: 30px;
-`;
-
-const UserInfoBox = styled.div`
-  /* line-height: 20px; */
-  color: ${(props) => props.theme.black};
-  margin-left: 20px;
-  padding: 20px;
-  height: 70%;
-
-  div {
-    font-size: 20px;
-  }
-
-  .userBox {
-    display: flex;
-    margin-bottom: 10px;
-  }
-
-  .logoutBtn {
-    font-size: 16px;
-    margin-left: 20px;
-    color: ${(props) => props.theme.blue};
-  }
-`;
-
-const ActiveBox = styled.div`
-  display: flex;
-  margin-top: 10px;
-  justify-content: center;
-
-  button {
-    margin-left: 10px;
-    font-size: 14px;
-    color: ${(props) => props.theme.active};
-  }
-`;
+import * as S from '../styles/Setting/Setting.style';
 
 interface User {
   userId: number;
@@ -172,13 +74,13 @@ function Setting() {
   };
 
   return (
-    <SettingWrapper>
-      <UserInfoTitle>
+    <S.SettingWrapper>
+      <S.UserInfoTitle>
         <p>계정 정보</p>
         <div className="underline"></div>
-      </UserInfoTitle>
-      <UserInfoContainer>
-        <ImgBox>
+      </S.UserInfoTitle>
+      <S.UserInfoContainer>
+        <div>
           <div className="upload-area">
             <img src={imgFile} alt="uploaded" />
             <input
@@ -193,17 +95,17 @@ function Setting() {
             />
             {imgFile && <p>이미지가 업로드되었습니다.</p>}
           </div>
-          <ActiveBox>
+          <S.ActiveBox>
             <label htmlFor="file-input">프로필 이미지 수정</label>
             {isSaved && (
               <button type="button" onClick={handleSubmitBtn}>
                 저장
               </button>
             )}
-          </ActiveBox>
-        </ImgBox>
+          </S.ActiveBox>
+        </div>
 
-        <UserInfoBox>
+        <S.UserInfoBox>
           <div className="userBox">
             <div>{userInfo.name}</div>
             <button className="logoutBtn" onClick={handleLogoutBtn}>
@@ -213,9 +115,9 @@ function Setting() {
           <div>
             <div>{userInfo.email}</div>
           </div>
-        </UserInfoBox>
-      </UserInfoContainer>
-    </SettingWrapper>
+        </S.UserInfoBox>
+      </S.UserInfoContainer>
+    </S.SettingWrapper>
   );
 }
 
