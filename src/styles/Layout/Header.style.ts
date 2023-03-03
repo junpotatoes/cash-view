@@ -22,27 +22,36 @@ export const HeaderContainer = styled.div`
 
   .HeaderTitle {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    row-gap: 4px;
+    column-gap: 4px;
     width: 10%;
     color: ${(props) => props.theme.active};
+
+    .userImg {
+      width: 24px;
+      height: 24px;
+      border-radius: 50px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    strong {
+      font-size: 16px;
+      font-weight: 700;
+    }
 
     @media ${(props) => props.theme.mobile} {
       position: absolute;
       left: 50%;
-      flex-direction: row;
-      column-gap: 4px;
       width: 100%;
       max-width: 120px;
       color: ${(props) => props.theme.white};
       transform: translateX(-50%);
-    }
-
-    strong,
-    span {
-      font-size: 16px;
-      font-weight: 700;
     }
   }
 
