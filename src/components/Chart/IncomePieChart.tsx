@@ -1,6 +1,4 @@
-import React from 'react';
 import { ChartHistoryProps } from '../../pages/Chart';
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -46,6 +44,7 @@ function IncomePieChart({ history }: ChartHistoryProps) {
         el.value === '수입'
     )
     .map((el) => el.category);
+
   const colors = [
     '#B4B2FF',
     '#DEDDFF',
@@ -54,6 +53,7 @@ function IncomePieChart({ history }: ChartHistoryProps) {
     '#C270DF',
     '#2E9BFF'
   ];
+
   const dataValues = history
     .filter(
       (el) =>
@@ -62,6 +62,7 @@ function IncomePieChart({ history }: ChartHistoryProps) {
         el.value === '수입'
     )
     .map((el) => el.amount);
+
   const dataSum = dataValues.reduce((a, b) => a + b, 0);
 
   const data = {

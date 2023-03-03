@@ -1,6 +1,4 @@
-import React from 'react';
 import { ChartHistoryProps } from '../../pages/Chart';
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -62,8 +60,6 @@ function BarChart({ history }: ChartHistoryProps) {
     newExpensesByMonth[key + '월'] = ExpensesByMonth[key];
   }
 
-  console.log(newIncomeByMonth, newExpensesByMonth);
-
   const data = {
     datasets: [
       {
@@ -78,7 +74,7 @@ function BarChart({ history }: ChartHistoryProps) {
       }
     ]
   };
-  console.log(history);
+
   return <Bar options={options} data={data} />;
 }
 

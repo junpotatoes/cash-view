@@ -3,7 +3,7 @@ import CalendarHistory from '../components/Calendar/History/CalendarHistory';
 import CalendarMain from '../components/Calendar/Main/CalendarMain';
 import * as S from '../styles/Calendar/Calendar.style';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { baseAPI } from '../api/customAxios';
 
 export type History = {
   id: number;
@@ -27,7 +27,7 @@ function Calendar() {
 
   const getHistory = async () => {
     try {
-      const res = await axios.get('http://localhost:4000/historys');
+      const res = await baseAPI.get('/historys');
       setHistory(
         res.data.filter(
           (el: any) =>

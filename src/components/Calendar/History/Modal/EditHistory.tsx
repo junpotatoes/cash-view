@@ -1,6 +1,5 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../../../hooks/store';
+import { baseAPI } from '../../../../api/customAxios';
 import * as S from '../../../../styles/Calendar/Addhistory/AddHistory.style';
 import { UpdateModalProps } from '../HistoryDetail';
 import { FormState } from './AddHistoryForm';
@@ -12,12 +11,11 @@ export interface UpdateFormProps extends UpdateModalProps {
 }
 
 function EditHistory({ updateModal, setUpdateModal, id }: UpdateModalProps) {
-  const calendar = useAppSelector((state) => state.calendar);
   const [formState, setFormState] = useState<FormState>({});
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4000/historys/${id}`)
+    baseAPI
+      .get(`/historys/${id}`)
       .then((res) => {
         setFormState(res.data);
       })
