@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const HistoryDetailContainer = styled.div`
   padding: 12px;
   border: 1px solid ${(props) => props.theme.border};
-  border-radius: 4px;
 
   .headerBox {
     display: flex;

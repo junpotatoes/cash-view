@@ -4,7 +4,8 @@ export const CalendarHistoryContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
+  justify-content: space-between;
+  height: 100%;
 
   .addHistoryButton {
     position: absolute;
