@@ -7,6 +7,10 @@ export const CalendarHistoryContainer = styled.div`
   justify-content: space-between;
   height: 100%;
 
+  @media ${(props) => props.theme.mobile} {
+    row-gap: 12px;
+  }
+
   .addHistoryButton {
     position: absolute;
     top: 2px;

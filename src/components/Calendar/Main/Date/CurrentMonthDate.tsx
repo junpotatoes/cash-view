@@ -26,11 +26,21 @@ function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
         )
       }
     >
-      <strong className="currentMonthDate">{date}</strong>
+      <div className="calendarDateBox">
+        <h3 className="currentMonthDate">{date}</h3>
 
-      <span className="currentMonthDay onlyMobile">
-        ({day[new Date(`${calendar.year}-${calendar.month}-${date}`).getDay()]})
-      </span>
+        <span className="currentMonthDay onlyMobile">
+          (
+          {day[new Date(`${calendar.year}-${calendar.month}-${date}`).getDay()]}
+          )
+        </span>
+
+        {calendar.year === new Date().getFullYear() &&
+          calendar.month === new Date().getMonth() + 1 &&
+          date === new Date().getDate() && (
+            <strong className="today">오늘</strong>
+          )}
+      </div>
 
       <div className="calendarAmountBox">
         <p className="blue">

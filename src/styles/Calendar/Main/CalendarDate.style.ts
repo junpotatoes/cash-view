@@ -14,6 +14,7 @@ export const CalendarDateWrapper = styled.div<{
         props.isOpenMobileCalendar ? 'hidden' : 'visible'};
       display: flex;
       justify-content: flex-start;
+      column-gap: 2px;
       align-items: center;
       width: 100%;
       height: 65px;
@@ -21,7 +22,8 @@ export const CalendarDateWrapper = styled.div<{
       background-color: ${(props) => props.theme.active};
 
       .date,
-      .day {
+      .day,
+      .today {
         font-size: 16px;
         font-weight: 700;
         color: ${(props) => props.theme.white};
@@ -95,6 +97,22 @@ export const CalendarDateContainer = styled.ol<{
       }
     }
 
+    .calendarDateBox {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @media ${(props) => props.theme.mobile} {
+        justify-content: flex-start;
+        column-gap: 2px;
+      }
+
+      .today {
+        flex-shrink: 0;
+        color: ${(props) => props.theme.main};
+      }
+    }
+
     .calendarAmountBox {
       display: flex;
       flex-direction: column;
@@ -151,7 +169,7 @@ export const CalendarDateContainer = styled.ol<{
     border-bottom: 1px solid ${(props) => props.theme.border};
     overflow-y: ${(props) =>
       props.isOpenMobileCalendar ? 'scroll' : 'hidden'};
-    z-index: 80;
+    z-index: 60;
 
     .date {
       padding: 24px 0 24px 12px;
