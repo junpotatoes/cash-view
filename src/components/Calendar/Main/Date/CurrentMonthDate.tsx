@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { clickCalendar } from '@/store/calendarSlice';
 import { CalendarDateProps } from '@/components/Calendar/Main/CalendarDate';
+import { ReactComponent as ArrowIcon } from '@/assets/Icon/arrowIcon.svg';
 
 function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
   const calendar = useAppSelector((state) => state.calendar);
@@ -42,29 +43,34 @@ function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
           )}
       </div>
 
-      <div className="calendarAmountBox">
-        <p className="blue">
-          {checkTotal('수입', calendar.year, calendar.month, date)
-            ? `+ ${checkTotal(
-                '수입',
-                calendar.year,
-                calendar.month,
-                date
-              ).toLocaleString('ko-KR')}`
-            : ' '}
-        </p>
+      {checkTotal('수입', calendar.year, calendar.month, date) ||
+      checkTotal('지출', calendar.year, calendar.month, date) ? (
+        <div className="calendarAmountBox">
+          <p className="blue">
+            {`+ ${checkTotal(
+              '수입',
+              calendar.year,
+              calendar.month,
+              date
+            ).toLocaleString('ko-KR')}`}
+          </p>
+          {}
+          <p className="red">
+            {`- ${checkTotal(
+              '지출',
+              calendar.year,
+              calendar.month,
+              date
+            ).toLocaleString('ko-KR')}`}
+          </p>
+        </div>
+      ) : null}
 
-        <p className="red">
-          {checkTotal('지출', calendar.year, calendar.month, date)
-            ? `- ${checkTotal(
-                '지출',
-                calendar.year,
-                calendar.month,
-                date
-              ).toLocaleString('ko-KR')}`
-            : ' '}
-        </p>
-      </div>
+      {calendar.date === date && (
+        <div className="closeCalendar">
+          <ArrowIcon />
+        </div>
+      )}
     </li>
   );
 }

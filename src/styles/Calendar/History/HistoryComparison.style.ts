@@ -24,6 +24,7 @@ export const HistoryComparisonContainer = styled.div`
     flex-direction: column;
     align-items: center;
     row-gap: 4px;
+    padding: 8px 0;
     font-size: 15px;
     color: ${(props) => props.theme.gray};
   }
