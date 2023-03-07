@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { clickCalendar } from '@/store/calendarSlice';
 import { CalendarDateProps } from '@/components/Calendar/Main/CalendarDate';
+import { ReactComponent as ArrowIcon } from '@/assets/Icon/arrowIcon.svg';
 
 function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
   const calendar = useAppSelector((state) => state.calendar);
@@ -26,35 +27,50 @@ function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
         )
       }
     >
-      <strong className="currentMonthDate">{date}</strong>
+      <div className="calendarDateBox">
+        <h3 className="currentMonthDate">{date}</h3>
 
-      <span className="currentMonthDay onlyMobile">
-        ({day[new Date(`${calendar.year}-${calendar.month}-${date}`).getDay()]})
-      </span>
+        <span className="currentMonthDay onlyMobile">
+          (
+          {day[new Date(`${calendar.year}-${calendar.month}-${date}`).getDay()]}
+          )
+        </span>
 
-      <div className="calendarAmountBox">
-        <p className="blue">
-          {checkTotal('수입', calendar.year, calendar.month, date)
-            ? `+ ${checkTotal(
-                '수입',
-                calendar.year,
-                calendar.month,
-                date
-              ).toLocaleString('ko-KR')}`
-            : ' '}
-        </p>
-
-        <p className="red">
-          {checkTotal('지출', calendar.year, calendar.month, date)
-            ? `- ${checkTotal(
-                '지출',
-                calendar.year,
-                calendar.month,
-                date
-              ).toLocaleString('ko-KR')}`
-            : ' '}
-        </p>
+        {calendar.year === new Date().getFullYear() &&
+          calendar.month === new Date().getMonth() + 1 &&
+          date === new Date().getDate() && (
+            <strong className="today">오늘</strong>
+          )}
       </div>
+
+      {checkTotal('수입', calendar.year, calendar.month, date) ||
+      checkTotal('지출', calendar.year, calendar.month, date) ? (
+        <div className="calendarAmountBox">
+          <p className="blue">
+            {`+ ${checkTotal(
+              '수입',
+              calendar.year,
+              calendar.month,
+              date
+            ).toLocaleString('ko-KR')}`}
+          </p>
+          {}
+          <p className="red">
+            {`- ${checkTotal(
+              '지출',
+              calendar.year,
+              calendar.month,
+              date
+            ).toLocaleString('ko-KR')}`}
+          </p>
+        </div>
+      ) : null}
+
+      {calendar.date === date && (
+        <div className="closeCalendar">
+          <ArrowIcon />
+        </div>
+      )}
     </li>
   );
 }

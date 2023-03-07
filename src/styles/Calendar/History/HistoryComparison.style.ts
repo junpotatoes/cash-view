@@ -4,10 +4,8 @@ export const HistoryComparisonContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 18px;
-  height: 114px;
   padding: 12px;
   border: 1px solid ${(props) => props.theme.border};
-  border-radius: 4px;
 
   .today {
     font-size: 18px;
@@ -18,6 +16,16 @@ export const HistoryComparisonContainer = styled.div`
     font-size: 13px;
     text-align: center;
     font-weight: 700;
+    color: ${(props) => props.theme.gray};
+  }
+
+  .noData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 4px;
+    padding: 8px 0;
+    font-size: 15px;
     color: ${(props) => props.theme.gray};
   }
 `;
