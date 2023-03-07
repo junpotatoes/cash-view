@@ -92,6 +92,12 @@ const calendarSlice = createSlice({
       state.mobileCalendar = false;
 
       updateLocalCalendar(state);
+    },
+    prevYear: (state) => {
+      state.year -= 1;
+    },
+    nextYear: (state) => {
+      state.year += 1;
     }
   }
 });
@@ -102,6 +108,8 @@ export const {
   clickCalendar,
   toggleMobileCalendar,
   changeCalendar,
-  changeMonth
+  changeMonth,
+  prevYear,
+  nextYear
 } = calendarSlice.actions;
 export default calendarSlice;
