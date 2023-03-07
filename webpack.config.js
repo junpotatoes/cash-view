@@ -26,6 +26,12 @@ module.exports = (env, argv) => {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
         '@': path.resolve(__dirname, './src/')
+      },
+      fallback: {
+        url: false,
+        buffer: false,
+        http: require.resolve('stream-http'),
+        https: require.resolve('https-browserify')
       }
     },
     module: {
