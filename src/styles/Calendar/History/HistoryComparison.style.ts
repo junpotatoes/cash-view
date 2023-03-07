@@ -18,4 +18,13 @@ export const HistoryComparisonContainer = styled.div`
     font-weight: 700;
     color: ${(props) => props.theme.gray};
   }
+
+  .noData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 4px;
+    font-size: 15px;
+    color: ${(props) => props.theme.gray};
+  }
 `;

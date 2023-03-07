@@ -109,5 +109,15 @@ export const HistoryDetailContainer = styled.div`
         }
       }
     }
+
+    .noData {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 4px;
+      height: 240px;
+      color: ${(props) => props.theme.gray};
+    }
   }
 `;
