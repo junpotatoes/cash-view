@@ -23,7 +23,7 @@ function ComparisonToday({ history }: HistoryProps) {
 
   return (
     <div className="today">
-      오늘까지{' '}
+      지금까지{' '}
       {calendar.prevMonthDate
         ? checkTodayTotal(
             calendar.month === 1 ? calendar.year - 1 : calendar.year,

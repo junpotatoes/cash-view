@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const HistoryDetailContainer = styled.div`
   padding: 12px;
   border: 1px solid ${(props) => props.theme.border};
-  border-radius: 4px;
 
   .headerBox {
     display: flex;
@@ -109,6 +108,16 @@ export const HistoryDetailContainer = styled.div`
           }
         }
       }
+    }
+
+    .noData {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 4px;
+      height: 240px;
+      color: ${(props) => props.theme.gray};
     }
   }
 `;

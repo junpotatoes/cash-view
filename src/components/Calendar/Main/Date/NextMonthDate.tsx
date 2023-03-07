@@ -20,7 +20,17 @@ function NextMonthDate({ date, checkTotal }: CalendarDateProps) {
         )
       }
     >
-      {date}
+      <div className="calendarDateBox">
+        <h3>{date}</h3>
+
+        {(calendar.month === 12 ? calendar.year + 1 : calendar.year) ===
+          new Date().getFullYear() &&
+          (calendar.month === 12 ? 1 : calendar.month + 1) ===
+            new Date().getMonth() + 1 &&
+          date === new Date().getDate() && (
+            <strong className="today">오늘</strong>
+          )}
+      </div>
 
       <div className="calendarAmountBox">
         <p className="blue">

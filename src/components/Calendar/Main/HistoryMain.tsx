@@ -60,21 +60,33 @@ function HistoryMain({ history }: HistoryProps) {
     <div className="mainBox">
       <h4 className="mainTitle">내역 상세</h4>
 
-      <ul className="historyList">
-        {calendar.prevMonthDate
-          ? checkDetail(
-              calendar.month === 1 ? calendar.year - 1 : calendar.year,
-              calendar.month === 1 ? 12 : calendar.month - 1,
-              calendar.prevMonthDate
-            )
-          : calendar.nextMonthDate
-          ? checkDetail(
-              calendar.month === 12 ? calendar.year + 1 : calendar.year,
-              calendar.month === 12 ? 1 : calendar.month + 1,
-              calendar.nextMonthDate
-            )
-          : checkDetail(calendar.year, calendar.month, calendar.date)}
-      </ul>
+      {history.filter(
+        (el) =>
+          el.year === calendar.year &&
+          el.month === calendar.month &&
+          el.date === calendar.date
+      )[0] ? (
+        <ul className="historyList">
+          {calendar.prevMonthDate
+            ? checkDetail(
+                calendar.month === 1 ? calendar.year - 1 : calendar.year,
+                calendar.month === 1 ? 12 : calendar.month - 1,
+                calendar.prevMonthDate
+              )
+            : calendar.nextMonthDate
+            ? checkDetail(
+                calendar.month === 12 ? calendar.year + 1 : calendar.year,
+                calendar.month === 12 ? 1 : calendar.month + 1,
+                calendar.nextMonthDate
+              )
+            : checkDetail(calendar.year, calendar.month, calendar.date)}
+        </ul>
+      ) : (
+        <div className="noData">
+          <p>데이터가 없습니다</p>
+          <p>수입/지출 내역을 입력해주세요</p>
+        </div>
+      )}
     </div>
   );
 }
