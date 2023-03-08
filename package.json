@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --mode=development --open --hot --progress",
     "build": "webpack --mode=production  --progress",
     "start": "webpack --mode=development  --progress",
-    "server": "json-server-auth --watch db.json --port 8080 --host ec2-52-78-60-21.ap-northeast-2.compute.amazonaws.com"
+    "server": "json-server-auth --watch db.json --port 8080 --host acc.my-account.p-e.kr"
   },
   "keywords": [],
   "author": "",
