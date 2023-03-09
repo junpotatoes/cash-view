@@ -1,7 +1,7 @@
 import axios from 'axios';
 import https from 'https';
 
-const BASE_URL = 'https://acc.my-account.p-e.kr';
+const BASE_URL = 'https://acc.my-account.p-e.kr:8080';
 const agent = new https.Agent({
   rejectUnauthorized: false
 });
