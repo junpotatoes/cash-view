@@ -109,6 +109,7 @@ export const CalendarDateContainer = styled.ol<{
 
       .today {
         flex-shrink: 0;
+        font-size: 13px;
         color: ${(props) => props.theme.main};
       }
     }
