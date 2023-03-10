@@ -31,7 +31,7 @@ function BarChart({ history }: ChartHistoryProps) {
       },
       title: {
         display: true,
-        text: '월별 지출 차트'
+        text: '연별 지출 차트'
       }
     }
   };
