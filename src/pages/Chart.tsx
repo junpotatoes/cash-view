@@ -49,19 +49,28 @@ function Chart() {
     <S.ChartWrapper>
       <S.ChartContainer>
         <Header />
-        <S.PieChartBox>
-          <div className="pieBox">
-            <IncomePieChart history={history} />
-          </div>
-          <div className="pieBox">
-            <ExpensesPieChart history={history} />
-          </div>
-        </S.PieChartBox>
-        <S.BarChartConatainer>
-          <S.BarChartBox>
-            <BarChart history={history} />
-          </S.BarChartBox>
-        </S.BarChartConatainer>
+
+        {history.length > 0 ? (
+          <>
+            <S.PieChartBox>
+              <div className="pieBox">
+                <IncomePieChart history={history} />
+              </div>
+              <div className="pieBox">
+                <ExpensesPieChart history={history} />
+              </div>
+            </S.PieChartBox>
+            <S.BarChartConatainer>
+              <S.BarChartBox>
+                <BarChart history={history} />
+              </S.BarChartBox>
+            </S.BarChartConatainer>
+          </>
+        ) : (
+          <S.NoDataBox>
+            <p>데이터가 없습니다 수입/지출 내역을 입력해주세요.</p>
+          </S.NoDataBox>
+        )}
       </S.ChartContainer>
     </S.ChartWrapper>
   );

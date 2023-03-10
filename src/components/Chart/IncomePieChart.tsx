@@ -1,4 +1,5 @@
 import { ChartHistoryProps } from '@/pages/Chart';
+import * as S from '@/styles/Chart/Chart.style';
 
 import {
   Chart as ChartJS,
@@ -77,7 +78,21 @@ function IncomePieChart({ history }: ChartHistoryProps) {
     ]
   };
 
-  return <Pie options={options} data={data} />;
+  return (
+    <>
+      {dataValues.length > 0 ? (
+        <Pie options={options} data={data} />
+      ) : (
+        <S.NoIncomeDataBox>
+          <p>
+            데이터가 없습니다
+            <br />
+            지출 내역을 입력해주세요.
+          </p>
+        </S.NoIncomeDataBox>
+      )}
+    </>
+  );
 }
 
 export default IncomePieChart;

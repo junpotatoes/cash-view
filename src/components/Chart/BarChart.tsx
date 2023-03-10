@@ -22,6 +22,7 @@ ChartJS.register(
 
 function BarChart({ history }: ChartHistoryProps) {
   const options = {
+    maintainAspectRatio: false,
     responsive: true,
     width: 820,
     height: 270,
@@ -31,7 +32,7 @@ function BarChart({ history }: ChartHistoryProps) {
       },
       title: {
         display: true,
-        text: '월별 지출 차트'
+        text: '연별 지출 차트'
       }
     }
   };
