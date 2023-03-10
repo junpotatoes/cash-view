@@ -28,6 +28,8 @@ export const BarChartConatainer = styled.div`
 
 export const BarChartBox = styled.div`
   width: 70%;
+  min-height: 340px;
+  height: 100%;
 `;
 
 export const NoDataBox = styled.div`
@@ -44,6 +46,7 @@ export const NoIncomeDataBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   border: 1px solid ${(props) => props.theme.blue};
   color: ${(props) => props.theme.active};
   height: 280px;
@@ -55,6 +58,7 @@ export const NoOutcomeDataBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   border: 1px solid ${(props) => props.theme.red};
   color: ${(props) => props.theme.red};
   height: 280px;
