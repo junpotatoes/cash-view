@@ -95,9 +95,13 @@ const calendarSlice = createSlice({
     },
     prevYear: (state) => {
       state.year -= 1;
+      state.date = 1;
+      updateLocalCalendar(state);
     },
     nextYear: (state) => {
       state.year += 1;
+      state.date = 1;
+      updateLocalCalendar(state);
     }
   }
 });
