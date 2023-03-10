@@ -84,7 +84,11 @@ function ExpensesPieChart({ history }: ChartHistoryProps) {
         <Pie options={options} data={data} />
       ) : (
         <S.NoOutcomeDataBox>
-          <p>데이터가 없습니다 지출 내역을 입력해주세요.</p>
+          <p>
+            데이터가 없습니다
+            <br />
+            지출 내역을 입력해주세요.
+          </p>
         </S.NoOutcomeDataBox>
       )}
     </>
