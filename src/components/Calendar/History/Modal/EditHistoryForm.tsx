@@ -11,7 +11,7 @@ function EditHistoryForm({
   setUpdateModal,
   id
 }: UpdateFormProps) {
-  const clickEdit = () => {
+  const clickEdit = async () => {
     const reqbody = {
       value: formState.value,
       category: formState.category,
@@ -20,7 +20,7 @@ function EditHistoryForm({
     };
 
     try {
-      baseAPI.patch(`/historys/${id}`, reqbody);
+      await baseAPI.patch(`/historys/${id}`, reqbody);
       setUpdateModal(false);
       window.location.reload();
     } catch (err) {
