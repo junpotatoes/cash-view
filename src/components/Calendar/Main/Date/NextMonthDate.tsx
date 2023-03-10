@@ -28,7 +28,7 @@ function NextMonthDate({ date, checkTotal }: CalendarDateProps) {
           (calendar.month === 12 ? 1 : calendar.month + 1) ===
             new Date().getMonth() + 1 &&
           date === new Date().getDate() && (
-            <strong className="today">오늘</strong>
+            <strong className="today">today</strong>
           )}
       </div>
 
