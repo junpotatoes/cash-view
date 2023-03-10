@@ -21,13 +21,14 @@ export const SignUpFormContent = styled.form`
     display: flex;
     width: 100%;
     margin-bottom: 15px;
+    font-size: 9px;
   }
 
   label {
     width: 30%;
     margin: 0.5rem 0;
     padding: 0.5rem;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .error_box {

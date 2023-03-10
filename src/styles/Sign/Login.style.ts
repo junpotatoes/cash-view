@@ -57,7 +57,8 @@ export const LoginWrapper = styled.div`
 `;
 
 export const LoginContainer = styled.div`
-  width: 400px;
+  max-width: 360px;
+  width: 100%;
 `;
 
 export const LoginTitle = styled.h2`
