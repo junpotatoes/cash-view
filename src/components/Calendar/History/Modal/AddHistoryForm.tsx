@@ -28,7 +28,7 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
 
   const calendar = useAppSelector((state) => state.calendar);
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const reqbody = {
@@ -43,17 +43,17 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
     };
 
     if (
-      !reqbody.value ||
-      !reqbody.category ||
-      !reqbody.amount ||
-      !reqbody.content
+      !formState.value ||
+      !formState.category ||
+      !formState.amount ||
+      !formState.content
     ) {
       alert('모든 항목을 입력해주세요!');
       return;
     }
 
     try {
-      baseAPI.post('/historys', reqbody);
+      await baseAPI.post('/historys', reqbody);
       setAddModal(false);
       window.location.reload();
     } catch (err) {
