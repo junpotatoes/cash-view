@@ -3,6 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const { SourceMapDevToolPlugin } = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = (env, argv) => {
   const prod = argv.mode === 'production';
@@ -12,7 +13,8 @@ module.exports = (env, argv) => {
     entry: './src/index.tsx',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'bundle.js'
+      filename: 'bundle.[contenthash].js', // contenthash를 추가하여 파일이 변경될 때마다 새로운 해시값을 생성하도록 설정
+      chunkFilename: '[name].[contenthash].js' // 추가: 코드 스플리팅을 위한 설정, 같은 방식으로 해시값을 생성
     },
     devtool: 'eval-source-map',
     watch: true,
@@ -72,6 +74,13 @@ module.exports = (env, argv) => {
       new CleanWebpackPlugin(),
       new SourceMapDevToolPlugin({
         filename: '[file].map'
+      }),
+      new CompressionPlugin({
+        test: /\.(js|css|html|svg)$/,
+        filename: '[path][base].gz',
+        algorithm: 'gzip',
+        threshold: 10240,
+        minRatio: 0.8
       })
     ]
   };
