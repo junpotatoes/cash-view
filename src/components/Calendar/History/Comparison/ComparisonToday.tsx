@@ -8,7 +8,7 @@ function ComparisonToday({ history }: HistoryProps) {
     year: number,
     month: number,
     date: number
-  ): number => {
+  ): string => {
     return history
       .filter(
         (el) =>
@@ -18,7 +18,8 @@ function ComparisonToday({ history }: HistoryProps) {
           el.date <= date
       )
       .map((el) => el.amount)
-      .reduce((acc, cur) => acc + cur, 0);
+      .reduce((acc, cur) => acc + cur, 0)
+      .toLocaleString('ko-KR');
   };
 
   return (

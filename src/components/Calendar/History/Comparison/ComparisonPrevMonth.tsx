@@ -36,31 +36,29 @@ function ComparisonPrevMonth({ history }: HistoryProps) {
         checkDateTotal(year, month, date) - checkDateTotal(year, month - 1);
     }
 
-    return result;
+    return Math.abs(result);
   };
 
   return (
     <div className="prevMonth">
       지난달보다{' '}
       {calendar.prevMonthDate
-        ? Math.abs(
-            checkPrevMonth(
-              calendar.month === 1 ? calendar.year - 1 : calendar.year,
-              calendar.month === 1 ? 12 : calendar.month - 1,
-              calendar.prevMonthDate
-            )
-          )
+        ? checkPrevMonth(
+            calendar.month === 1 ? calendar.year - 1 : calendar.year,
+            calendar.month === 1 ? 12 : calendar.month - 1,
+            calendar.prevMonthDate
+          ).toLocaleString('ko-KR')
         : calendar.nextMonthDate
-        ? Math.abs(
-            checkPrevMonth(
-              calendar.month === 12 ? calendar.year + 1 : calendar.year,
-              calendar.month === 12 ? 1 : calendar.month + 1,
-              calendar.nextMonthDate
-            )
-          )
-        : Math.abs(
-            checkPrevMonth(calendar.year, calendar.month, calendar.date)
-          )}
+        ? checkPrevMonth(
+            calendar.month === 12 ? calendar.year + 1 : calendar.year,
+            calendar.month === 12 ? 1 : calendar.month + 1,
+            calendar.nextMonthDate
+          ).toLocaleString('ko-KR')
+        : checkPrevMonth(
+            calendar.year,
+            calendar.month,
+            calendar.date
+          ).toLocaleString('ko-KR')}
       원{' '}
       {(calendar.prevMonthDate
         ? checkPrevMonth(

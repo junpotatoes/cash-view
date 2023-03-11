@@ -4,8 +4,10 @@ import CalendarMain from '@/components/Calendar/Main/CalendarMain';
 import * as S from '@/styles/Calendar/Calendar.style';
 import { useEffect, useState } from 'react';
 import { baseAPI } from '@/api/customAxios';
+import Income from '@/components/Calendar/Amount/Income';
+import Expenditure from '@/components/Calendar/Amount/ Expenditure';
 
-export type History = {
+export interface History {
   id: number;
   userId: number;
   year: number;
@@ -15,22 +17,21 @@ export type History = {
   category: string;
   amount: number;
   content: string;
-}[];
+}
 
 export interface HistoryProps {
-  history: History;
-  setHistory?: React.Dispatch<React.SetStateAction<History>>;
+  history: History[];
 }
 
 function Calendar() {
-  const [history, setHistory] = useState<History>([]);
+  const [history, setHistory] = useState<History[]>([]);
 
   const getHistory = async () => {
     try {
       const res = await baseAPI.get('/historys');
       setHistory(
         res.data.filter(
-          (el: any) =>
+          (el: History) =>
             el.userId ===
             (localStorage.user ? JSON.parse(localStorage.user).userId : 0)
         )
@@ -46,13 +47,20 @@ function Calendar() {
 
   return (
     <S.CalendarContainer>
-      <div className="calendarBox">
-        <CalendarHeader />
-        <CalendarMain history={history} />
+      <div className="calendarTop">
+        <div className="calendarBox">
+          <CalendarHeader />
+          <CalendarMain history={history} />
+        </div>
+
+        <div className="historyBox">
+          <CalendarHistory history={history} />
+        </div>
       </div>
 
-      <div className="historyBox">
-        <CalendarHistory history={history} />
+      <div className="calendarBottom">
+        <Income history={history} />
+        <Expenditure history={history} />
       </div>
     </S.CalendarContainer>
   );
