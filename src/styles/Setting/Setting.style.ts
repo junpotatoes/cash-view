@@ -46,7 +46,7 @@ export const UserInfoTitle = styled.div`
   font-size: 22px;
 
   .underline {
-    width: 80%;
+    width: 87%;
     padding-bottom: 4px;
     border-bottom: 1px solid ${(props) => props.theme.border};
   }
