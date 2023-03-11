@@ -5,6 +5,7 @@ import CalendarModalButton from '@/components/Calendar/Modal/ModalButton';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { prevMonth, nextMonth } from '@/store/calendarSlice';
 import MonthModal from '@/components/Calendar/Modal/MonthModal';
+import { ModalWrapper } from '@/styles/Global/modal.style';
 
 export interface CalendarModal {
   isOpenCalendar: boolean;
@@ -28,6 +29,10 @@ function Header() {
         <CalendarModalButton
           isOpenCalendar={isOpenCalendar}
           setIsOpenCalendar={setIsOpenCalendar}
+        />
+        <ModalWrapper
+          isOpen={isOpenCalendar}
+          onClick={() => setIsOpenCalendar(false)}
         />
         <MonthModal
           isOpenCalendar={isOpenCalendar}
