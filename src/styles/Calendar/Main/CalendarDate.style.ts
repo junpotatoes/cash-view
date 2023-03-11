@@ -174,7 +174,7 @@ export const CalendarDateContainer = styled.ol<{
     border-bottom: 1px solid ${(props) => props.theme.border};
     overflow-y: ${(props) =>
       props.isOpenMobileCalendar ? 'scroll' : 'hidden'};
-    z-index: 60;
+    z-index: 80;
 
     .date {
       padding: 24px 0 24px 12px;
@@ -196,11 +196,13 @@ export const CalendarDateContainer = styled.ol<{
   }
 `;
 
-export const MobileCalendarBackout = styled.div`
+export const MobileCalendarBackout = styled.div<{ mobileCalendar: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
+  display: ${(props) => (props.mobileCalendar ? 'block' : 'none')};
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 70;
 `;
