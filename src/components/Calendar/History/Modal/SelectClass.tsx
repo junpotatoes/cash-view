@@ -8,6 +8,7 @@ function SelectClass({ formState, setFormState }: FormStateProps) {
       key={formState.value}
       defaultValue={formState.value || '분류'}
       onChange={(e) => setFormState({ ...formState, value: e.target.value })}
+      required
     >
       <option disabled value="분류">
         항목을 선택해주세요

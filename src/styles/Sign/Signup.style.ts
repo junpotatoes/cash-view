@@ -15,7 +15,7 @@ export const SignUpFormContent = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 4px;
 
   .input_box {
     display: flex;
@@ -48,7 +48,7 @@ export const SignUpButton = styled.button`
   width: 100%;
   margin-top: 9px;
   padding: 0.5rem 1rem;
-  border-radius: 5px;
+  border-radius: 4px;
   border: none;
   background-color: ${(props) => props.theme.main};
   color: ${(props) => props.theme.white};

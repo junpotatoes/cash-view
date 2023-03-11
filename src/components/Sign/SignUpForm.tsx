@@ -2,6 +2,7 @@ import { useState } from 'react';
 import * as S from '@/styles/Sign/Signup.style';
 import { SignInput } from '@/styles/Sign/Login.style';
 import { baseAPI } from '@/api/customAxios';
+import Alert from '../Alert/Alert';
 
 interface Props {
   toggle: number;
@@ -16,18 +17,19 @@ interface SignUpFormValues {
 }
 
 function SignUpForm({ toggle, setToggle }: Props) {
-  const emailCheck =
-    /^^[A-Za-z0-9]+@[A-Za-z]+\.?[A-Za-z]{2,3}\.[A-Za-z]{2,3}$$/;
-  const nameCheck = /^[ㄱ-ㅎ|가-힣|A-Za-z]+\s*[ㄱ-ㅎ|가-힣|A-Za-z]+$/g;
-  const regexp =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&])[A-Za-z\d!@#$%^&*]{8,20}$/;
-
   const [formValues, setFormValues] = useState<SignUpFormValues>({
     name: '',
     email: '',
     password: '',
     confirmPassword: ''
   });
+  const [alert, setAlert] = useState(false);
+
+  const emailCheck =
+    /^^[A-Za-z0-9]+@[A-Za-z]+\.?[A-Za-z]{2,3}\.[A-Za-z]{2,3}$$/;
+  const nameCheck = /^[ㄱ-ㅎ|가-힣|A-Za-z]+\s*[ㄱ-ㅎ|가-힣|A-Za-z]+$/g;
+  const regexp =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&])[A-Za-z\d!@#$%^&*]{8,20}$/;
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,7 +42,7 @@ function SignUpForm({ toggle, setToggle }: Props) {
         img: 'https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png'
       })
       .then((res) => {
-        window.alert('회원가입 완료!');
+        setAlert(true);
         setToggle(1);
       })
       .catch((err) => {
@@ -64,6 +66,7 @@ function SignUpForm({ toggle, setToggle }: Props) {
             value={formValues.name}
             onChange={handleInputChange}
             placeholder={'이름을 입력해주세요'}
+            required
           />
         </div>
 
@@ -83,6 +86,7 @@ function SignUpForm({ toggle, setToggle }: Props) {
             value={formValues.email}
             onChange={handleInputChange}
             placeholder={'이메일을 입력해주세요'}
+            required
           />
         </div>
         <div className="error_box">
@@ -101,6 +105,7 @@ function SignUpForm({ toggle, setToggle }: Props) {
             value={formValues.password}
             onChange={handleInputChange}
             placeholder={'비밀번호를 입력해주세요'}
+            required
           />
         </div>
         <div className="error_box">
@@ -120,6 +125,7 @@ function SignUpForm({ toggle, setToggle }: Props) {
             value={formValues.confirmPassword}
             onChange={handleInputChange}
             placeholder={'비밀번호를 확인해주세요'}
+            required
           />
         </div>
         <div className="error_box">
@@ -130,6 +136,12 @@ function SignUpForm({ toggle, setToggle }: Props) {
         </div>
 
         <S.SignUpButton type="submit">회원가입</S.SignUpButton>
+        <Alert
+          message="회원가입되셨습니다."
+          trueText="확인"
+          alertModal={alert}
+          setAlertModal={setAlert}
+        />
       </S.SignUpFormContent>
     </S.SignUpWrapper>
   );

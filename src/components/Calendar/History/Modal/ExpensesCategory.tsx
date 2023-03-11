@@ -8,6 +8,7 @@ function ExpensesCategory({ formState, setFormState }: FormStateProps) {
       key={formState.category}
       defaultValue={formState.category || '카테고리'}
       onChange={(e) => setFormState({ ...formState, category: e.target.value })}
+      required
     >
       <option disabled value="카테고리">
         항목을 선택해주세요

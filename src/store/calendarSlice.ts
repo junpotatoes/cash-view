@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type Calendar = {
+interface Calendar {
   year: number;
   month: number;
   date: number;
   prevMonthDate: number;
   nextMonthDate: number;
   mobileCalendar: boolean;
-};
+}
 
 const localCalendar = localStorage.calendar;
 

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from '@/styles/Setting/Setting.style';
 import { baseAPI } from '@/api/customAxios';
+import Alert from '@/components/Alert/Alert';
 
 interface User {
   userId: number;
@@ -15,6 +16,9 @@ function Setting() {
   const [userInfo, setUserInfo] = useState<any>('');
   const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
+  const [alert, setAlert] = useState(false);
+  const [getImg, setGetImg] = useState(true);
+  const [imgAlert, setImgAlert] = useState(false);
 
   const saveImgFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
@@ -33,17 +37,18 @@ function Setting() {
   const userId = user?.userId;
 
   useEffect(() => {
-    baseAPI
-      .get(`/users/${userId}`)
-      .then((res) => {
-        setImgFile(res.data.img);
-        console.log(res);
-        setUserInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    getImg &&
+      baseAPI
+        .get(`/users/${userId}`)
+        .then((res) => {
+          setImgFile(res.data.img);
+          setUserInfo(res.data);
+          setGetImg(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }, [getImg]);
 
   const handleSubmitBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -55,21 +60,17 @@ function Setting() {
     baseAPI
       .patch(`/users/${userId}`, body, {})
       .then((res) => {
-        console.log(res);
         setIsSaved(false);
-        window.location.reload();
+        setImgAlert(true);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const handleLogoutBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const confirmed = window.confirm('로그아웃하시겠습니까?');
-    if (confirmed) {
-      window.localStorage.clear();
-      navigate('/');
-    }
+  const handleLogoutBtn = () => {
+    window.localStorage.clear();
+    navigate('/');
   };
 
   return (
@@ -101,15 +102,30 @@ function Setting() {
                 저장
               </button>
             )}
+            <Alert
+              message="프로필 이미지가 수정되었습니다."
+              trueText="확인"
+              alertModal={imgAlert}
+              setAlertModal={setImgAlert}
+            />
           </S.ActiveBox>
         </div>
 
         <S.UserInfoBox>
           <div className="userBox">
             <div>{userInfo.name}</div>
-            <button className="logoutBtn" onClick={handleLogoutBtn}>
+            <button className="logoutBtn" onClick={() => setAlert(true)}>
               로그아웃
             </button>
+
+            <Alert
+              message="로그아웃하시겠습니까?"
+              trueText="네"
+              falseText="아니오"
+              alertModal={alert}
+              setAlertModal={setAlert}
+              propsFunction={handleLogoutBtn}
+            />
           </div>
           <div>
             <div>{userInfo.email}</div>
