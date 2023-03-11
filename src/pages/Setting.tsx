@@ -17,6 +17,8 @@ function Setting() {
   const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
   const [alert, setAlert] = useState(false);
+  const [getImg, setGetImg] = useState(true);
+  const [imgAlert, setImgAlert] = useState(false);
 
   const saveImgFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
@@ -35,17 +37,18 @@ function Setting() {
   const userId = user?.userId;
 
   useEffect(() => {
-    baseAPI
-      .get(`/users/${userId}`)
-      .then((res) => {
-        setImgFile(res.data.img);
-        console.log(res);
-        setUserInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    getImg &&
+      baseAPI
+        .get(`/users/${userId}`)
+        .then((res) => {
+          setImgFile(res.data.img);
+          setUserInfo(res.data);
+          setGetImg(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }, [getImg]);
 
   const handleSubmitBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -57,9 +60,8 @@ function Setting() {
     baseAPI
       .patch(`/users/${userId}`, body, {})
       .then((res) => {
-        console.log(res);
         setIsSaved(false);
-        window.location.reload();
+        setImgAlert(true);
       })
       .catch((error) => {
         console.log(error);
@@ -100,6 +102,12 @@ function Setting() {
                 저장
               </button>
             )}
+            <Alert
+              message="프로필 이미지가 수정되었습니다."
+              trueText="확인"
+              alertModal={imgAlert}
+              setAlertModal={setImgAlert}
+            />
           </S.ActiveBox>
         </div>
 
