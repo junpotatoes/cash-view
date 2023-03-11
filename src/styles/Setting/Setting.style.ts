@@ -5,8 +5,8 @@ export const SettingWrapper = styled.div`
 
   .upload-area {
     position: relative;
-    width: 260px;
-    height: 260px;
+    max-width: 260px;
+    max-height: 260px;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
