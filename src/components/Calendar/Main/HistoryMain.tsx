@@ -1,4 +1,4 @@
-import { useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { HistoryProps } from '@/pages/Calendar';
 import { ReactComponent as UpdateIcon } from '@/assets/Icon/updateIcon.svg';
 import { ReactComponent as DeleteIcon } from '@/assets/Icon/deleteIcon.svg';
@@ -6,16 +6,18 @@ import { useState } from 'react';
 import EditHistory from '@/components/Calendar/History/Modal/EditHistory';
 import { baseAPI } from '@/api/customAxios';
 import Alert from '@/components/Alert/Alert';
+import { onToggle } from '@/store/historySlice';
 
 function HistoryMain({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
+  const dispatch = useAppDispatch();
   const [updateModal, setUpdateModal] = useState(false);
   const [alertModal, setAlertModal] = useState(false);
 
   const clickDelete = async (id?: number): Promise<void> => {
     try {
       await baseAPI.delete(`/historys/${id}`);
-      window.location.reload();
+      dispatch(onToggle(true));
     } catch (err) {
       console.log(err);
     }
