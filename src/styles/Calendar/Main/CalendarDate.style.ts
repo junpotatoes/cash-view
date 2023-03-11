@@ -49,6 +49,20 @@ export const CalendarDateContainer = styled.ol<{
   grid-template-columns: repeat(7, 1fr);
   grid-auto-rows: minmax(88px, auto);
 
+  @media ${(props) => props.theme.mobile} {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: ${(props) => (props.isOpenMobileCalendar ? 'flex' : 'none')};
+    flex-direction: column;
+    height: 360px;
+    border-bottom: 1px solid ${(props) => props.theme.border};
+    overflow-y: ${(props) =>
+      props.isOpenMobileCalendar ? 'scroll' : 'hidden'};
+    z-index: 80;
+  }
+
   .date {
     padding: 4px;
     border-right: 1px solid ${(props) => props.theme.border};
@@ -57,6 +71,21 @@ export const CalendarDateContainer = styled.ol<{
     font-weight: 700;
     background-color: ${(props) => props.theme.white};
     transition: color 0.3s, background-color 0.5s;
+
+    @media ${(props) => props.theme.desktop} {
+      cursor: pointer;
+
+      &:hover {
+        background-color: ${(props) => props.theme.hover};
+      }
+    }
+
+    @media ${(props) => props.theme.mobile} {
+      display: flex;
+      align-items: center;
+      padding: 24px 0 24px 12px;
+      border-left: 1px solid ${(props) => props.theme.border};
+    }
 
     .onlyMobile {
       display: none;
@@ -145,41 +174,9 @@ export const CalendarDateContainer = styled.ol<{
         width: 100%;
       }
     }
-
-    @media ${(props) => props.theme.desktop} {
-      cursor: pointer;
-
-      &:hover {
-        background-color: ${(props) => props.theme.hover};
-      }
-    }
-
-    @media ${(props) => props.theme.mobile} {
-      display: flex;
-      align-items: center;
-    }
   }
 
   .closeCalendar {
     display: none;
-  }
-
-  @media ${(props) => props.theme.mobile} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: ${(props) => (props.isOpenMobileCalendar ? 'flex' : 'none')};
-    flex-direction: column;
-    height: 360px;
-    border-bottom: 1px solid ${(props) => props.theme.border};
-    overflow-y: ${(props) =>
-      props.isOpenMobileCalendar ? 'scroll' : 'hidden'};
-    z-index: 80;
-
-    .date {
-      padding: 24px 0 24px 12px;
-      border-left: 1px solid ${(props) => props.theme.border};
-    }
   }
 `;
