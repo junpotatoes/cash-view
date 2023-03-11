@@ -5,8 +5,8 @@ export const SettingWrapper = styled.div`
 
   .upload-area {
     position: relative;
-    width: 260px;
-    height: 260px;
+    max-width: 260px;
+    max-height: 260px;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
@@ -46,7 +46,7 @@ export const UserInfoTitle = styled.div`
   font-size: 22px;
 
   .underline {
-    width: 80%;
+    width: 87%;
     padding-bottom: 4px;
     border-bottom: 1px solid ${(props) => props.theme.border};
   }
