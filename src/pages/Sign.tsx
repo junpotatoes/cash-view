@@ -12,7 +12,7 @@ function Sign() {
   const [toggle, setToggle] = useState(1);
 
   return (
-    <LoginWrapper>
+    <LoginWrapper tab={toggle}>
       <LoginTitle>환영합니다</LoginTitle>
       <LoginContainer>
         <Underline>

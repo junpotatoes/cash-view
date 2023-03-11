@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { baseAPI } from '@/api/customAxios';
 import * as S from '@/styles/Sign/Login.style';
+import Alert from '../Alert/Alert';
 
 interface LoginFormValues {
   email: string;
@@ -15,6 +16,7 @@ function LoginForm() {
     password: ''
   });
   const [toggle, setToggle] = useState(1);
+  const [alert, setAlert] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,6 +41,7 @@ function LoginForm() {
       })
       .catch((err) => {
         console.log(err);
+        setAlert(true);
       });
   };
 
@@ -57,6 +60,7 @@ function LoginForm() {
             value={formValues.email}
             placeholder={'이메일을 입력해주세요'}
             onChange={handleInputChange}
+            required
           />
 
           <S.SignInput
@@ -65,8 +69,15 @@ function LoginForm() {
             value={formValues.password}
             placeholder={'비밀번호를 입력해주세요'}
             onChange={handleInputChange}
+            required
           />
           <S.LoginButton type="submit">로그인</S.LoginButton>
+          <Alert
+            message="이메일 주소나 비밀번호가 틀립니다"
+            trueText="확인"
+            alertModal={alert}
+            setAlertModal={setAlert}
+          />
         </S.FormContent>
       </div>
     </section>

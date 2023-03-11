@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 
-export const LoginWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+export const LoginWrapper = styled.div<{ tab: number }>`
+  position: relative;
+  top: ${(props) => (props.tab === 1 ? '50%' : '30%')};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 0 auto;
   background-color: ${(props) => props.theme.white};
 
   .tabsActive {
@@ -69,7 +66,7 @@ export const LoginTitle = styled.h2`
 
 export const Underline = styled.div`
   width: 100%;
-  border-bottom: 1px solid ${(props) => props.theme.main};
+  border-bottom: 1px solid ${(props) => props.theme.border};
   margin-bottom: 10px;
 
   button {
