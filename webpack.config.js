@@ -4,6 +4,8 @@ const path = require('path');
 const webpack = require('webpack');
 const { SourceMapDevToolPlugin } = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (env, argv) => {
   const prod = argv.mode === 'production';
@@ -15,6 +17,23 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'dist'),
       filename: 'bundle.[contenthash].js', // contenthash를 추가하여 파일이 변경될 때마다 새로운 해시값을 생성하도록 설정
       chunkFilename: '[name].[contenthash].js' // 추가: 코드 스플리팅을 위한 설정, 같은 방식으로 해시값을 생성
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              comparisons: false
+            },
+            output: {
+              comments: false,
+              ascii_only: true
+            }
+          },
+          extractComments: false
+        })
+      ]
     },
     devtool: 'eval-source-map',
     watch: true,
@@ -71,6 +90,7 @@ module.exports = (env, argv) => {
               }
             : false
       }),
+
       new CleanWebpackPlugin(),
       new SourceMapDevToolPlugin({
         filename: '[file].map'
@@ -81,6 +101,14 @@ module.exports = (env, argv) => {
         algorithm: 'gzip',
         threshold: 10240,
         minRatio: 0.8
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: path.resolve(__dirname, './public/robots.txt'),
+            to: path.resolve(__dirname, 'dist')
+          }
+        ]
       })
     ]
   };
