@@ -4,6 +4,7 @@ import { UpdateModalProps } from '@/components/Calendar/History/HistoryDetail';
 import { FormState } from '@/components/Calendar/History/Modal/AddHistoryForm';
 import EditHistoryForm from '@/components/Calendar/History/Modal/EditHistoryForm';
 import { baseAPI } from '@/api/customAxios';
+import { ModalWrapper } from '@/styles/Global/modal.style';
 
 export interface UpdateFormProps extends UpdateModalProps {
   formState: FormState;
@@ -26,8 +27,8 @@ function EditHistory({ updateModal, setUpdateModal, id }: UpdateModalProps) {
 
   return (
     <>
-      <S.ModalWrapper
-        modal={updateModal}
+      <ModalWrapper
+        isOpen={updateModal}
         onClick={() => setUpdateModal(false)}
       />
 

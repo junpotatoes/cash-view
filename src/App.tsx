@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components';
-import theme from '@/styles/theme.style';
-import { GlobalStyle } from '@/styles/global.style';
+import theme from '@/styles/Global/theme.style';
+import { GlobalStyle } from '@/styles/Global/global.style';
 import Header from '@/components/Layout/Header';
 import Main from '@/components/Layout/Main';
 import { useLocation, useNavigate } from 'react-router-dom';

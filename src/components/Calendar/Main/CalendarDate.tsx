@@ -1,10 +1,12 @@
 import * as S from '@/styles/Calendar/Main/CalendarDate.style';
-import { useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { HistoryProps } from '@/pages/Calendar';
 import PrevMonthDate from '@/components/Calendar/Main/Date/PrevMonthDate';
 import CurrentMonthDate from '@/components/Calendar/Main/Date/CurrentMonthDate';
 import NextMonthDate from '@/components/Calendar/Main/Date/NextMonthDate';
 import MobileMonthDate from '@/components/Calendar/Main/Date/MobileMonthDate';
+import { toggleMobileCalendar } from '@/store/calendarSlice';
+import { ModalWrapper } from '@/styles/Global/modal.style';
 
 export interface CalendarDateProps {
   key?: number;
@@ -19,6 +21,7 @@ export interface CalendarDateProps {
 
 function CalendarDate({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
+  const dispatch = useAppDispatch();
 
   const startDay: number = new Date(
     calendar.year,
@@ -80,6 +83,10 @@ function CalendarDate({ history }: HistoryProps) {
           )}
       </S.CalendarDateContainer>
 
+      <ModalWrapper
+        isOpen={calendar.mobileCalendar}
+        onClick={() => dispatch(toggleMobileCalendar(false))}
+      />
       <MobileMonthDate />
     </S.CalendarDateWrapper>
   );

@@ -65,12 +65,6 @@ function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
           </p>
         </div>
       ) : null}
-
-      {calendar.date === date && (
-        <div className="closeCalendar">
-          <ArrowIcon />
-        </div>
-      )}
     </li>
   );
 }

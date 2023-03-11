@@ -140,6 +140,7 @@ export const CalendarDateContainer = styled.ol<{
 
       @media ${(props) => props.theme.mobile} {
         flex-direction: row;
+        align-items: center;
         column-gap: 12px;
         width: 100%;
       }
@@ -170,28 +171,15 @@ export const CalendarDateContainer = styled.ol<{
     width: 100%;
     display: ${(props) => (props.isOpenMobileCalendar ? 'flex' : 'none')};
     flex-direction: column;
-    height: ${(props) => (props.isOpenMobileCalendar ? '260px' : '65px')};
+    height: 360px;
     border-bottom: 1px solid ${(props) => props.theme.border};
     overflow-y: ${(props) =>
       props.isOpenMobileCalendar ? 'scroll' : 'hidden'};
-    z-index: 60;
+    z-index: 80;
 
     .date {
       padding: 24px 0 24px 12px;
       border-left: 1px solid ${(props) => props.theme.border};
-    }
-
-    .closeCalendar {
-      position: absolute;
-      right: 8px;
-      display: block;
-      transform: rotate(-90deg);
-
-      svg {
-        width: 24px;
-        height: 24px;
-        fill: ${(props) => props.theme.gray};
-      }
     }
   }
 `;
