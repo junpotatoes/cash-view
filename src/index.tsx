@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom';
+import CreateDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import store from '@/store';
@@ -7,12 +7,13 @@ import MetaTag from '@/components/Seo/MetaTag';
 
 const rootElement = document.getElementById('root') as HTMLElement;
 
-ReactDOM.render(
+const root = CreateDOM.createRoot(rootElement);
+
+root.render(
   <Provider store={store}>
-    <MetaTag></MetaTag>
+    <MetaTag />
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>,
-  rootElement
+  </Provider>
 );
