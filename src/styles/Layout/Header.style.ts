@@ -9,7 +9,7 @@ export const HeaderWrapper = styled.header`
   width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.border};
   background-color: ${(props) => props.theme.white};
-  z-index: 70;
+  z-index: 60;
 `;
 
 export const HeaderContainer = styled.div`
@@ -128,7 +128,7 @@ export const MenuModalWrapper = styled.div<{ isOpenModal: boolean }>`
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 50;
+    z-index: 40;
   }
 `;
 
@@ -146,7 +146,7 @@ export const MenuModalContainer = styled.div<{ isOpenModal: boolean }>`
     transition: transform 0.5s;
     transform: ${(props) =>
       props.isOpenModal ? 'translateY(0)' : 'translateY(-200px)'};
-    z-index: 60;
+    z-index: 50;
 
     .MobileMenuList {
       height: 100%;
