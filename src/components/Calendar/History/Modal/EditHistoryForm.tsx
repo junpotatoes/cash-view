@@ -4,6 +4,10 @@ import SelectClass from '@/components/Calendar/History/Modal/SelectClass';
 import * as S from '@/styles/Calendar/Addhistory/AddHistory.style';
 import { UpdateFormProps } from '@/components/Calendar/History/Modal/EditHistory';
 import { baseAPI } from '@/api/customAxios';
+import { useAppDispatch } from '@/hooks/store';
+import { onToggle } from '@/store/historySlice';
+import { useState } from 'react';
+import Alert from '@/components/Alert/Alert';
 
 function EditHistoryForm({
   formState,
@@ -11,6 +15,9 @@ function EditHistoryForm({
   setUpdateModal,
   id
 }: UpdateFormProps) {
+  const dispatch = useAppDispatch();
+  const [alert, setAlert] = useState(false);
+
   const clickEdit = async () => {
     const reqbody = {
       value: formState.value,
@@ -22,7 +29,7 @@ function EditHistoryForm({
     try {
       await baseAPI.patch(`/historys/${id}`, reqbody);
       setUpdateModal(false);
-      window.location.reload();
+      dispatch(onToggle(true));
     } catch (err) {
       console.log(err);
     }
@@ -63,6 +70,7 @@ function EditHistoryForm({
           onChange={(e) =>
             setFormState({ ...formState, amount: e.target.valueAsNumber })
           }
+          required
         />
       </S.ItemBox>
 
@@ -78,6 +86,7 @@ function EditHistoryForm({
           onChange={(e) =>
             setFormState({ ...formState, content: e.target.value })
           }
+          required
         />
       </S.ItemBox>
 
@@ -86,6 +95,12 @@ function EditHistoryForm({
           <button type="submit" className="blue">
             수정
           </button>
+          <Alert
+            message="내역이 수정되었습니다."
+            trueText="확인"
+            alertModal={alert}
+            setAlertModal={setAlert}
+          />
           <button
             type="reset"
             className="red"

@@ -3,9 +3,11 @@ import SelectClass from '@/components/Calendar/History/Modal/SelectClass';
 import IncomeCategory from '@/components/Calendar/History/Modal/IncomeCategory';
 import ExpensesCategory from '@//components/Calendar/History/Modal/ExpensesCategory';
 import * as S from '@/styles/Calendar/Addhistory/AddHistory.style';
-import { useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { AddModalProps } from '@/components/Calendar/History/CalendarHistory';
 import { baseAPI } from '@/api/customAxios';
+import { onToggle } from '@/store/historySlice';
+import Alert from '@/components/Alert/Alert';
 
 export interface FormState {
   id?: number;
@@ -24,9 +26,10 @@ export interface FormStateProps {
 }
 
 function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
-  const [formState, setFormState] = useState<FormState>({});
-
   const calendar = useAppSelector((state) => state.calendar);
+  const dispatch = useAppDispatch();
+  const [formState, setFormState] = useState<FormState>({});
+  const [alert, setAlert] = useState(false);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -42,20 +45,10 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
       userId: JSON.parse(localStorage.user).userId
     };
 
-    if (
-      !formState.value ||
-      !formState.category ||
-      !formState.amount ||
-      !formState.content
-    ) {
-      alert('모든 항목을 입력해주세요!');
-      return;
-    }
-
     try {
       await baseAPI.post('/historys', reqbody);
       setAddModal(false);
-      window.location.reload();
+      dispatch(onToggle(true));
     } catch (err) {
       console.log(err);
     }
@@ -97,6 +90,7 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
               amount: e.target.valueAsNumber
             })
           }
+          required
         />
       </S.ItemBox>
       <S.ItemBox>
@@ -111,6 +105,7 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
           onChange={(e) =>
             setFormState({ ...formState, content: e.target.value })
           }
+          required
         />
       </S.ItemBox>
       <S.ButtonBox>
@@ -118,6 +113,12 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
           <button type="submit" className="blue">
             추가
           </button>
+          <Alert
+            message="내역이 추가되었습니다."
+            trueText="확인"
+            alertModal={alert}
+            setAlertModal={setAlert}
+          />
           <button
             type="reset"
             className="red"
