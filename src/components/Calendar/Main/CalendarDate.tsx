@@ -6,6 +6,7 @@ import CurrentMonthDate from '@/components/Calendar/Main/Date/CurrentMonthDate';
 import NextMonthDate from '@/components/Calendar/Main/Date/NextMonthDate';
 import MobileMonthDate from '@/components/Calendar/Main/Date/MobileMonthDate';
 import { toggleMobileCalendar } from '@/store/calendarSlice';
+import { ModalWrapper } from '@/styles/Global/modal.style';
 
 export interface CalendarDateProps {
   key?: number;
@@ -82,8 +83,8 @@ function CalendarDate({ history }: HistoryProps) {
           )}
       </S.CalendarDateContainer>
 
-      <S.MobileCalendarBackout
-        mobileCalendar={calendar.mobileCalendar}
+      <ModalWrapper
+        isOpen={calendar.mobileCalendar}
         onClick={() => dispatch(toggleMobileCalendar(false))}
       />
       <MobileMonthDate />
