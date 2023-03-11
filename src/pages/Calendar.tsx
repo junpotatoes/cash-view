@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react';
 import { baseAPI } from '@/api/customAxios';
 import Income from '@/components/Calendar/Amount/Income';
 import Expenditure from '@/components/Calendar/Amount/ Expenditure';
+import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { onToggle } from '@/store/historySlice';
 
 export interface History {
   id: number;
@@ -24,6 +26,8 @@ export interface HistoryProps {
 }
 
 function Calendar() {
+  const get = useAppSelector((state) => state.history);
+  const dispatch = useAppDispatch();
   const [history, setHistory] = useState<History[]>([]);
 
   const getHistory = async () => {
@@ -36,14 +40,15 @@ function Calendar() {
             (localStorage.user ? JSON.parse(localStorage.user).userId : 0)
         )
       );
+      dispatch(onToggle(false));
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    getHistory();
-  }, []);
+    get && getHistory();
+  }, [get]);
 
   return (
     <S.CalendarContainer>

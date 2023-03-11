@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: boolean = false;
+const initialState: boolean = true;
 
 const historySlice = createSlice({
   name: 'history',
   initialState,
   reducers: {
     onToggle: (state, action) => {
-      state = action.payload;
+      return action.payload;
     }
   }
 });
