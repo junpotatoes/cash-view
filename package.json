@@ -52,6 +52,7 @@
     "@types/styled-components": "^5.1.26",
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
+    "compression-webpack-plugin": "^10.0.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "source-map-loader": "^4.0.1",
