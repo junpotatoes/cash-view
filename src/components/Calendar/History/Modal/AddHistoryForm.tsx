@@ -116,7 +116,7 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
       <S.ButtonBox>
         <div className="option">
           <button type="submit" className="blue">
-            저장
+            추가
           </button>
           <button
             type="reset"

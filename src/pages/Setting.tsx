@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from '@/styles/Setting/Setting.style';
 import { baseAPI } from '@/api/customAxios';
+import Alert from '@/components/Alert/Alert';
 
 interface User {
   userId: number;
@@ -15,6 +16,7 @@ function Setting() {
   const [userInfo, setUserInfo] = useState<any>('');
   const navigate = useNavigate();
   const imgRef = useRef<HTMLInputElement>(null);
+  const [alert, setAlert] = useState(false);
 
   const saveImgFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.length) {
@@ -64,12 +66,9 @@ function Setting() {
       });
   };
 
-  const handleLogoutBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const confirmed = window.confirm('로그아웃하시겠습니까?');
-    if (confirmed) {
-      window.localStorage.clear();
-      navigate('/');
-    }
+  const handleLogoutBtn = () => {
+    window.localStorage.clear();
+    navigate('/');
   };
 
   return (
@@ -107,9 +106,18 @@ function Setting() {
         <S.UserInfoBox>
           <div className="userBox">
             <div>{userInfo.name}</div>
-            <button className="logoutBtn" onClick={handleLogoutBtn}>
+            <button className="logoutBtn" onClick={() => setAlert(true)}>
               로그아웃
             </button>
+
+            <Alert
+              message="로그아웃하시겠습니까?"
+              trueText="네"
+              falseText="아니오"
+              alertModal={alert}
+              setAlertModal={setAlert}
+              propsFunction={handleLogoutBtn}
+            />
           </div>
           <div>
             <div>{userInfo.email}</div>

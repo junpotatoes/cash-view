@@ -84,7 +84,7 @@ function EditHistoryForm({
       <S.ButtonBox>
         <div className="option">
           <button type="submit" className="blue">
-            저장
+            수정
           </button>
           <button
             type="reset"

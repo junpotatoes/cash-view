@@ -5,10 +5,21 @@ import { ReactComponent as DeleteIcon } from '@/assets/Icon/deleteIcon.svg';
 import { useState } from 'react';
 import EditHistory from '@/components/Calendar/History/Modal/EditHistory';
 import { baseAPI } from '@/api/customAxios';
+import Alert from '@/components/Alert/Alert';
 
 function HistoryMain({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
   const [updateModal, setUpdateModal] = useState(false);
+  const [alertModal, setAlertModal] = useState(false);
+
+  const clickDelete = async (id?: number): Promise<void> => {
+    try {
+      await baseAPI.delete(`/historys/${id}`);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const checkDetail = (year: number, month: number, date: number) => {
     return history.map(
@@ -30,7 +41,7 @@ function HistoryMain({ history }: HistoryProps) {
               <button type="button" onClick={() => setUpdateModal(true)}>
                 <UpdateIcon />
               </button>
-              <button type="button" onClick={() => clickDelete(el.id)}>
+              <button type="button" onClick={() => setAlertModal(true)}>
                 <DeleteIcon />
               </button>
 
@@ -39,21 +50,19 @@ function HistoryMain({ history }: HistoryProps) {
                 setUpdateModal={setUpdateModal}
                 id={el.id}
               />
+
+              <Alert
+                message="내역을 삭제하시겠습니까?"
+                trueText="삭제"
+                falseText="취소"
+                alertModal={alertModal}
+                setAlertModal={setAlertModal}
+                propsFunction={() => clickDelete(el.id)}
+              />
             </div>
           </li>
         )
     );
-  };
-
-  const clickDelete = (id: number): void => {
-    const isDelete = window.confirm('삭제하시겠습니끼?');
-
-    try {
-      isDelete && baseAPI.delete(`/historys/${id}`);
-      window.location.reload();
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   return (
