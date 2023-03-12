@@ -95,6 +95,6 @@ export const ActiveBox = styled.div`
   button {
     margin-left: 10px;
     font-size: 14px;
-    color: ${(props) => props.theme.active};
+    color: ${(props) => props.theme.red};
   }
 `;
