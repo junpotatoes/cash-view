@@ -1,6 +1,6 @@
 import { useAppSelector } from '@/hooks/store';
-import { HistoryProps } from '@/pages/Calendar';
 import HistoryDate from '@/components/Calendar/History/HistoryDate';
+import { HistoryProps } from '@/components/Layout/Route';
 
 function HistoryHeader({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);

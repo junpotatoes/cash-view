@@ -1,12 +1,12 @@
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
-import { HistoryProps } from '@/pages/Calendar';
 import { ReactComponent as UpdateIcon } from '@/assets/Icon/updateIcon.svg';
 import { ReactComponent as DeleteIcon } from '@/assets/Icon/deleteIcon.svg';
 import { useState } from 'react';
-import EditHistory from '@/components/Calendar/History/Modal/EditHistory';
 import { baseAPI } from '@/api/customAxios';
 import Alert from '@/components/Alert/Alert';
 import { onToggle } from '@/store/historySlice';
+import { HistoryProps } from '@/components/Layout/Route';
+import EditHistoryForm from '@/components/Calendar/History/Modal/EditHistoryForm';
 
 function HistoryMain({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
@@ -18,9 +18,7 @@ function HistoryMain({ history }: HistoryProps) {
     try {
       await baseAPI.delete(`/historys/${id}`);
       dispatch(onToggle(true));
-    } catch (err) {
-      console.log(err);
-    }
+    } catch {}
   };
 
   const checkDetail = (year: number, month: number, date: number) => {
@@ -47,7 +45,7 @@ function HistoryMain({ history }: HistoryProps) {
                 <DeleteIcon />
               </button>
 
-              <EditHistory
+              <EditHistoryForm
                 updateModal={updateModal}
                 setUpdateModal={setUpdateModal}
                 id={el.id}
