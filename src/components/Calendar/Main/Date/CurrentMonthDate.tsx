@@ -43,9 +43,8 @@ function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
           )}
       </div>
 
-      {checkTotal('수입', calendar.year, calendar.month, date) ||
-      checkTotal('지출', calendar.year, calendar.month, date) ? (
-        <div className="calendarAmountBox">
+      <div className="calendarAmountBox">
+        {checkTotal('수입', calendar.year, calendar.month, date) ? (
           <p className="blue">
             {`+ ${checkTotal(
               '수입',
@@ -54,7 +53,11 @@ function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
               date
             ).toLocaleString('ko-KR')}`}
           </p>
-          {}
+        ) : (
+          ''
+        )}
+
+        {checkTotal('지출', calendar.year, calendar.month, date) ? (
           <p className="red">
             {`- ${checkTotal(
               '지출',
@@ -63,8 +66,10 @@ function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
               date
             ).toLocaleString('ko-KR')}`}
           </p>
-        </div>
-      ) : null}
+        ) : (
+          ''
+        )}
+      </div>
     </li>
   );
 }
