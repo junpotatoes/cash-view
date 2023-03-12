@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import * as S from '@/styles/Sign/Signup.style';
-import { SignInput } from '@/styles/Sign/Login.style';
+import { SignInput, SignButton } from '@/styles/Sign/Login.style';
 import { baseAPI } from '@/api/customAxios';
-import Alert from '../Alert/Alert';
+import Alert from '@/components/Alert/Alert';
 
 interface Props {
   toggle: number;
@@ -24,6 +24,7 @@ function SignUpForm({ toggle, setToggle }: Props) {
     confirmPassword: ''
   });
   const [alert, setAlert] = useState(false);
+  const [failAlert, setFailAlert] = useState(false);
 
   const emailCheck =
     /^^[A-Za-z0-9]+@[A-Za-z]+\.?[A-Za-z]{2,3}\.[A-Za-z]{2,3}$$/;
@@ -41,12 +42,11 @@ function SignUpForm({ toggle, setToggle }: Props) {
         name: formValues.name,
         img: 'https://www.pngarts.com/files/10/Default-Profile-Picture-Download-PNG-Image.png'
       })
-      .then((res) => {
+      .then(() => {
         setAlert(true);
-        setToggle(1);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setFailAlert(true);
       });
   };
 
@@ -135,14 +135,39 @@ function SignUpForm({ toggle, setToggle }: Props) {
           ) : null}
         </div>
 
-        <S.SignUpButton type="submit">회원가입</S.SignUpButton>
-        <Alert
-          message="회원가입되셨습니다."
-          trueText="확인"
-          alertModal={alert}
-          setAlertModal={setAlert}
-        />
+        <SignButton type="submit">회원가입</SignButton>
       </S.SignUpFormContent>
+      <Alert
+        message="회원가입되셨습니다."
+        trueText="확인"
+        alertModal={alert}
+        setAlertModal={setAlert}
+        propsFunction={() => {
+          setToggle(1);
+          setFormValues({
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+          });
+        }}
+      />
+      <Alert
+        message="이미 가입된 회원입니다."
+        trueText="로그인"
+        falseText="취소"
+        alertModal={failAlert}
+        setAlertModal={setFailAlert}
+        propsFunction={() => {
+          setToggle(1);
+          setFormValues({
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+          });
+        }}
+      />
     </S.SignUpWrapper>
   );
 }
