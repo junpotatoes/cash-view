@@ -5,7 +5,7 @@ import * as S from '@/styles/Calendar/Calendar.style';
 import { useEffect, useState } from 'react';
 import { baseAPI } from '@/api/customAxios';
 import Income from '@/components/Calendar/Amount/Income';
-import Expenditure from '@/components/Calendar/Amount/ Expenditure';
+import Expenditure from '@/components/Calendar/Amount/Expenditure';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { onToggle } from '@/store/historySlice';
 
