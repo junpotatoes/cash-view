@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { baseAPI } from '@/api/customAxios';
 import * as S from '@/styles/Sign/Login.style';
-import Alert from '../Alert/Alert';
+import Alert from '@/components/Alert/Alert';
 
 interface LoginFormValues {
   email: string;
@@ -39,8 +39,7 @@ function LoginForm() {
 
         navigate('/calendar');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         setAlert(true);
       });
   };
@@ -71,14 +70,14 @@ function LoginForm() {
             onChange={handleInputChange}
             required
           />
-          <S.LoginButton type="submit">로그인</S.LoginButton>
-          <Alert
-            message="이메일 주소나 비밀번호가 틀립니다"
-            trueText="확인"
-            alertModal={alert}
-            setAlertModal={setAlert}
-          />
+          <S.SignButton type="submit">로그인</S.SignButton>
         </S.FormContent>
+        <Alert
+          message="이메일 주소나 비밀번호가 틀립니다"
+          trueText="확인"
+          alertModal={alert}
+          setAlertModal={setAlert}
+        />
       </div>
     </section>
   );

@@ -1,9 +1,9 @@
 import HistoryComparison from '@/components/Calendar/History/HistoryComparison';
 import HistoryDetail from '@/components/Calendar/History/HistoryDetail';
 import * as S from '@/styles/Calendar/History/CalendarHistory.style';
-import { HistoryProps } from '@/pages/Calendar';
-import AddHistory from '@/components/Calendar/History/Modal/AddHistory';
 import { useState } from 'react';
+import { HistoryProps } from '@/components/Layout/Route';
+import AddHistoryForm from '@/components/Calendar/History/Modal/AddHistoryForm';
 
 export interface AddModalProps {
   addModal: boolean;
@@ -24,7 +24,7 @@ function CalendarHistory({ history }: HistoryProps) {
       >
         +
       </button>
-      <AddHistory addModal={addModal} setAddModal={setAddModal} />
+      <AddHistoryForm addModal={addModal} setAddModal={setAddModal} />
     </S.CalendarHistoryContainer>
   );
 }

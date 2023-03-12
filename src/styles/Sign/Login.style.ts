@@ -79,15 +79,15 @@ export const FormContent = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 4px;
 `;
 
 export const SignInput = styled.input`
   width: 100%;
-  border: 1px solid ${(props) => props.theme.border};
-  border-radius: 5px;
   margin: 0.5rem 0;
   padding: 0.5rem;
+  border: 1px solid ${(props) => props.theme.border};
+  border-radius: 4px;
   transition: border 0.5s;
 
   &:focus {
@@ -95,13 +95,13 @@ export const SignInput = styled.input`
   }
 `;
 
-export const LoginButton = styled.button`
+export const SignButton = styled.button`
   width: 100%;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   font-size: 1rem;
   margin: 1rem 0;
-  padding: 0.5rem 1rem;
+  padding: 0.8rem;
   background-color: ${(props) => props.theme.main};
   color: ${(props) => props.theme.white};
   cursor: pointer;

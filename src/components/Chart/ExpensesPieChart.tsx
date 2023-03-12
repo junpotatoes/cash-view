@@ -1,6 +1,4 @@
-import { ChartHistoryProps } from '@/pages/Chart';
 import * as S from '@/styles/Chart/Chart.style';
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -12,6 +10,7 @@ import {
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { useAppSelector } from '@/hooks/store';
+import { HistoryProps } from '@/components/Layout/Route';
 
 ChartJS.register(
   CategoryScale,
@@ -22,7 +21,7 @@ ChartJS.register(
   Legend
 );
 
-function ExpensesPieChart({ history }: ChartHistoryProps) {
+function ExpensesPieChart({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
 
   const options = {
