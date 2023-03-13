@@ -60,6 +60,10 @@ export const UserInfoContainer = styled.div`
   display: flex;
   align-items: center;
   margin-top: 30px;
+
+  @media ${(props) => props.theme.mobile} {
+    flex-direction: column;
+  }
 `;
 
 export const UserInfoBox = styled.div`
@@ -85,6 +89,10 @@ export const UserInfoBox = styled.div`
     margin-left: 20px;
     color: ${(props) => props.theme.blue};
   }
+
+  @media ${(props) => props.theme.mobile} {
+    margin-top: 30px;
+  }
 `;
 
 export const ActiveBox = styled.div`
@@ -95,6 +103,6 @@ export const ActiveBox = styled.div`
   button {
     margin-left: 10px;
     font-size: 14px;
-    color: ${(props) => props.theme.active};
+    color: ${(props) => props.theme.red};
   }
 `;
