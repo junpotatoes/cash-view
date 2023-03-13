@@ -1,12 +1,12 @@
 import * as S from '@/styles/Calendar/Main/CalendarDate.style';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
-import { HistoryProps } from '@/pages/Calendar';
 import PrevMonthDate from '@/components/Calendar/Main/Date/PrevMonthDate';
 import CurrentMonthDate from '@/components/Calendar/Main/Date/CurrentMonthDate';
 import NextMonthDate from '@/components/Calendar/Main/Date/NextMonthDate';
 import MobileMonthDate from '@/components/Calendar/Main/Date/MobileMonthDate';
 import { toggleMobileCalendar } from '@/store/calendarSlice';
 import { ModalWrapper } from '@/styles/Global/modal.style';
+import { HistoryProps } from '@/components/Layout/Route';
 
 export interface CalendarDateProps {
   key?: number;

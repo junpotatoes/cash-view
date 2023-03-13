@@ -1,5 +1,3 @@
-import { ChartHistoryProps } from '@/pages/Chart';
-
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,6 +8,7 @@ import {
   Legend
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { HistoryProps } from '@/components/Layout/Route';
 
 ChartJS.register(
   CategoryScale,
@@ -20,7 +19,7 @@ ChartJS.register(
   Legend
 );
 
-function BarChart({ history }: ChartHistoryProps) {
+function BarChart({ history }: HistoryProps) {
   const options = {
     maintainAspectRatio: false,
     responsive: true,

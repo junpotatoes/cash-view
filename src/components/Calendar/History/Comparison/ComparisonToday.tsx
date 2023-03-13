@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/hooks/store';
-import { HistoryProps } from '@/pages/Calendar';
+import { HistoryProps } from '@/components/Layout/Route';
 
 function ComparisonToday({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);

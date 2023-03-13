@@ -28,7 +28,9 @@ function Alert({
           {falseText && (
             <button
               className="confirmButton red"
-              onClick={() => setAlertModal(false)}
+              onClick={() => {
+                setAlertModal(false);
+              }}
             >
               {falseText}
             </button>

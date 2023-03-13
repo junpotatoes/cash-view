@@ -22,7 +22,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
 
-      {path === '/' ? null : <Header />}
+      {path === '/calendar' || path === '/statistics' || path === '/setting' ? (
+        <Header />
+      ) : null}
 
       <Main />
     </ThemeProvider>
