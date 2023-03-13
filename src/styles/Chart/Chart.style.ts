@@ -15,7 +15,7 @@ export const PieChartBox = styled.div`
   justify-content: center;
 
   .pieBox {
-    width: 100%;
+    width: 65%;
     max-width: 280px;
   }
 `;
@@ -37,7 +37,7 @@ export const NoDataBox = styled.div`
   justify-content: center;
   align-items: center;
   height: 500px;
-  border: 1px solid ${(props) => props.theme.gray};
+
   border-radius: 5px;
   font-size: 1.2rem;
 `;
@@ -47,7 +47,6 @@ export const NoIncomeDataBox = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 1px solid ${(props) => props.theme.blue};
   color: ${(props) => props.theme.active};
   height: 280px;
   font-size: 0.8rem;
@@ -59,7 +58,6 @@ export const NoOutcomeDataBox = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 1px solid ${(props) => props.theme.red};
   color: ${(props) => props.theme.red};
   height: 280px;
   font-size: 0.8rem;
