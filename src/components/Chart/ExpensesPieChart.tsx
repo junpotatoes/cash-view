@@ -1,4 +1,6 @@
+import { HistoryProps } from '@/components/Layout/Route';
 import * as S from '@/styles/Chart/Chart.style';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,7 +12,6 @@ import {
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { useAppSelector } from '@/hooks/store';
-import { HistoryProps } from '@/components/Layout/Route';
 
 ChartJS.register(
   CategoryScale,
@@ -21,7 +22,24 @@ ChartJS.register(
   Legend
 );
 
-function IncomePieChart({ history }: HistoryProps) {
+interface Expense {
+  month: number;
+  year: number;
+  value: string;
+  category: string;
+  amount: number;
+}
+
+interface ChartData {
+  labels: string[];
+  datasets: {
+    data: number[];
+    backgroundColor: string[];
+    label: string;
+  }[];
+}
+
+function ExpensesPieChart({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
 
   const options = {
@@ -31,47 +49,65 @@ function IncomePieChart({ history }: HistoryProps) {
         position: 'top' as const
       }
     },
-    type: 'pie'
+    type: 'pie' as const
   };
 
-  const currentMonth = calendar.month;
-  const currentYear = calendar.year;
+  const currentMonth: number = calendar.month;
+  const currentYear: number = calendar.year;
 
-  const labelsData = history.filter(
-    (el) =>
-      el.month === currentMonth &&
-      el.year === currentYear &&
-      el.value === '수입'
-  );
-  const labels = Array.from(new Set(labelsData.map((el) => el.category)));
-  const colors = [
-    '#B4B2FF',
-    '#DEDDFF',
-    '#6D6AFA',
-    '#A2EDFD',
-    '#C270DF',
-    '#2E9BFF'
+  const labels: string[] = history
+    .filter(
+      (el: Expense) =>
+        el.month === currentMonth &&
+        el.year === currentYear &&
+        el.value === '지출'
+    )
+    .map((el: Expense) => el.category);
+  const colors: string[] = [
+    '#FAB5B5',
+    '#FF7D7D',
+    '#FABD92',
+    '#FDDE8F',
+    '#DD79B5',
+    '#D4AEE1'
   ];
-  const dataValues = labels.map((label) =>
-    labelsData
-      .filter((el) => el.category === label)
-      .reduce((acc, curr) => acc + curr.amount, 0)
-  );
-  const dataSum = dataValues.reduce((a, b) => a + b, 0);
+  const dataValues: number[] = history
+    .filter(
+      (el: Expense) =>
+        el.month === currentMonth &&
+        el.year === currentYear &&
+        el.value === '지출'
+    )
+    .map((el: Expense) => el.amount);
+  const dataSum: number = dataValues.reduce((a, b) => a + b, 0);
 
-  const data = {
-    labels: labels.map(
-      (label, index) =>
-        `${label} (${Math.ceil((dataValues[index] / dataSum) * 100)}%)`
-    ),
+  const data: ChartData = {
+    labels: [],
     datasets: [
       {
-        data: dataValues,
+        data: [],
         backgroundColor: colors,
-        label: '수입 항목'
+        label: '지출 항목'
       }
     ]
   };
+
+  const labelsWithDataValues: Record<string, number> = labels.reduce(
+    (acc: Record<string, number>, label: string, index: number) => {
+      if (acc[label]) {
+        acc[label] += dataValues[index];
+      } else {
+        acc[label] = dataValues[index];
+      }
+      return acc;
+    },
+    {}
+  );
+
+  for (const [label, value] of Object.entries(labelsWithDataValues)) {
+    data.labels.push(`${label} (${Math.ceil((value / dataSum) * 100)}%)`);
+    data.datasets[0].data.push(value);
+  }
 
   return (
     <>
@@ -90,4 +126,4 @@ function IncomePieChart({ history }: HistoryProps) {
   );
 }
 
-export default IncomePieChart;
+export default ExpensesPieChart;
