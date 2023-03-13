@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { baseAPI } from '@/api/customAxios';
 import * as S from '@/styles/Sign/Login.style';
 import Alert from '@/components/Alert/Alert';
+import { useAppDispatch } from '@/hooks/store';
+import { onToggle } from '@/store/historySlice';
 
 interface LoginFormValues {
   email: string;
@@ -11,6 +13,7 @@ interface LoginFormValues {
 
 function LoginForm() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [formValues, setFormValues] = useState<LoginFormValues>({
     email: '',
     password: ''
@@ -38,6 +41,7 @@ function LoginForm() {
         });
 
         navigate('/calendar');
+        window.location.reload();
       })
       .catch(() => {
         setAlert(true);
