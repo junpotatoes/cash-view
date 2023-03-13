@@ -30,8 +30,6 @@ function Router() {
   const [history, setHistory] = useState<History[]>([]);
 
   const getHistory = async () => {
-    console.log('내역 불러오는 중');
-
     try {
       const res = await baseAPI.get('/historys');
       setHistory(

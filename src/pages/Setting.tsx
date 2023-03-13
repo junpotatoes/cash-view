@@ -38,16 +38,11 @@ function Setting() {
 
   useEffect(() => {
     getImg &&
-      baseAPI
-        .get(`/users/${userId}`)
-        .then((res) => {
-          setImgFile(res.data.img);
-          setUserInfo(res.data);
-          setGetImg(false);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      baseAPI.get(`/users/${userId}`).then((res) => {
+        setImgFile(res.data.img);
+        setUserInfo(res.data);
+        setGetImg(false);
+      });
   }, [getImg]);
 
   const handleSubmitBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -57,15 +52,10 @@ function Setting() {
       img: imgFile
     };
 
-    baseAPI
-      .patch(`/users/${userId}`, body, {})
-      .then((res) => {
-        setIsSaved(false);
-        setImgAlert(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    baseAPI.patch(`/users/${userId}`, body, {}).then(() => {
+      setIsSaved(false);
+      setImgAlert(true);
+    });
   };
 
   const handleLogoutBtn = () => {
