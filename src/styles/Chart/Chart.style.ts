@@ -15,7 +15,7 @@ export const PieChartBox = styled.div`
   justify-content: center;
 
   .pieBox {
-    width: 100%;
+    width: 65%;
     max-width: 280px;
   }
 `;
