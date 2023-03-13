@@ -14,9 +14,7 @@ function Header() {
     try {
       const res = await baseAPI.get(`/users/${userId}`);
       setUserImg(res.data.img);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch {}
   };
 
   useEffect(() => {
