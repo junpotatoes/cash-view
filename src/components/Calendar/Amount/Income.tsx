@@ -5,7 +5,7 @@ function Income({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
 
   return (
-    <strong className="amount">
+    <strong className="amount blue">
       총 수입:{' '}
       {history
         .filter(

@@ -34,8 +34,8 @@ export const CalendarContainer = styled.div`
 
   .calendarBottom {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    column-gap: 48px;
     width: 80%;
     padding: 12px 4px;
 
@@ -45,9 +45,34 @@ export const CalendarContainer = styled.div`
       row-gap: 12px;
     }
 
+    .leftBox {
+      display: flex;
+      align-items: center;
+      column-gap: 48px;
+
+      @media ${(props) => props.theme.mobile} {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 12px;
+      }
+    }
+
+    .rightBox {
+      display: flex;
+      align-items: center;
+    }
+
     .amount {
       font-size: 16px;
       font-weight: 700;
+
+      &.blue {
+        color: ${(props) => props.theme.blue};
+      }
+
+      &.red {
+        color: ${(props) => props.theme.red};
+      }
     }
   }
 `;
