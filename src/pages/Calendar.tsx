@@ -5,6 +5,7 @@ import * as S from '@/styles/Calendar/Calendar.style';
 import Income from '@/components/Calendar/Amount/Income';
 import Expenditure from '@/components/Calendar/Amount/Expenditure';
 import { HistoryProps } from '@/components/Layout/Route';
+import Total from '@/components/Calendar/Amount/Total';
 
 function Calendar({ history }: HistoryProps) {
   return (
@@ -21,8 +22,13 @@ function Calendar({ history }: HistoryProps) {
       </div>
 
       <div className="calendarBottom">
-        <Income history={history} />
-        <Expenditure history={history} />
+        <div className="leftBox">
+          <Income history={history} />
+          <Expenditure history={history} />
+        </div>
+        <div className="rightBox">
+          <Total history={history} />
+        </div>
       </div>
     </S.CalendarContainer>
   );
