@@ -22,6 +22,15 @@ ChartJS.register(
   Legend
 );
 
+interface ChartData {
+  labels: string[];
+  datasets: {
+    data: number[];
+    backgroundColor: string[];
+    label: string;
+  }[];
+}
+
 function ExpensesPieChart({ history }: ChartHistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
 
@@ -32,7 +41,7 @@ function ExpensesPieChart({ history }: ChartHistoryProps) {
         position: 'top' as const
       }
     },
-    type: 'pie'
+    type: 'pie' as const
   };
 
   const currentMonth = calendar.month;
@@ -64,19 +73,33 @@ function ExpensesPieChart({ history }: ChartHistoryProps) {
     .map((el) => el.amount);
   const dataSum = dataValues.reduce((a, b) => a + b, 0);
 
-  const data = {
-    labels: labels.map(
-      (label, index) =>
-        `${label} (${Math.ceil((dataValues[index] / dataSum) * 100)}%)`
-    ),
+  const data: ChartData = {
+    labels: [],
     datasets: [
       {
-        data: dataValues,
+        data: [],
         backgroundColor: colors,
         label: '지출 항목'
       }
     ]
   };
+
+  const labelsWithDataValues = labels.reduce(
+    (acc: Record<string, number>, label, index) => {
+      if (acc[label]) {
+        acc[label] += dataValues[index];
+      } else {
+        acc[label] = dataValues[index];
+      }
+      return acc;
+    },
+    {}
+  );
+
+  for (const [label, value] of Object.entries(labelsWithDataValues)) {
+    data.labels.push(`${label} (${Math.ceil((value / dataSum) * 100)}%)`);
+    data.datasets[0].data.push(value);
+  }
 
   return (
     <>
