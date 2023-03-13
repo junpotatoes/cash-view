@@ -21,7 +21,7 @@ ChartJS.register(
   Legend
 );
 
-function IncomePieChart({ history }: HistoryProps) {
+function ExpensesPieChart({ history }: HistoryProps) {
   const calendar = useAppSelector((state) => state.calendar);
 
   const options = {
@@ -37,26 +37,30 @@ function IncomePieChart({ history }: HistoryProps) {
   const currentMonth = calendar.month;
   const currentYear = calendar.year;
 
-  const labelsData = history.filter(
-    (el) =>
-      el.month === currentMonth &&
-      el.year === currentYear &&
-      el.value === '수입'
-  );
-  const labels = Array.from(new Set(labelsData.map((el) => el.category)));
+  const labels = history
+    .filter(
+      (el) =>
+        el.month === currentMonth &&
+        el.year === currentYear &&
+        el.value === '지출'
+    )
+    .map((el) => el.category);
   const colors = [
-    '#B4B2FF',
-    '#DEDDFF',
-    '#6D6AFA',
-    '#A2EDFD',
-    '#C270DF',
-    '#2E9BFF'
+    '#FAB5B5',
+    '#FF7D7D',
+    '#FABD92',
+    '#FDDE8F',
+    '#DD79B5',
+    '#D4AEE1'
   ];
-  const dataValues = labels.map((label) =>
-    labelsData
-      .filter((el) => el.category === label)
-      .reduce((acc, curr) => acc + curr.amount, 0)
-  );
+  const dataValues = history
+    .filter(
+      (el) =>
+        el.month === currentMonth &&
+        el.year === currentYear &&
+        el.value === '지출'
+    )
+    .map((el) => el.amount);
   const dataSum = dataValues.reduce((a, b) => a + b, 0);
 
   const data = {
@@ -68,7 +72,7 @@ function IncomePieChart({ history }: HistoryProps) {
       {
         data: dataValues,
         backgroundColor: colors,
-        label: '수입 항목'
+        label: '지출 항목'
       }
     ]
   };
@@ -78,16 +82,16 @@ function IncomePieChart({ history }: HistoryProps) {
       {dataValues.length > 0 ? (
         <Pie options={options} data={data} />
       ) : (
-        <S.NoIncomeDataBox>
+        <S.NoOutcomeDataBox>
           <p>
             데이터가 없습니다
             <br />
             지출 내역을 입력해주세요.
           </p>
-        </S.NoIncomeDataBox>
+        </S.NoOutcomeDataBox>
       )}
     </>
   );
 }
 
-export default IncomePieChart;
+export default ExpensesPieChart;

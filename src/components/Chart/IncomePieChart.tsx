@@ -37,13 +37,14 @@ function IncomePieChart({ history }: HistoryProps) {
   const currentMonth = calendar.month;
   const currentYear = calendar.year;
 
-  const labelsData = history.filter(
-    (el) =>
-      el.month === currentMonth &&
-      el.year === currentYear &&
-      el.value === '수입'
-  );
-  const labels = Array.from(new Set(labelsData.map((el) => el.category)));
+  const labels = history
+    .filter(
+      (el) =>
+        el.month === currentMonth &&
+        el.year === currentYear &&
+        el.value === '수입'
+    )
+    .map((el) => el.category);
   const colors = [
     '#B4B2FF',
     '#DEDDFF',
@@ -52,11 +53,14 @@ function IncomePieChart({ history }: HistoryProps) {
     '#C270DF',
     '#2E9BFF'
   ];
-  const dataValues = labels.map((label) =>
-    labelsData
-      .filter((el) => el.category === label)
-      .reduce((acc, curr) => acc + curr.amount, 0)
-  );
+  const dataValues = history
+    .filter(
+      (el) =>
+        el.month === currentMonth &&
+        el.year === currentYear &&
+        el.value === '수입'
+    )
+    .map((el) => el.amount);
   const dataSum = dataValues.reduce((a, b) => a + b, 0);
 
   const data = {
