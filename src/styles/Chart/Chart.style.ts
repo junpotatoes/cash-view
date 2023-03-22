@@ -30,6 +30,10 @@ export const BarChartBox = styled.div`
   width: 70%;
   min-height: 340px;
   height: 100%;
+
+  @media ${(props) => props.theme.mobile} {
+    width: 100%;
+  }
 `;
 
 export const NoDataBox = styled.div`
