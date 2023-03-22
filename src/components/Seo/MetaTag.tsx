@@ -9,7 +9,7 @@ function MetaTag() {
         content="upgrade-insecure-requests"
       />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Account Book</title>
+      <title>캐시뷰</title>
       <meta name="description" content="편리한 웹앱 가계부" />
     </Helmet>
   );
