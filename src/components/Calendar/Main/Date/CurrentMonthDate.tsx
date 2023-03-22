@@ -39,7 +39,7 @@ function CurrentMonthDate({ date, checkTotal }: CalendarDateProps) {
         {calendar.year === new Date().getFullYear() &&
           calendar.month === new Date().getMonth() + 1 &&
           date === new Date().getDate() && (
-            <strong className="today">today</strong>
+            <strong className="today">Today</strong>
           )}
       </div>
 

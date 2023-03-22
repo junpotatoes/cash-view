@@ -20,7 +20,7 @@ export const HeaderContainer = styled.div`
   max-width: 1200px;
   height: 50px;
 
-  .HeaderTitle {
+  .headerTitle {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,7 +55,7 @@ export const HeaderContainer = styled.div`
     }
   }
 
-  .HeaderMenuList {
+  .headerMenuList {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,7 +148,7 @@ export const MenuModalContainer = styled.div<{ isOpenModal: boolean }>`
       props.isOpenModal ? 'translateY(0)' : 'translateY(-200px)'};
     z-index: 50;
 
-    .MobileMenuList {
+    .mobileMenuList {
       height: 100%;
 
       li {

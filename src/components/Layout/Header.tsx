@@ -25,7 +25,7 @@ function Header() {
     <>
       <S.HeaderWrapper>
         <S.HeaderContainer>
-          <h1 className="HeaderTitle">
+          <h1 className="headerTitle">
             <div className="userImg">
               <img src={userImg} alt="" />
             </div>
@@ -34,7 +34,7 @@ function Header() {
             </strong>
           </h1>
 
-          <ul className="HeaderMenuList">
+          <ul className="headerMenuList">
             <li>
               <Link
                 to={'/calendar'}
@@ -72,7 +72,7 @@ function Header() {
         isOpenModal={isOpenMenu}
       />
       <S.MenuModalContainer isOpenModal={isOpenMenu}>
-        <ul className="MobileMenuList">
+        <ul className="mobileMenuList">
           <li>
             <Link
               to={'/calendar'}

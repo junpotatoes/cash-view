@@ -31,7 +31,7 @@ function MobileMonthDate() {
       {calendar.year === new Date().getFullYear() &&
         calendar.month === new Date().getMonth() + 1 &&
         calendar.date === new Date().getDate() && (
-          <strong className="today">오늘</strong>
+          <strong className="today">Today</strong>
         )}
 
       <ArrowIcon />
