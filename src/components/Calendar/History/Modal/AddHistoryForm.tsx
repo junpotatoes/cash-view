@@ -52,6 +52,7 @@ function AddHistoryForm({ addModal, setAddModal }: AddModalProps) {
       dispatch(onToggle(true));
       setAddModal(false);
       setAlert(true);
+      setFormState({});
     } catch {}
   };
 

@@ -1,6 +1,6 @@
 import * as S from '@/styles/Calendar/History/HistoryDetail.style';
-import HistoryHeader from '@/components/Calendar/Header/HistoryHeader';
-import HistoryMain from '@/components/Calendar/Main/HistoryMain';
+import HistoryHeader from '@/components/Calendar/History/HistoryHeader';
+import HistoryMain from '@/components/Calendar/History/HistoryMain';
 import { HistoryProps } from '@/components/Layout/Route';
 
 export interface UpdateModalProps {

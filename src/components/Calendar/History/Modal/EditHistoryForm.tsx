@@ -44,6 +44,7 @@ function EditHistoryForm({ updateModal, setUpdateModal, id }: UpdateFormProps) {
       setAlert(true);
     } catch {}
   };
+  console.log(formState);
 
   return (
     <>
