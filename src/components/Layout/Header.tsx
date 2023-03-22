@@ -25,7 +25,7 @@ function Header() {
     <>
       <S.HeaderWrapper>
         <S.HeaderContainer>
-          <h1 className="HeaderTitle">
+          <h1 className="headerTitle">
             <div className="userImg">
               <img src={userImg} alt="" />
             </div>

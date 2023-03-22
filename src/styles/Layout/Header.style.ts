@@ -20,7 +20,7 @@ export const HeaderContainer = styled.div`
   max-width: 1200px;
   height: 50px;
 
-  .HeaderTitle {
+  .headerTitle {
     display: flex;
     justify-content: center;
     align-items: center;
