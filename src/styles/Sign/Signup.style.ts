@@ -35,12 +35,12 @@ export const SignUpFormContent = styled.form`
   .error_box {
     display: flex;
     align-items: center;
-    width: 52%;
+    width: 95%;
   }
 
   .error_text {
     color: red;
-    font-size: 8px;
+    font-size: 2px;
     margin-top: -15px;
   }
 `;

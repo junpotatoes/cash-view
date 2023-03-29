@@ -61,7 +61,7 @@ function LoginForm() {
             type="email"
             name="email"
             value={formValues.email}
-            placeholder={'이메일을 입력해주세요'}
+            placeholder={'user1234@gmail.com'}
             onChange={handleInputChange}
             required
           />
@@ -70,7 +70,7 @@ function LoginForm() {
             type="password"
             name="password"
             value={formValues.password}
-            placeholder={'비밀번호를 입력해주세요'}
+            placeholder={'user1234@'}
             onChange={handleInputChange}
             required
           />
